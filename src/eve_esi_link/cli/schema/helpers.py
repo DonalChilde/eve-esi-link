@@ -60,11 +60,11 @@ def is_raw_schema(schema: dict[str, Any]) -> bool:
         if "$ref" in d:
             return True
         for v in d.values():
-            if isinstance(v, dict) and has_ref(v):
+            if isinstance(v, dict) and has_ref(v):  # type: ignore
                 return True
             elif isinstance(v, list):
-                for item in v:
-                    if isinstance(item, dict) and has_ref(item):
+                for item in v:  # type: ignore
+                    if isinstance(item, dict) and has_ref(item):  # type: ignore
                         return True
         return False
 
