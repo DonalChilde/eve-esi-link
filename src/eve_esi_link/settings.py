@@ -8,6 +8,12 @@ from typer import get_app_dir
 
 from eve_esi_link import __app_name__, __url__, __version__
 
+COMPATIBILITY_DATES_URL = "https://esi.evetech.net/meta/compatibility-dates"
+"""URL to fetch the list of compatibility dates from the ESI API."""
+ESI_SCHEMA_URL = "https://esi.evetech.net/meta/openapi.json"
+"""URL to fetch ESI OpenAPI schema."""
+USER_AGENT = f"{__app_name__}/{__version__} ({__url__})"
+
 
 @dataclass(slots=True, kw_only=True)
 class EsiLinkSettings:

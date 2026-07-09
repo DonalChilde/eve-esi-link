@@ -51,7 +51,7 @@ def format_json(
         bool,
         typer.Option(
             "--plain",
-            help="Display the output in plain text markdown instead of Rich markdown.",
+            help="Display the output in plain text JSON instead of Rich JSON.",
         ),
     ] = False,
     overwrite: Annotated[

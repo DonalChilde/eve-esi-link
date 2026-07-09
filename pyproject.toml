@@ -13,6 +13,7 @@ dependencies = [
     "mdformat-gfm>=1.0.0",
     "pydantic>=2.13.4",
     "pydantic-settings>=2.14.2",
+    "pyyaml>=6.0.3",
     "rich>=15.0.0",
     "typer>=0.26.8",
     "whenever>=0.10.0",

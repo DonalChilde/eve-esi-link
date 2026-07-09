@@ -11,6 +11,7 @@ from eve_esi_link.logging_config import setup_logging
 from eve_esi_link.settings import get_settings
 
 from .examples import app as examples_app
+from .schema import app as schema_app
 
 logger = logging.getLogger(__name__)
 
@@ -64,4 +65,9 @@ app.add_typer(
     examples_app,
     name="examples",
     help="A collection of example commands.",
+)
+app.add_typer(
+    schema_app,
+    name="schema",
+    help="Commands for fetching and working with ESI schemas.",
 )
