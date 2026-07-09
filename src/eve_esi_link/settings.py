@@ -17,7 +17,6 @@ class EsiLinkSettings:
     logging_directory: Path
 
 
-@dataclass(slots=True, kw_only=True)
 class EsiLinkSettingsPydantic(BaseSettings):
     """Pydantic-based configuration settings for the Eve ESI Link application."""
 
@@ -28,7 +27,6 @@ class EsiLinkSettingsPydantic(BaseSettings):
     )
 
     application_directory: Path = Path(get_app_dir(__app_name__))
-    logging_directory: Path = application_directory / "logs"
 
 
 def get_settings() -> EsiLinkSettings:
@@ -40,5 +38,5 @@ def get_settings() -> EsiLinkSettings:
     pydantic_settings = EsiLinkSettingsPydantic()
     return EsiLinkSettings(
         application_directory=pydantic_settings.application_directory,
-        logging_directory=pydantic_settings.logging_directory,
+        logging_directory=pydantic_settings.application_directory / "logs",
     )

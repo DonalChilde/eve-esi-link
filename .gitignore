@@ -2,6 +2,7 @@
 /dev/secrets
 /dev/tmp
 /dev/pytest-logs
+/dev/app-dir
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

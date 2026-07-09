@@ -48,9 +48,6 @@ def default_options(
     logger.info(
         f"Starting {__app_name__} v{__version__} with settings: {asdict(settings)!r}"
     )
-    if version:
-        typer.echo(f"{__app_name__} v{__version__}")
-        raise typer.Exit()
 
 
 app = typer.Typer(
@@ -59,3 +56,11 @@ app = typer.Typer(
     callback=default_options,
     no_args_is_help=True,
 )
+
+
+@app.command()
+def example(ctx: typer.Context) -> None:
+    """An example command that demonstrates access to the application settings."""
+    settings = ctx.obj["eve-esi-link-settings"]
+    typer.echo(f"Application Directory: {settings.application_directory}")
+    typer.echo(f"Logging Directory: {settings.logging_directory}")
