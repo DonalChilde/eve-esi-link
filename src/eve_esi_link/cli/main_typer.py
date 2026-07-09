@@ -10,6 +10,8 @@ from eve_esi_link import __app_name__, __version__
 from eve_esi_link.logging_config import setup_logging
 from eve_esi_link.settings import get_settings
 
+from .examples import app as examples_app
+
 logger = logging.getLogger(__name__)
 
 
@@ -58,9 +60,8 @@ app = typer.Typer(
 )
 
 
-@app.command()
-def example(ctx: typer.Context) -> None:
-    """An example command that demonstrates access to the application settings."""
-    settings = ctx.obj["eve-esi-link-settings"]
-    typer.echo(f"Application Directory: {settings.application_directory}")
-    typer.echo(f"Logging Directory: {settings.logging_directory}")
+app.add_typer(
+    examples_app,
+    name="examples",
+    help="A collection of example commands.",
+)
