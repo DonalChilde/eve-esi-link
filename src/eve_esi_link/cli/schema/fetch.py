@@ -10,6 +10,7 @@ import typer
 from rich.console import Console
 from rich.json import JSON
 
+from eve_esi_link.cli.schema.helpers import SchemaIOFormat
 from eve_esi_link.helpers.eve_dates import previous_downtime
 from eve_esi_link.helpers.http_session_factory import client_manager
 from eve_esi_link.helpers.save_text_file import save_text_file
@@ -17,15 +18,6 @@ from eve_esi_link.schema.fetch import fetch_schema
 from eve_esi_link.schema.models import TimestampedDereferencedSchema
 
 app = typer.Typer(no_args_is_help=True)
-
-
-class OutputFormat(StrEnum):
-    """Enum for output format options."""
-
-    BARE = "bare"
-    TIMESTAMPED_BARE = "timestamped_bare"
-    DEREFERENCED = "dereferenced"
-    TIMESTAMPED_DEREFERENCED = "timestamped_dereferenced"
 
 
 @app.command(name="fetch-schema", help="Fetch the ESI schema for a given date.")
@@ -44,6 +36,8 @@ def fetch_esi_schema(
         typer.Option(
             "--to",
             help="Path to the output formatted JSON file. Defaults to `-` for stdout.",
+            allow_dash=True,
+            dir_okay=False,
         ),
     ] = Path("-"),
     indent: Annotated[
@@ -55,13 +49,13 @@ def fetch_esi_schema(
         ),
     ] = None,
     format: Annotated[
-        OutputFormat,
+        SchemaIOFormat,
         typer.Option(
             "--format",
             help="The output format for the schema. Options are: bare, timestamped_bare, "
             "dereferenced, timestamped_dereferenced. Defaults to timestamped_bare.",
         ),
-    ] = OutputFormat.TIMESTAMPED_BARE,
+    ] = SchemaIOFormat.TIMESTAMPED_BARE,
     quiet: Annotated[
         bool,
         typer.Option(
@@ -105,16 +99,16 @@ def fetch_esi_schema(
             messenger.print(f"[red]Error: Failed to fetch schema - {e}[/red]")
             raise typer.Exit(code=1) from e
     match format:
-        case OutputFormat.BARE:
+        case SchemaIOFormat.BARE:
             output_data = schema_data.schema
-        case OutputFormat.TIMESTAMPED_BARE:
+        case SchemaIOFormat.TIMESTAMPED_BARE:
             output_data = asdict(schema_data)
-        case OutputFormat.DEREFERENCED:
+        case SchemaIOFormat.DEREFERENCED:
             dereferenced_schema = TimestampedDereferencedSchema.from_timestamped_schema(
                 schema_data
             )
             output_data = dereferenced_schema.dereferenced_schema
-        case OutputFormat.TIMESTAMPED_DEREFERENCED:
+        case SchemaIOFormat.TIMESTAMPED_DEREFERENCED:
             dereferenced_schema = TimestampedDereferencedSchema.from_timestamped_schema(
                 schema_data
             )

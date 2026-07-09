@@ -5,6 +5,8 @@ from dataclasses import dataclass, field
 from enum import StrEnum
 from typing import Any, Self, cast
 
+from pydantic import RootModel
+
 from ..helpers.resolve_json_ref import resolve_internal_refs
 
 
@@ -18,6 +20,9 @@ class TimestampedSchema:
     timestamp: int
     """The timestamp associated with the schema, representing the timestamp when the 
         schema was fetched in nanoseconds."""
+
+
+TimestampedSchemaRoot = RootModel[TimestampedSchema]
 
 
 @dataclass(slots=True, kw_only=True, frozen=True)
@@ -54,6 +59,9 @@ class TimestampedDereferencedSchema:
             dereferenced_schema=dereferenced_schema,
             timestamp=timestamped_schema.timestamp,
         )
+
+
+TimestampedDereferencedSchemaRoot = RootModel[TimestampedDereferencedSchema]
 
 
 @dataclass(slots=True, kw_only=True, frozen=True)
@@ -147,6 +155,11 @@ class SchemaOperation:
         ]
 
     @property
+    def response_keys(self) -> list[str]:
+        """Extract the response keys from the operation object, if present."""
+        return list(self.operation_schema.get("responses", {}).keys())
+
+    @property
     def responses_200(self) -> dict[str, Any]:
         """Extract the response schema from the operation object, if present."""
         success_responses = (
@@ -192,7 +205,7 @@ class SchemaOperation:
         return self.operation_schema.get("summary")
 
     @property
-    def x_compatibility_date(self) -> str:
+    def compatibility_date(self) -> str:
         """Extract the x-compatibility-date from the operation object, if present."""
         value = self.operation_schema.get("x-compatibility-date")
         if value is None:
@@ -213,12 +226,19 @@ class SchemaOperation:
 
 @dataclass(slots=True, kw_only=True)
 class EsiSchema:
-    """Represents the ESI OpenAPI schema and its associated metadata.
+    """Represents the dereferenced ESI OpenAPI schema.
+
+    Can have an optional timestamp associated with it, representing the timestamp when
+    the schema was fetched in nanoseconds.
 
     For ease of access to the details of the schema.
     """
 
     dereferenced_schema: dict[str, Any]
+    timestamp: int | None = None
+    """The timestamp associated with the schema, representing the timestamp when the
+        schema was fetched in nanoseconds. This field is optional and can be None if the
+        timestamp is not available or not applicable."""
     _schema_operations: dict[str, SchemaOperation] = field(
         default_factory=dict[str, SchemaOperation], init=False, repr=False
     )
@@ -266,7 +286,9 @@ class EsiSchema:
         }
 
     @classmethod
-    def from_raw_schema(cls, raw_schema: dict[str, Any]) -> Self:
+    def from_raw_schema(
+        cls, raw_schema: dict[str, Any], timestamp: int | None = None
+    ) -> Self:
         """Factory method to create an EsiSchema instance from a raw OpenAPI schema.
 
         This method will resolve all internal JSON references in the schema, so that
@@ -275,12 +297,15 @@ class EsiSchema:
 
         Args:
             raw_schema: The raw OpenAPI schema as a dictionary.
+            timestamp: The timestamp associated with the schema, representing the timestamp when the
+                schema was fetched in nanoseconds. This field is optional and can be None if the
+                timestamp is not available or not applicable.
 
         Returns:
             An instance of EsiSchema with the dereferenced schema.
         """
         dereferenced_schema = resolve_internal_refs(raw_schema, raw_schema)
-        return cls(dereferenced_schema=dereferenced_schema)
+        return cls(dereferenced_schema=dereferenced_schema, timestamp=timestamp)
 
     @property
     def operations(self) -> dict[str, SchemaOperation]:
