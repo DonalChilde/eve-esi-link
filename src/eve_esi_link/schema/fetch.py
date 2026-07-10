@@ -92,3 +92,10 @@ def fetch_compatibility_dates(session: Client) -> TimestampedCompatibilityDates:
     except Exception as e:
         logger.error("Error fetching compatibility dates: %s", e)
         raise
+
+
+def fetch_schema_changelog(
+    session: Client, *, compatibility_date: str, url: str = ""
+) -> dict[str, list[str]]:
+    """Fetch the ESI OpenAPI schema changelog for a given compatibility date."""
+    ...

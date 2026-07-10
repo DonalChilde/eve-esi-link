@@ -116,10 +116,13 @@ def _parameter_type(parameter: dict[str, Any]) -> str:
 
 
 def _render_parameters_table(operation: SchemaOperation) -> str:
-    """Render path/query parameter documentation table."""
-    parameters = operation.path_and_query_parameters
+    """Render path/query/header parameter documentation table."""
+    parameters = [
+        *operation.path_and_query_parameters,
+        *operation.header_params,
+    ]
     if not parameters:
-        return "No path/query parameters."
+        return "No path/query/header parameters."
 
     table = MarkdownTable(
         headers=["Name", "In", "Required", "Type", "Description"],
