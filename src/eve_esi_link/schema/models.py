@@ -344,3 +344,6 @@ class EsiSchema:
             .get("schema", {})
             .get("enum", [])
         )
+
+
+EsiSchemaRoot = RootModel[EsiSchema]
