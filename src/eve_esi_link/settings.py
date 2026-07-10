@@ -2,6 +2,7 @@
 
 from dataclasses import dataclass
 from pathlib import Path
+from uuid import NAMESPACE_DNS, uuid5
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from typer import get_app_dir
@@ -13,6 +14,8 @@ COMPATIBILITY_DATES_URL = "https://esi.evetech.net/meta/compatibility-dates"
 ESI_SCHEMA_URL = "https://esi.evetech.net/meta/openapi.json"
 """URL to fetch ESI OpenAPI schema."""
 USER_AGENT = f"{__app_name__}/{__version__} ({__url__})"
+APP_DOMAIN = "pfmsoft.eve-esi-link"
+APP_NAMESPACE = uuid5(NAMESPACE_DNS, APP_DOMAIN)
 
 
 @dataclass(slots=True, kw_only=True)

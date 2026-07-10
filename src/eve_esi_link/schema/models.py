@@ -215,6 +215,11 @@ class SchemaOperation:
         return value
 
     @property
+    def rate_limit(self) -> dict[str, Any] | None:
+        """Extract the x-rate-limit from the operation object, if present."""
+        return deepcopy(self.operation_schema.get("x-rate-limit"))
+
+    @property
     def x_values(self) -> list[dict[str, Any]]:
         """Extract the x-values from the operation object, if present."""
         x_list: list[dict[str, Any]] = []
@@ -332,6 +337,13 @@ class EsiSchema:
     def base_url(self) -> str:
         """Get the base URL for the ESI API from the servers section of the schema."""
         return self.dereferenced_schema["servers"][0]["url"]
+
+    def operation_url(self, operation_id: str) -> str:
+        """Get the full URL template for a specific operation based on its operation ID."""
+        operation = self.operations.get(operation_id)
+        if operation is None:
+            raise ValueError(f"Operation ID '{operation_id}' not found in ESI schema.")
+        return f"{self.base_url}{operation.path}"
 
     @property
     def content_languages(self) -> set[str]:
