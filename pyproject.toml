@@ -3,11 +3,11 @@ name = "eve-esi-link"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-authors = [
-    { name = "Chad Lowe", email = "pfmsoft.dev@gmail.com" }
-]
+authors = [{ name = "Chad Lowe", email = "pfmsoft.dev@gmail.com" }]
 requires-python = ">=3.14"
 dependencies = [
+    "api-request>=0.1.0",
+    "eve-auth-manager>=0.4.0",
     "httpx2>=2.5.0",
     "mdformat>=1.0.0",
     "mdformat-gfm>=1.0.0",
@@ -39,6 +39,10 @@ build-backend = "uv_build"
 [tool.uv]
 exclude-newer = "1 week"
 
+[tool.uv.sources]
+api-request = { git = "https://github.com/DonalChilde/api-request", branch = "main" }
+eve-auth-manager = { git = "https://github.com/DonalChilde/eve-auth-manager", branch = "main" }
+
 [tool.pytest.ini_options]
 pythonpath = "src"
 log_file = "dev/pytest-logs/tests.log"
@@ -51,7 +55,7 @@ branch = true
 parallel = true
 
 [tool.ruff.lint]
-select = ["B", "UP", "D",  "FIX", "I", "F401"]
+select = ["B", "UP", "D", "FIX", "I", "F401"]
 # non-imperative-mood (D401)
 ignore = ["D401", "D101", "D421"]
 # extend-select = ["I"]
@@ -65,8 +69,4 @@ docstring-code-format = true
 docstring-code-line-length = 88
 
 [dependency-groups]
-dev = [
-    "pytest>=9.1.1",
-    "pytest-cov>=7.1.0",
-    "ruff>=0.15.20",
-]
+dev = ["pytest>=9.1.1", "pytest-cov>=7.1.0", "ruff>=0.15.20"]
