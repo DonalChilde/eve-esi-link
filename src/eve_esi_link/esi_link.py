@@ -82,8 +82,8 @@ class EsiLink:
         """
         ...
 
+    @staticmethod
     def validate_request(
-        self,
         request: EsiRequest,
         schema: EsiSchema,
         require_access_token: bool = False,

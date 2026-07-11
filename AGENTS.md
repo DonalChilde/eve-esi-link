@@ -8,11 +8,13 @@ A cli and api for working with the EVE Online ESI web api.
 
 ### State
 
-Initial project setup.
+Implementing the remaining code required for an end to end run through.
 
-### Goals
+### Goals for this session
 
-The goals of the current coding session.
+- implement EsiRequest to Request translation
+- wire in sending request.
+- Implememt Response to EsiResponse translation
 
 ### Key Dependencies
 

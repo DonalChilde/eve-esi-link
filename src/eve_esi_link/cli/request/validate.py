@@ -6,16 +6,18 @@ from typing import Annotated
 import typer
 from rich.console import Console
 
-from eve_esi_link.cli.schema.helpers import SchemaIOFormat
+from eve_esi_link.cli.helpers import get_eve_link_settings_from_context, get_stdin
+from eve_esi_link.cli.schema.helpers import (
+    SchemaIOFormat,
+    deserialize_schema,
+    get_esi_schema,
+)
 from eve_esi_link.esi_request.models import EsiRequestsRoot
 from eve_esi_link.esi_request.validate import (
     EsiRequestValidationError,
     EsiRequestValidationErrors,
-    validate_esi_request,
 )
-
-from ..helpers import get_stdin
-from ..schema.helpers import deserialize_schema, get_esi_schema
+from eve_esi_link.helpers.esi_link_factory import esi_link_factory
 
 app = typer.Typer(no_args_is_help=True)
 
@@ -79,6 +81,8 @@ def validate_requests(
         messenger = Console(stderr=True, quiet=True)
     else:
         messenger = Console(stderr=True)
+    settings = get_eve_link_settings_from_context(ctx)
+    esi_link = esi_link_factory(settings)
 
     if file_in == Path("-"):
         requests_data = get_stdin()
@@ -113,7 +117,7 @@ def validate_requests(
     valid_count = 0
     for request_id, request in esi_requests.items():
         try:
-            validate_esi_request(
+            esi_link.validate_request(
                 request,
                 esi_schema,
                 require_access_token=require_access_token,

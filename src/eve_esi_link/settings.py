@@ -29,8 +29,12 @@ class EsiLinkSettings:
 
     application_directory: Path
     logging_directory: Path
-    api_request_cache_file: Path
+    # Eve Auth Manager settings
     auth_manager_db_file: Path
+    # API Request settings
+    api_request_cache_file: Path
+    max_rate: float = 50.0
+    time_period: float = 1.0
 
 
 class EsiLinkSettingsPydantic(BaseSettings):
