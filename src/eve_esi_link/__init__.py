@@ -14,3 +14,10 @@ __release__ = __version__
 #######################################################################################
 __url__ = "https://github.com/DonalChilde/eve-esi-link"
 __license__ = "MIT"
+
+
+from eve_esi_link.esi_link import EsiLink
+
+__all__ = [
+    "EsiLink",
+]
