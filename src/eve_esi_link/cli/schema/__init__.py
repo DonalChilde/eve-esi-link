@@ -2,7 +2,11 @@
 
 import typer
 
-app = typer.Typer(no_args_is_help=True)
+app = typer.Typer(
+    no_args_is_help=True,
+    name="schema",
+    help="Commands for fetching and working with ESI schemas.",
+)
 
 from .doc import app as generate_doc_app
 from .fetch import app as fetch_schema_app

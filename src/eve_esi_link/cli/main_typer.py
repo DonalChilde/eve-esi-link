@@ -5,14 +5,25 @@ from dataclasses import asdict
 from typing import Annotated
 
 import typer
+from api_request.cli import app as api_request_app
+from api_request.settings import SETTINGS_KEY as API_REQUEST_SETTINGS_KEY
+from eve_auth_manager.cli import app as auth_manager_app
+from eve_auth_manager.settings import SETTINGS_KEY as AUTH_MANAGER_SETTINGS_KEY
 
 from eve_esi_link import __app_name__, __version__
-from eve_esi_link.logging_config import setup_logging
-from eve_esi_link.settings import get_settings
+from eve_esi_link.cli.helpers import (
+    construct_api_request_settings,
+    construct_eve_auth_manager_settings,
+)
+from eve_esi_link.logging_config import (
+    flush_deferred_handler,
+    init_deferred_handler,
+    setup_logging,
+)
+from eve_esi_link.settings import SETTINGS_KEY, get_settings
 
+from . import app as main_app
 from .examples import app as examples_app
-from .request import app as request_app
-from .schema import app as schema_app
 
 logger = logging.getLogger(__name__)
 
@@ -46,9 +57,17 @@ def default_options(
         The resolved EsiLinkSettings object is stored in ctx.obj under
         the eve-esi-link-settings key.
     """
+    init_deferred_handler()
     settings = get_settings()
+    auth_manager_settings = construct_eve_auth_manager_settings(settings)
+    api_request_settings = construct_api_request_settings(settings)
     setup_logging(log_dir=settings.logging_directory)
-    ctx.obj = {"eve-esi-link-settings": settings}
+    flush_deferred_handler()
+    ctx.obj = {
+        SETTINGS_KEY: settings,
+        AUTH_MANAGER_SETTINGS_KEY: auth_manager_settings,
+        API_REQUEST_SETTINGS_KEY: api_request_settings,
+    }
     logger.info(
         f"Starting {__app_name__} v{__version__} with settings: {asdict(settings)!r}"
     )
@@ -67,13 +86,6 @@ app.add_typer(
     name="examples",
     help="A collection of example commands.",
 )
-app.add_typer(
-    schema_app,
-    name="schema",
-    help="Commands for fetching and working with ESI schemas.",
-)
-app.add_typer(
-    request_app,
-    name="request",
-    help="Commands for managing ESI requests.",
-)
+app.add_typer(main_app)
+app.add_typer(auth_manager_app, name="auth-manager")
+app.add_typer(api_request_app, name="api-request")
