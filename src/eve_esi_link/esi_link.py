@@ -1,5 +1,6 @@
 """Hold the EsiLink class."""
 
+import logging
 from pathlib import Path
 from types import TracebackType
 
@@ -8,8 +9,14 @@ from api_request.cache import SqliteCacheFactory
 from api_request.rate_limit import AiolimiterRateLimiterFactory
 from eve_auth_manager.sqlite.manager import SqliteAuthManager
 
-from eve_esi_link.esi_request.models import EsiRequests, EsiResponses
+from eve_esi_link.esi_request.models import EsiRequest, EsiRequests, EsiResponses
+from eve_esi_link.esi_request.validate import (
+    EsiRequestValidationErrors,
+    validate_esi_request,
+)
 from eve_esi_link.schema.models import EsiSchema
+
+logger = logging.getLogger(__name__)
 
 
 class EsiLink:
@@ -74,3 +81,27 @@ class EsiLink:
             EsiResponses: The responses from the ESI requests.
         """
         ...
+
+    def validate_request(
+        self,
+        request: EsiRequest,
+        schema: EsiSchema,
+        require_access_token: bool = False,
+    ) -> None:
+        """Validate the given ESI requests against the provided schema.
+
+        Args:
+            request (EsiRequest): The ESI request to validate.
+            schema (EsiSchema): The schema to validate against.
+            require_access_token (bool): Whether to require an access token for the request.
+
+        Raises:
+            EsiRequestValidationErrors: If any of the requests are invalid according to the schema.
+        """
+        try:
+            validate_esi_request(
+                request, schema, require_access_token=require_access_token
+            )
+        except EsiRequestValidationErrors as e:
+            logger.error("Validation failed for request %s: %s", request, e)
+            raise
