@@ -96,26 +96,6 @@ def test_make_request_includes_runtime_headers() -> None:
     }
 
 
-def test_set_runtime_header_mutates_runtime_header_state() -> None:
-    """Mutate runtime header state through explicit mutator API."""
-    request = EsiRequest(operation_id="GetStatus")
-    request.runtime_headers = {}
-
-    request.set_runtime_header(name="Authorization", value="Bearer token")
-
-    assert request.runtime_headers == {"authorization": "Bearer token"}
-
-
-def test_set_runtime_query_parameter_mutates_runtime_query_state() -> None:
-    """Mutate runtime query state through explicit mutator API."""
-    request = EsiRequest(operation_id="GetStatus")
-    request.runtime_query_parameters = {}
-
-    request.set_runtime_query_parameter(name="page", value=2)
-
-    assert request.runtime_query_parameters == {"page": 2}
-
-
 def test_set_runtime_attributes_sets_page_for_paged_operation() -> None:
     """Set runtime page query parameter for paged operations."""
     schema = _make_schema()

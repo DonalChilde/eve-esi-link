@@ -106,6 +106,8 @@ def _set_headers(esi_request: EsiRequest, esi_schema: EsiSchema) -> None:
         esi_request: The ESI request to set the headers for.
         esi_schema: The ESI schema to use for setting the headers.
     """
+    if esi_request._runtime_headers is None:  # type: ignore
+        esi_request._runtime_headers = {}  # type: ignore
     schema_compatibility_date = esi_schema.compatibility_date
     # get the request headers, with lower case keys for case-insensitive matching
     request_headers = {k.lower(): v for k, v in esi_request.header_parameters.items()}
