@@ -1,7 +1,11 @@
+"""Models for ESI requests and responses."""
+
 from dataclasses import dataclass, field
 from typing import Any
 from uuid import UUID, uuid4, uuid5
 
+from api_request import Response
+from api_request.request.models import FailedResponse
 from pydantic import RootModel
 
 
@@ -23,18 +27,6 @@ class EsiAuthorization:
     """The credential ID for the authorization. This is used to link the authorization
         to the credential that was used to obtain it. This UUID is obtained from the 
         credential manager that provides the access token."""
-    _access_token: str | None = field(default=None, init=False, repr=False)
-    """The access token for the authorization. This is used to authenticate
-        requests to the ESI API on behalf of the character."""
-
-    @property
-    def access_token(self) -> str | None:
-        """Get the access token for the authorization.
-
-        Returns:
-            The access token for the authorization, or None if not set.
-        """
-        return self._access_token
 
     @property
     def authorization_key(self) -> UUID:
@@ -311,33 +303,6 @@ class EsiRequest:
         """
         self._runtime_query_parameters = value
 
-    def inject_authorization_header(self) -> None:
-        """Inject the authorization header into the runtime headers.
-
-        This is used to authenticate requests to the ESI API on behalf of a character.
-        If the request does not require authorization,signaled by the authorization
-        attribute == None, this method does nothing.
-
-        This should be called after the runtime headers have been set, and before the
-        request is executed.
-
-        Raises:
-            ValueError: If the runtime headers have not been set yet.
-            ValueError: If the authorization access token is not set when authorization
-                is required.
-        """
-        if self.authorization is None:
-            return
-        if self._runtime_headers is None:
-            raise ValueError("Runtime headers have not been set yet.")
-        if self.authorization.access_token is None:
-            raise ValueError(
-                "Authorization access token is not set. Cannot inject authorization header."
-            )
-        self._runtime_headers["authorization"] = (
-            f"Bearer {self.authorization.access_token}"
-        )
-
     def loggable(self) -> dict[str, Any]:
         """Return a loggable representation of the request.
 
@@ -357,9 +322,6 @@ class EsiRequest:
             "authorization": {
                 "character_id": self.authorization.character_id,
                 "credential_id": str(self.authorization.credential_id),
-                "access_token": "PRESENT->REDACTED"
-                if self.authorization.access_token is not None
-                else None,
             }
             if self.authorization is not None
             else None,
@@ -393,21 +355,23 @@ EsiRequestRoot = RootModel[EsiRequest]
 class EsiResponse:
     esi_request: EsiRequest
     """The request that generated this response."""
+    response: Response
+    """The response associated with this EsiResponse."""
 
 
 @dataclass(slots=True, kw_only=True, frozen=True)
-class FailedResponse:
+class FailedEsiResponse:
     esi_request: EsiRequest
     """The request that generated this failed response."""
-    error: str
-    """The error message associated with the failed response."""
+    failed_response: FailedResponse
+    """The failed response associated with this FailedEsiResponse."""
 
 
 @dataclass(slots=True, kw_only=True, frozen=True)
 class EsiResponses:
     successful: dict[UUID, EsiResponse] = field(default_factory=dict[UUID, EsiResponse])
-    failed: dict[UUID, FailedResponse] = field(
-        default_factory=dict[UUID, FailedResponse]
+    failed: dict[UUID, FailedEsiResponse] = field(
+        default_factory=dict[UUID, FailedEsiResponse]
     )
 
 

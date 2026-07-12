@@ -223,8 +223,11 @@ def generate_esi_schema_markdown_doc(
         "",
         "Version",
         f": {schema.version}",
+        "",
         "Download Date",
         f": {resolved_download_date.format_iso() if resolved_download_date else 'Unknown'}",
+        "",
+        f"Server URL: {schema.base_url}",
         "",
         _render_toc(grouped_operations),
     ]

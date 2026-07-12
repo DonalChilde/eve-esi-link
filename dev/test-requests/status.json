@@ -1,0 +1,12 @@
+{
+  "d4c54c12-dfb4-43d6-b0d4-56cdd28c0c1a": {
+    "request_id": "d4c54c12-dfb4-43d6-b0d4-56cdd28c0c1a",
+    "description": "THIS_IS_AN_OPTIONAL_DESCRIPTION",
+    "operation_id": "GetStatus",
+    "path_parameters": {},
+    "query_parameters": {},
+    "header_parameters": {},
+    "authorization": null,
+    "json_body": null
+  }
+}

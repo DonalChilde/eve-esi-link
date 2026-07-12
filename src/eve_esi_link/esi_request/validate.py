@@ -248,7 +248,6 @@ def _validate_authorization(
     esi_request: EsiRequest,
     operation: SchemaOperation,
     *,
-    require_access_token: bool,
     errors: list[str],
 ) -> None:
     """Validate authorization presence and token mode policy."""
@@ -289,21 +288,6 @@ def _validate_authorization(
             errors,
             operation.operation_id,
             "Authorization.credential_id must be a UUID.",
-        )
-
-    access_token = auth.access_token
-    if require_access_token:
-        if not isinstance(access_token, str) or access_token.strip() == "":
-            _add_error(
-                errors,
-                operation.operation_id,
-                "Authorization.access_token is required when require_access_token=True.",
-            )
-    elif access_token is not None:
-        _add_error(
-            errors,
-            operation.operation_id,
-            "Authorization.access_token must not be set when require_access_token=False.",
         )
 
 
@@ -494,22 +478,19 @@ def _validate_request_body(
 def validate_esi_request(
     esi_request: EsiRequest,
     esi_schema: EsiSchema,
-    require_access_token: bool = False,
 ) -> None:
     """Validate an ESI request against schema constraints.
 
     Args:
         esi_request: User-supplied request object to validate.
         esi_schema: Resolved ESI schema used for validation rules.
-        require_access_token: Whether authorization objects must include an access token.
 
     Raises:
         EsiRequestValidationErrors: If one or more validation checks fail.
     """
     logger.debug(
-        "Validating ESI request operation_id=%s require_access_token=%s",
+        "Validating ESI request operation_id=%s",
         esi_request.operation_id,
-        require_access_token,
     )
     errors: list[str] = []
     operation = _resolve_operation(esi_request, esi_schema, errors)
@@ -530,7 +511,6 @@ def validate_esi_request(
     _validate_authorization(
         esi_request,
         operation,
-        require_access_token=require_access_token,
         errors=errors,
     )
     _validate_request_body(esi_request, operation, errors)

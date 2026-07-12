@@ -1,0 +1,15 @@
+{
+  "THIS_IS_A_UUID": {
+    "request_id": "THIS_IS_A_UUID",
+    "description": "THIS_IS_AN_OPTIONAL_DESCRIPTION",
+    "operation_id": "THIS_IS_AN_OPERATION_ID",
+    "path_parameters": {},
+    "query_parameters": {},
+    "header_parameters": {},
+    "authorization": {
+      "character_id": 2112625428,
+      "credential_id": "THIS_IS_A_UUID__AUTHORIZATION_IS_NONE_IF_THE_REQUEST_IS_PUBLIC"
+    },
+    "json_body": null
+  }
+}

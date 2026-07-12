@@ -13,14 +13,14 @@ runner = CliRunner()
 def _schema_json() -> str:
     """Create a minimal EsiSchemaRoot JSON payload."""
     schema = {
-        "dereferenced_schema": {
+        "schema": {
             "openapi": "3.0.0",
             "info": {"version": "2099-01-01", "title": "test-schema"},
             "servers": [{"url": "https://esi.evetech.net"}],
             "paths": {
                 "/status/": {
                     "get": {
-                        "operationId": "get_status",
+                        "operationId": "GetStatus",
                         "parameters": [
                             {
                                 "in": "query",
@@ -34,7 +34,7 @@ def _schema_json() -> str:
                 }
             },
         },
-        "timestamp": None,
+        "timestamp": 0,
     }
     return json.dumps(schema)
 
@@ -65,7 +65,7 @@ def test_request_validate_accepts_valid_input_from_stdin(tmp_path) -> None:
             "--schema",
             str(schema_path),
         ],
-        input=_requests_json(operation_id="get_status"),
+        input=_requests_json(operation_id="GetStatus"),
     )
 
     assert result.exit_code == 0

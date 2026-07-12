@@ -198,57 +198,6 @@ def test_validate_rejects_authorization_on_public_operation() -> None:
     assert any("must be None" in message for message in exc_info.value.errors)
 
 
-def test_validate_requires_access_token_when_flag_enabled() -> None:
-    """Require authorization token when token enforcement is explicitly enabled."""
-    schema = _make_schema()
-    request = EsiRequest(
-        operation_id="get_character_assets",
-        path_parameters={"character_id": 123},
-        query_parameters={"datasource": "tranquility"},
-        authorization=_auth(),
-    )
-
-    with pytest.raises(EsiRequestValidationErrors) as exc_info:
-        validate_esi_request(request, schema, require_access_token=True)
-
-    assert any(
-        "require_access_token=True" in message for message in exc_info.value.errors
-    )
-
-
-def test_validate_rejects_access_token_when_flag_disabled() -> None:
-    """Reject pre-populated access tokens when token enforcement is disabled."""
-    schema = _make_schema()
-    authorization = _auth()
-    authorization._access_token = "token-value"
-    request = EsiRequest(
-        operation_id="get_character_assets",
-        path_parameters={"character_id": 123},
-        query_parameters={"datasource": "tranquility"},
-        authorization=authorization,
-    )
-
-    with pytest.raises(EsiRequestValidationErrors) as exc_info:
-        validate_esi_request(request, schema, require_access_token=False)
-
-    assert any("must not be set" in message for message in exc_info.value.errors)
-
-
-def test_validate_accepts_access_token_when_flag_enabled() -> None:
-    """Accept pre-populated access tokens when token enforcement is enabled."""
-    schema = _make_schema()
-    authorization = _auth()
-    authorization._access_token = "token-value"
-    request = EsiRequest(
-        operation_id="get_character_assets",
-        path_parameters={"character_id": 123},
-        query_parameters={"datasource": "tranquility"},
-        authorization=authorization,
-    )
-
-    validate_esi_request(request, schema, require_access_token=True)
-
-
 def test_validate_aggregates_multiple_errors() -> None:
     """Return multiple validation messages for a single invalid request."""
     schema = _make_schema()

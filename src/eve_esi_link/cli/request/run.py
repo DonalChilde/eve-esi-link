@@ -1,5 +1,6 @@
 """Validate ESI request collections against an ESI schema."""
 
+import asyncio
 from pathlib import Path
 from typing import Annotated
 
@@ -22,10 +23,10 @@ app = typer.Typer(no_args_is_help=True)
 
 
 @app.command(
-    name="validate",
-    help="Validate ESI requests from JSON input against a schema JSON file.",
+    name="run",
+    help="Run ESI requests from JSON input against a schema JSON file.",
 )
-def validate_requests(
+def make_requests(
     ctx: typer.Context,
     schema_file: Annotated[
         Path,
@@ -56,6 +57,13 @@ def validate_requests(
             help="Path to ESI requests JSON. Defaults to `-` for stdin.",
         ),
     ] = Path("-"),
+    require_access_token: Annotated[
+        bool,
+        typer.Option(
+            "--require-access-token",
+            help="Require authorization.access_token for authenticated operations.",
+        ),
+    ] = False,
     quiet: Annotated[
         bool,
         typer.Option(
@@ -64,11 +72,7 @@ def validate_requests(
         ),
     ] = False,
 ) -> None:
-    """Validate an EsiRequests dictionary against a schema.
-
-    This command validates input shape with EsiRequestsRoot, loads EsiSchema from a
-    schema file, and then validates each request against the matching operation.
-    """
+    """Make requests to the ESI API based on the provided ESI requests JSON and schema JSON."""
     if quiet:
         messenger = Console(stderr=True, quiet=True)
     else:
@@ -76,6 +80,7 @@ def validate_requests(
     settings = get_eve_link_settings_from_context(ctx)
     esi_link = esi_link_factory(settings)
 
+    # Load and parse the ESI requests JSON from the input file or stdin
     if file_in == Path("-"):
         requests_data = get_stdin()
     else:
@@ -84,13 +89,13 @@ def validate_requests(
         except Exception as e:
             messenger.print(f"[red]Error: Failed to read requests input - {e}[/red]")
             raise typer.Exit(code=1) from e
-
     try:
         esi_requests = EsiRequestsRoot.model_validate_json(requests_data).root
     except Exception as e:
         messenger.print(f"[red]Error: Failed to parse ESI requests JSON - {e}[/red]")
         raise typer.Exit(code=1) from e
 
+    # Load and parse the ESI schema JSON from the schema file
     try:
         schema_data = deserialize_schema(
             schema_file.read_text(encoding="utf-8"), input_format
@@ -98,38 +103,27 @@ def validate_requests(
     except Exception as e:
         messenger.print(f"[red]Error: Failed to read schema file - {e}[/red]")
         raise typer.Exit(code=1) from e
-
     try:
         esi_schema = get_esi_schema(schema_data)
     except Exception as e:
         messenger.print(f"[red]Error: Failed to parse EsiSchema JSON - {e}[/red]")
         raise typer.Exit(code=1) from e
 
-    all_errors: list[str] = []
-    valid_count = 0
-    for request_id, request in esi_requests.items():
-        try:
-            esi_link.validate_request(request, esi_schema)
-            valid_count += 1
-        except EsiRequestValidationErrors as e:
-            all_errors.extend([
-                f"request_id={request_id}: {message}" for message in e.errors
-            ])
-        except Exception as e:
-            all_errors.append(
-                f"request_id={request_id}: Unexpected validation error - {e}"
-            )
+    async def run_requests():
+        async with esi_link:
+            try:
+                responses = await esi_link.make_requests(
+                    esi_requests=esi_requests,
+                    schema=esi_schema,
+                )
+            except EsiRequestValidationErrors as e:
+                messenger.print(
+                    f"[red]Error: Requests failed due to validation errors[/red]"
+                )
+                for error in e.errors:
+                    messenger.print(f"[red] - {error}[/red]")
+                raise typer.Exit(code=1) from e
+            return responses
 
-    if all_errors:
-        messenger.print(
-            f"[red]Validation failed for {len(esi_requests) - valid_count} of "
-            f"{len(esi_requests)} request(s).[/red]"
-        )
-        for error in all_errors:
-            messenger.print(f"[red]- {error}[/red]")
-        raise typer.Exit(code=1)
-
-    if not quiet:
-        messenger.print(
-            f"[green]Validated {valid_count} request(s) successfully.[/green]"
-        )
+    responses = asyncio.run(run_requests())
+    messenger.print(responses)

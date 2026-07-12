@@ -1,0 +1,22 @@
+{
+  "d4c54c12-dfb4-43d6-b0d4-56cdd28c0c1a": {
+    "request_id": "d4c54c12-dfb4-43d6-b0d4-56cdd28c0c1a",
+    "description": "THIS_IS_AN_OPTIONAL_DESCRIPTION",
+    "operation_id": "GetStatus",
+    "path_parameters": {},
+    "query_parameters": {},
+    "header_parameters": {},
+    "authorization": null,
+    "json_body": null
+  },
+  "416a745b-5788-4d98-99b1-1f35c913c635": {
+    "request_id": "416a745b-5788-4d98-99b1-1f35c913c635",
+    "description": "THIS_IS_AN_OPTIONAL_DESCRIPTION",
+    "operation_id": "GetStatus",
+    "path_parameters": {"page": "1"},
+    "query_parameters": {"faked_query_param": "faked_query_value"},
+    "header_parameters": {},
+    "authorization": null,
+    "json_body": null
+  }
+}

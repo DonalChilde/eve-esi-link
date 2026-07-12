@@ -105,6 +105,7 @@ def _set_headers(esi_request: EsiRequest, esi_schema: EsiSchema) -> None:
         esi_request: The ESI request to set the headers for.
         esi_schema: The ESI schema to use for setting the headers.
     """
+    esi_request.runtime_headers = {}
     schema_compatibility_date = esi_schema.compatibility_date
     # get the request headers, with lower case keys for case-insensitive matching
     request_headers = {k.lower(): v for k, v in esi_request.header_parameters.items()}
@@ -123,6 +124,7 @@ def _set_queries(esi_request: EsiRequest, esi_schema: EsiSchema) -> None:
         esi_request: The ESI request to set the queries for.
         esi_schema: The ESI schema to use for setting the queries.
     """
+    esi_request.runtime_query_parameters = {}
     operation = esi_schema.operations.get(esi_request.operation_id)
     if operation is None:
         raise ValueError(
