@@ -255,17 +255,41 @@ class EsiRequest:
         }
         return combined_headers
 
-    @runtime_headers.setter
-    def runtime_headers(self, value: dict[str, str]) -> None:
-        """Set the runtime headers of the request.
+    # @runtime_headers.setter
+    # def runtime_headers(self, value: dict[str, str]) -> None:
+    #     """Set the runtime headers of the request.
 
-        This is set at run time, and is used to set the runtime headers for the actual
-        HTTP request.
+    #     This is set at run time, and is used to set the runtime headers for the actual
+    #     HTTP request.
+
+    #     Args:
+    #         value: The runtime headers of the request.
+    #     """
+    #     self._runtime_headers = value
+
+    def set_runtime_header(self, *, name: str, value: str) -> None:
+        """Set or overwrite a single runtime header.
+
+        This mutates the runtime-only header map that is merged with user-provided
+        header parameters when building the outbound HTTP request.
 
         Args:
-            value: The runtime headers of the request.
+            name: Header name to set.
+            value: Header value to set.
         """
-        self._runtime_headers = value
+        if self._runtime_headers is None:
+            self._runtime_headers = {}
+        self._runtime_headers[name] = value
+
+    def set_runtime_headers(self, *, values: dict[str, str]) -> None:
+        """Set multiple runtime headers.
+
+        Args:
+            values: Runtime headers to set or overwrite.
+        """
+        if self._runtime_headers is None:
+            self._runtime_headers = {}
+        self._runtime_headers.update(values)
 
     @property
     def runtime_query_parameters(self) -> dict[str, str | int | float]:
@@ -291,17 +315,42 @@ class EsiRequest:
         )
         return combined_query_parameters
 
-    @runtime_query_parameters.setter
-    def runtime_query_parameters(self, value: dict[str, str | int | float]) -> None:
-        """Set the runtime query parameters of the request.
+    # @runtime_query_parameters.setter
+    # def runtime_query_parameters(self, value: dict[str, str | int | float]) -> None:
+    #     """Set the runtime query parameters of the request.
 
-        This is set at run time, and is used to set the runtime query parameters for the actual
-        HTTP request.
+    #     This is set at run time, and is used to set the runtime query parameters for the actual
+    #     HTTP request.
+
+    #     Args:
+    #         value: The runtime query parameters of the request.
+    #     """
+    #     self._runtime_query_parameters = value
+
+    def set_runtime_query_parameter(
+        self, *, name: str, value: str | int | float
+    ) -> None:
+        """Set or overwrite a single runtime query parameter.
 
         Args:
-            value: The runtime query parameters of the request.
+            name: Query parameter name to set.
+            value: Query parameter value to set.
         """
-        self._runtime_query_parameters = value
+        if self._runtime_query_parameters is None:
+            self._runtime_query_parameters = {}
+        self._runtime_query_parameters[name] = value
+
+    def set_runtime_query_parameters(
+        self, *, values: dict[str, str | int | float]
+    ) -> None:
+        """Set multiple runtime query parameters.
+
+        Args:
+            values: Runtime query parameters to set or overwrite.
+        """
+        if self._runtime_query_parameters is None:
+            self._runtime_query_parameters = {}
+        self._runtime_query_parameters.update(values)
 
     def loggable(self) -> dict[str, Any]:
         """Return a loggable representation of the request.

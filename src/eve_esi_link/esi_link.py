@@ -141,7 +141,9 @@ class EsiLink:
         cred_id = esi_request.authorization.credential_id
         character_id = esi_request.authorization.character_id
         access_token = auth_manager.get_character(cred_id, character_id).access_token
-        esi_request.runtime_headers["Authorization"] = f"Bearer {access_token}"
+        esi_request.set_runtime_header(
+            name="Authorization", value=f"Bearer {access_token}"
+        )
 
     async def make_requests(
         self,

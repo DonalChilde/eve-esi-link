@@ -6,6 +6,7 @@ from typing import Annotated
 
 import typer
 from rich.console import Console
+from rich.json import JSON
 
 from eve_esi_link.cli.helpers import get_eve_link_settings_from_context, get_stdin
 from eve_esi_link.cli.schema.helpers import (
@@ -13,11 +14,12 @@ from eve_esi_link.cli.schema.helpers import (
     deserialize_schema,
     get_esi_schema,
 )
-from eve_esi_link.esi_request.models import EsiRequestsRoot
+from eve_esi_link.esi_request.models import EsiRequestsRoot, EsiResponsesRoot
 from eve_esi_link.esi_request.validate import (
     EsiRequestValidationErrors,
 )
 from eve_esi_link.helpers.esi_link_factory import esi_link_factory
+from eve_esi_link.helpers.save_text_file import save_text_file
 
 app = typer.Typer(no_args_is_help=True)
 
@@ -57,11 +59,36 @@ def make_requests(
             help="Path to ESI requests JSON. Defaults to `-` for stdin.",
         ),
     ] = Path("-"),
-    require_access_token: Annotated[
+    file_out: Annotated[
+        Path,
+        typer.Option(
+            "--to",
+            file_okay=True,
+            dir_okay=False,
+            writable=True,
+            allow_dash=True,
+            help="Path to write ESI responses JSON. Defaults to `-` for stdout.",
+        ),
+    ] = Path("-"),
+    plain: Annotated[
         bool,
         typer.Option(
-            "--require-access-token",
-            help="Require authorization.access_token for authenticated operations.",
+            "--plain",
+            help="Output plain JSON without rich formatting.",
+        ),
+    ] = False,
+    indent: Annotated[
+        int | None,
+        typer.Option(
+            "--indent",
+            help="Number of spaces to use for JSON indentation. Defaults to None.",
+        ),
+    ] = None,
+    overwrite: Annotated[
+        bool,
+        typer.Option(
+            "--overwrite",
+            help="Overwrite the output file if it already exists.",
         ),
     ] = False,
     quiet: Annotated[
@@ -126,4 +153,18 @@ def make_requests(
             return responses
 
     responses = asyncio.run(run_requests())
-    messenger.print(responses)
+    output_text = EsiResponsesRoot(root=responses).model_dump_json(indent=indent)
+    if file_out == Path("-"):
+        if plain:
+            print(output_text)
+        else:
+            messenger.print(JSON(output_text))
+        raise typer.Exit(code=0)
+
+    output_path = save_text_file(
+        text=output_text,
+        output_directory=file_out.parent,
+        file_name=file_out.name,
+        overwrite=overwrite,
+    )
+    messenger.print(f"[green]ESI responses written to {output_path}[/green]")

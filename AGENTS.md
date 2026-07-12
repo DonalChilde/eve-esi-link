@@ -12,9 +12,10 @@ Implementing the remaining code required for an end to end run through.
 
 ### Goals for this session
 
-- implement EsiRequest to Request translation
-- wire in sending request.
-- Implememt Response to EsiResponse translation
+- make more live requests, and test
+  - an authenticated request
+  - a request with path and query params
+  - a different response languageS
 
 ### Key Dependencies
 

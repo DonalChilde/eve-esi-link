@@ -105,16 +105,17 @@ def _set_headers(esi_request: EsiRequest, esi_schema: EsiSchema) -> None:
         esi_request: The ESI request to set the headers for.
         esi_schema: The ESI schema to use for setting the headers.
     """
-    esi_request.runtime_headers = {}
     schema_compatibility_date = esi_schema.compatibility_date
     # get the request headers, with lower case keys for case-insensitive matching
     request_headers = {k.lower(): v for k, v in esi_request.header_parameters.items()}
     if "accept-language" not in request_headers:
-        esi_request.runtime_headers["Accept-Language"] = "en"
+        esi_request.set_runtime_header(name="Accept-Language", value="en")
     if "x-tenant" not in request_headers:
-        esi_request.runtime_headers["X-Tenant"] = "tranquility"
+        esi_request.set_runtime_header(name="X-Tenant", value="tranquility")
     if "x-compatibility-date" not in request_headers:
-        esi_request.runtime_headers["X-Compatibility-Date"] = schema_compatibility_date
+        esi_request.set_runtime_header(
+            name="X-Compatibility-Date", value=schema_compatibility_date
+        )
 
 
 def _set_queries(esi_request: EsiRequest, esi_schema: EsiSchema) -> None:
@@ -124,11 +125,12 @@ def _set_queries(esi_request: EsiRequest, esi_schema: EsiSchema) -> None:
         esi_request: The ESI request to set the queries for.
         esi_schema: The ESI schema to use for setting the queries.
     """
-    esi_request.runtime_query_parameters = {}
+    if esi_request._runtime_query_parameters is None:  # type: ignore
+        esi_request._runtime_query_parameters = {}  # type: ignore
     operation = esi_schema.operations.get(esi_request.operation_id)
     if operation is None:
         raise ValueError(
             f"Operation ID '{esi_request.operation_id}' not found in ESI schema."
         )
     if operation.is_paged:
-        esi_request.runtime_query_parameters = {"page": 1}
+        esi_request.set_runtime_query_parameter(name="page", value=1)
