@@ -12,6 +12,8 @@ Implementing the remaining code required for an end to end run through.
 
 ### Goals for this session
 
+- Refactoring EsiRequest and EsiResponse models.
+
 - make more live requests, and test
   - an authenticated request
   - a request with path and query params

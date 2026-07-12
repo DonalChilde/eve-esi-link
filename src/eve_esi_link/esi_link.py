@@ -208,7 +208,7 @@ def _make_request_from_esi_request(esi_request: EsiRequest) -> Request:
         method=esi_request.method,
         url=esi_request.url,
         headers=esi_request.runtime_headers,
-        body=esi_request.json_body,
+        body=esi_request.json_payload,
         parameters=esi_request.runtime_query_parameters,
         cache_key=esi_request.cache_key,
         rate_key=esi_request.rate_limit_key,
