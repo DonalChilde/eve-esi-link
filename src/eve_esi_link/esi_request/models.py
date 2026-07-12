@@ -362,13 +362,16 @@ class EsiRequest:
         Returns:
             A loggable representation of the request with runtime values.
         """
+        runtime_header_copy = {k: v for k, v in self.runtime_headers.items()}
+        if "authorization" in runtime_header_copy:
+            runtime_header_copy["authorization"] = "REDACTED"
         return {
             **self.loggable(),
             "url": self._url,
             "method": self._method,
             "cache_key": str(self._cache_key) if self._cache_key is not None else None,
             "rate_limit_key": self._rate_limit_key,
-            "runtime_headers": self._runtime_headers,
+            "runtime_headers": runtime_header_copy,
             "runtime_query_parameters": self._runtime_query_parameters,
         }
 
