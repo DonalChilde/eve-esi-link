@@ -72,9 +72,10 @@ def _set_cache_key(esi_request: EsiRequest, esi_schema: EsiSchema) -> None:
     compatibility_date = esi_request.runtime_headers.get(
         "X-Compatibility-Date".lower(), ""
     )
+    accept_language = esi_request.runtime_headers.get("Accept-Language".lower(), "en")
     cache_key = uuid5(
         APP_NAMESPACE,
-        f"{method}:{url}:{authorization_key}:{compatibility_date}",
+        f"{method}:{url}:{authorization_key}:{compatibility_date}:{accept_language}",
     )
     esi_request.cache_key = cache_key
 
