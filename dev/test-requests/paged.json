@@ -1,0 +1,15 @@
+{
+  "name": "Universe types",
+  "description": "A single paged request that retrieves a list of universe types.",
+  "requests": {
+    "ba8380ac-8765-4fac-b10c-1d6f56698f17": {
+      "request_id": "ba8380ac-8765-4fac-b10c-1d6f56698f17",
+      "name": "Get Universe Types",
+      "description": "Gets a list of the universe types.",
+      "operation_id": "GetUniverseTypes",
+      "path_parameters": {},
+      "query_parameters": {},
+      "header_parameters": {}
+    }
+  }
+}
