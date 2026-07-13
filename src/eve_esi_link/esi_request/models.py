@@ -17,38 +17,6 @@ class UserSettableHeaders(StrEnum):
 
 
 @dataclass(slots=True, kw_only=True)
-class EsiAuthorization:
-    """Represents an ESI authorization for a character.
-
-    This is used to authenticate requests to the ESI API on behalf of a character.
-
-    Because access tokens expire, they are not serialized with the EsiAuthorization object.
-    Access tokens are expected to be provided at runtime, and can be obtained from the
-    credential manager that provides the access token. The access token is used to
-    authenticate requests to the ESI API on behalf of the character.
-    """
-
-    character_id: int
-    """The character ID for the authorization."""
-    credential_id: UUID
-    """The credential ID for the authorization. This is used to link the authorization
-        to the credential that was used to obtain it. This UUID is obtained from the 
-        credential manager that provides the access token."""
-
-    @property
-    def authorization_key(self) -> UUID:
-        """Get the authorization key for the authorization.
-
-        This is a UUID that is generated from the character ID and credential ID, and is
-        used to as part of the cache key to differentiate between different authorizations.
-
-        Returns:
-            The authorization key for the authorization.
-        """
-        return uuid5(self.credential_id, str(self.character_id))
-
-
-@dataclass(slots=True, kw_only=True)
 class EsiRequest:
     """Represents a single ESI request to be executed.
 
@@ -62,6 +30,10 @@ class EsiRequest:
     request_id: UUID = field(default_factory=uuid4)
     """The unique identifier for the request. This is used to link the request to various 
         objects during the request lifecycle."""
+    name: str | None = None
+    """An optional name for the request. This is used for documentation purposes, 
+        and can be used to provide context for the request when viewing it in a UI or in 
+        logs."""
     description: str | None = None
     """An optional description of the request. This is used for documentation purposes, 
         and can be used to provide context for the request when viewing it in a UI or in 
@@ -99,13 +71,37 @@ class EsiRequest:
         - If-Modified-Since headers. 
 
         Those are set at runtime during HTTP execution."""
-    authorization: EsiAuthorization | None = None
-    """The authorization for the request, if applicable. This is used to authenticate
-        requests to the ESI API on behalf of a character. If the request does not 
-        require authorization, this should be None."""
     json_payload: Any | None = None
     """The JSON payload of the request, if applicable. This is used for POST, PUT, PATCH 
         requests."""
+    character_id: int | None = None
+    """The character ID for the authorization."""
+    credential_id: UUID | None = None
+    """The credential ID for the authorization. This is used to link the authorization
+        to the credential that was used to obtain it. This UUID is obtained from the 
+        credential manager that provides the access token."""
+
+    @property
+    def has_authorization(self) -> bool:
+        """Check if the request has an authorization."""
+        return self.character_id is not None and self.credential_id is not None
+
+    @property
+    def authorization_slug(self) -> UUID:
+        """Get the authorization slug for the authorization.
+
+        This is a UUID that is generated from the character ID and credential ID, and is
+        used as part of the cache key to differentiate between different cached
+        authorized requests.
+
+        Returns:
+            The authorization slug for the authorization.
+        """
+        if not self.has_authorization:
+            raise ValueError(
+                "Cannot generate authorization key without both character_id and credential_id."
+            )
+        return uuid5(self.credential_id, str(self.character_id))  # type: ignore
 
 
 EsiRequestRoot = RootModel[EsiRequest]
@@ -127,12 +123,12 @@ class RuntimeEsiRequest:
     """The rate limit key for this runtime request, if any."""
 
     headers: dict[str, str] = field(default_factory=dict[str, str])
-    """The runtime headers for this runtime request."""
+    """The headers for this runtime request."""
 
     query_parameters: dict[str, str | int | float] = field(
         default_factory=dict[str, str | int | float]
     )
-    """The runtime query parameters for this runtime request."""
+    """The query parameters for this runtime request."""
     json_payload: dict[str, Any] | None = None
     """The JSON payload for this runtime request, if any."""
     access_token: str | None = None
@@ -151,7 +147,7 @@ class RuntimeEsiRequest:
         self.access_token = "REDACTED"
 
     @property
-    def combined_headers(self) -> dict[str, str]:
+    def headers_with_authorization(self) -> dict[str, str]:
         """Return the combined headers for this runtime request.
 
         This includes the runtime headers, and the Authorization header if an access
