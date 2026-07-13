@@ -121,11 +121,18 @@ def generate_schema_doc(
         else:
             messenger.print(Markdown(markdown_doc))
         raise typer.Exit()
+
+    if file_out.suffix == ".md":
+        file_path = file_out
+    else:
+        schema_compat_date = esi_schema.compatibility_date
+        default_file_name = f"schema_docs_{schema_compat_date}.md"
+        file_path = file_out / default_file_name
     try:
         output_path = save_text_file(
             text=markdown_doc,
-            output_directory=file_out.parent,
-            file_name=file_out.name,
+            output_directory=file_path.parent,
+            file_name=file_path.name,
             overwrite=overwrite,
         )
     except Exception as e:
