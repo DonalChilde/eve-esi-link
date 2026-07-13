@@ -198,18 +198,20 @@ class EsiRequestGroup:
 
 @dataclass(slots=True, kw_only=True)
 class EsiResponseList(EsiRequestList):
-    successful_responses: list[EsiResponse] = field(default_factory=list[EsiResponse])
-    """The list of successful ESI responses."""
-    failed_responses: list[FailedEsiResponse] = field(
-        default_factory=list[FailedEsiResponse]
+    successful_responses: dict[UUID, EsiResponse] = field(
+        default_factory=dict[UUID, EsiResponse]
     )
-    """The list of failed ESI responses."""
+    """The dict of successful ESI responses."""
+    failed_responses: dict[UUID, FailedEsiResponse] = field(
+        default_factory=dict[UUID, FailedEsiResponse]
+    )
+    """The dict of failed ESI responses."""
 
     def purge_tokens(self) -> None:
         """Purge the access tokens from all successful and failed ESI responses."""
-        for response in self.successful_responses:
+        for response in self.successful_responses.values():
             response.esi_runtime_request.purge_access_token()
-        for failed_response in self.failed_responses:
+        for failed_response in self.failed_responses.values():
             failed_response.esi_runtime_request.purge_access_token()
 
 

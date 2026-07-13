@@ -154,12 +154,10 @@ class EsiLink:
         """Perform the given ESI requests and return the responses.
 
         This function accepts two different groupings of ESI requests: `EsiRequestList`
-        and `EsiRequestGroup`. The primary difference between the two is how the requests
-        are made. The `EsiRequestList` represents a simple list of requests that will be
-        run one after another. These will still benefit from async processing, but only
-        if they are paged requests. The pages will be requested concurrently, while the
-        `EsiRequestGroup` allows for grouping requests together, and they will all be
-        executed concurrently as a group.
+        and `EsiRequestGroup`. The primary difference is in how the requests are deserialized.
+        `EsiRequestList` is used when the requests are provided as a simple list, and
+        can be missing unique identifiers. These identifiers will be generated during
+        the deserialization process.
 
         Args:
             esi_requests (EsiRequestList | EsiRequestGroup): The ESI requests to perform.
@@ -169,21 +167,44 @@ class EsiLink:
             EsiResponseList | EsiResponseGroup: The responses from the ESI requests.
         """
         requester = self._check_api_requester_initialized()
-        if isinstance(esi_requests, EsiRequestGroup):
-            runtime_requests: dict[UUID, RuntimeEsiRequest] = {}
-            for _, request in esi_requests.requests.items():
-                self.validate_request(request, schema)
-                runtime_request = build_runtime_esi_request(request, schema)
-                await self._check_required_access_token(request, runtime_request)
-                runtime_requests[runtime_request.request_key] = runtime_request
+        match esi_requests:
+            case EsiRequestList():
+                runtime_requests: dict[UUID, RuntimeEsiRequest] = {}
+                for request in esi_requests.requests:
+                    self.validate_request(request, schema)
+                    runtime_request = build_runtime_esi_request(request, schema)
+                    await self._check_required_access_token(request, runtime_request)
+                    runtime_requests[runtime_request.request_key] = runtime_request
 
-            request_objects = {
-                key: _make_request_from_runtime_request(request)
-                for key, request in runtime_requests.items()
-            }
-            responses: Responses = await requester.process_requests(request_objects)
-            # FIXME continue refactor from here
-            return _make_esi_responses_from_responses(esi_requests, responses)
+                request_objects = {
+                    key: _make_request_from_runtime_request(request)
+                    for key, request in runtime_requests.items()
+                }
+                responses: Responses = await requester.process_requests(request_objects)
+                esi_responses = _make_esi_response_list(
+                    responses, esi_requests, runtime_requests
+                )
+                return esi_responses
+
+            case EsiRequestGroup():
+                runtime_requests: dict[UUID, RuntimeEsiRequest] = {}
+                for _, request in esi_requests.requests.items():
+                    self.validate_request(request, schema)
+                    runtime_request = build_runtime_esi_request(request, schema)
+                    await self._check_required_access_token(request, runtime_request)
+                    runtime_requests[runtime_request.request_key] = runtime_request
+
+                request_objects = {
+                    key: _make_request_from_runtime_request(request)
+                    for key, request in runtime_requests.items()
+                }
+                responses: Responses = await requester.process_requests(request_objects)
+                esi_responses = _make_esi_response_group(
+                    responses, esi_requests, runtime_requests
+                )
+                return esi_responses
+            case _:
+                raise ValueError(f"Unsupported ESI request type: {type(esi_requests)}")
 
     @staticmethod
     def validate_request(
@@ -204,6 +225,60 @@ class EsiLink:
         except EsiRequestValidationErrors as e:
             logger.error("Validation failed for request %s: %s", esi_request, e)
             raise
+
+
+def _make_esi_response_list(
+    responses: Responses,
+    requests: EsiRequestList,
+    runtime_requests: dict[UUID, RuntimeEsiRequest],
+) -> EsiResponseList:
+    successful_responses: dict[UUID, EsiResponse] = {}
+    failed_responses: dict[UUID, FailedEsiResponse] = {}
+    for request_id, response in responses.successful.items():
+        runtime_request = runtime_requests[request_id]
+        successful_responses[request_id] = EsiResponse(
+            esi_runtime_request=runtime_request, response=response
+        )
+    for request_id, response in responses.failed.items():
+        runtime_request = runtime_requests[request_id]
+        failed_responses[request_id] = FailedEsiResponse(
+            esi_runtime_request=runtime_request,
+            failed_response=response,
+        )
+    return EsiResponseList(
+        name=requests.name,
+        description=requests.description,
+        requests=requests.requests,
+        successful_responses=successful_responses,
+        failed_responses=failed_responses,
+    )
+
+
+def _make_esi_response_group(
+    responses: Responses,
+    requests: EsiRequestGroup,
+    runtime_requests: dict[UUID, RuntimeEsiRequest],
+) -> EsiResponseGroup:
+    successful_responses: dict[UUID, EsiResponse] = {}
+    failed_responses: dict[UUID, FailedEsiResponse] = {}
+    for request_id, response in responses.successful.items():
+        runtime_request = runtime_requests[request_id]
+        successful_responses[request_id] = EsiResponse(
+            esi_runtime_request=runtime_request, response=response
+        )
+    for request_id, response in responses.failed.items():
+        runtime_request = runtime_requests[request_id]
+        failed_responses[request_id] = FailedEsiResponse(
+            esi_runtime_request=runtime_request,
+            failed_response=response,
+        )
+    return EsiResponseGroup(
+        name=requests.name,
+        description=requests.description,
+        requests=requests.requests,
+        successful_responses=successful_responses,
+        failed_responses=failed_responses,
+    )
 
 
 def _make_request_from_runtime_request(
@@ -227,31 +302,3 @@ def _make_request_from_runtime_request(
         cache_key=runtime_request.cache_key,
         rate_key=runtime_request.rate_limit_key,
     )
-
-
-def _make_esi_responses_from_responses(
-    esi_requests: EsiRequests, responses: Responses
-) -> EsiResponses:
-    """Convert a Responses object to EsiResponses.
-
-    Args:
-        esi_requests (EsiRequests): The original ESI requests.
-        responses (Responses): The Responses object to convert.
-
-    Returns:
-        EsiResponses: The converted EsiResponses.
-    """
-    successful_responses: dict[UUID, EsiResponse] = {}
-    failed_responses: dict[UUID, FailedEsiResponse] = {}
-    for request_id, response in responses.successful.items():
-        esi_request = esi_requests[request_id]
-        successful_responses[request_id] = EsiResponse(
-            esi_request=esi_request, response=response
-        )
-    for request_id, response in responses.failed.items():
-        esi_request = esi_requests[request_id]
-        failed_responses[request_id] = FailedEsiResponse(
-            esi_request=esi_request,
-            failed_response=response,
-        )
-    return EsiResponses(successful=successful_responses, failed=failed_responses)
