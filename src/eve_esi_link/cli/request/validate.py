@@ -23,7 +23,7 @@ app = typer.Typer(no_args_is_help=True)
 
 @app.command(
     name="validate",
-    help="Validate ESI requests from JSON input against a schema JSON file.",
+    help="Validate EsiRequestGroup from JSON input against a schema JSON file.",
 )
 def validate_requests(
     ctx: typer.Context,
