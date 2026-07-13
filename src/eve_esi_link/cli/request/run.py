@@ -14,7 +14,10 @@ from eve_esi_link.cli.schema.helpers import (
     deserialize_schema,
     get_esi_schema,
 )
-from eve_esi_link.esi_request.models import EsiRequestsRoot, EsiResponsesRoot
+from eve_esi_link.esi_request.models import (
+    EsiRequestGroupRoot,
+    EsiResponseGroupRoot,
+)
 from eve_esi_link.esi_request.validate import (
     EsiRequestValidationErrors,
 )
@@ -117,7 +120,7 @@ def make_requests(
             messenger.print(f"[red]Error: Failed to read requests input - {e}[/red]")
             raise typer.Exit(code=1) from e
     try:
-        esi_requests = EsiRequestsRoot.model_validate_json(requests_data).root
+        esi_requests = EsiRequestGroupRoot.model_validate_json(requests_data).root
     except Exception as e:
         messenger.print(f"[red]Error: Failed to parse ESI requests JSON - {e}[/red]")
         raise typer.Exit(code=1) from e
@@ -153,7 +156,7 @@ def make_requests(
             return responses
 
     responses = asyncio.run(run_requests())
-    output_text = EsiResponsesRoot(root=responses).model_dump_json(indent=indent)
+    output_text = EsiResponseGroupRoot(root=responses).model_dump_json(indent=indent)
     if file_out == Path("-"):
         if plain:
             print(output_text)

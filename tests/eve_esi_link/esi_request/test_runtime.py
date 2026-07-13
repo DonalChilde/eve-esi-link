@@ -1,8 +1,10 @@
 """Tests for runtime request attribute population."""
 
-from eve_esi_link.esi_link import _make_request_from_esi_request
+from uuid import uuid4
+
+from eve_esi_link.esi_link import _make_request_from_runtime_request
 from eve_esi_link.esi_request.models import EsiRequest
-from eve_esi_link.esi_request.runtime import set_runtime_attributes
+from eve_esi_link.esi_request.runtime_builder import build_runtime_esi_request
 from eve_esi_link.schema.models import EsiSchema
 
 
@@ -49,11 +51,13 @@ def _make_schema() -> EsiSchema:
 def test_set_runtime_attributes_sets_default_headers() -> None:
     """Set runtime defaults when no optional headers are supplied."""
     schema = _make_schema()
-    request = EsiRequest(operation_id="GetStatus")
+    request = EsiRequest(
+        operation_id="GetStatus", character_id=123, credential_id=uuid4()
+    )
 
-    set_runtime_attributes(request, schema)
+    runtime = build_runtime_esi_request(request, schema)
 
-    assert request.runtime_headers == {
+    assert runtime.headers == {
         "accept-language": "en",
         "x-tenant": "tranquility",
         "x-compatibility-date": "2020-01-01",
@@ -70,11 +74,13 @@ def test_set_runtime_attributes_respects_user_provided_headers() -> None:
             "X-Tenant": "singularity",
             "X-Compatibility-Date": "2025-05-05",
         },
+        character_id=123,
+        credential_id=uuid4(),
     )
 
-    set_runtime_attributes(request, schema)
+    runtime = build_runtime_esi_request(request, schema)
 
-    assert request.runtime_headers == {
+    assert runtime.headers == {
         "accept-language": "de",
         "x-tenant": "singularity",
         "x-compatibility-date": "2025-05-05",
@@ -84,10 +90,12 @@ def test_set_runtime_attributes_respects_user_provided_headers() -> None:
 def test_make_request_includes_runtime_headers() -> None:
     """Include generated runtime headers in outgoing Request objects."""
     schema = _make_schema()
-    request = EsiRequest(operation_id="GetStatus")
+    request = EsiRequest(
+        operation_id="GetStatus", character_id=123, credential_id=uuid4()
+    )
 
-    set_runtime_attributes(request, schema)
-    outgoing = _make_request_from_esi_request(request)
+    runtime = build_runtime_esi_request(request, schema)
+    outgoing = _make_request_from_runtime_request(runtime)
 
     assert outgoing.headers == {
         "accept-language": "en",
@@ -100,9 +108,12 @@ def test_set_runtime_attributes_sets_page_for_paged_operation() -> None:
     """Set runtime page query parameter for paged operations."""
     schema = _make_schema()
     request = EsiRequest(
-        operation_id="GetCharacterAssets", path_parameters={"character_id": 123}
+        operation_id="GetCharacterAssets",
+        path_parameters={"character_id": 123},
+        character_id=123,
+        credential_id=uuid4(),
     )
 
-    set_runtime_attributes(request, schema)
+    runtime = build_runtime_esi_request(request, schema)
 
-    assert request.runtime_query_parameters == {"page": 1}
+    assert runtime.query_parameters == {"page": 1}

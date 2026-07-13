@@ -41,6 +41,7 @@ def deserialize_schema(
     json_str: str, format: SchemaIOFormat
 ) -> TimestampedSchema | TimestampedDereferencedSchema | dict[str, Any]:
     """Deserialize a JSON string into the appropriate schema object based on the specified format."""
+    # TODO auto detect format based on the content of the JSON string. For now, the format must be explicitly specified.
     match format:
         case SchemaIOFormat.BARE:
             return json.loads(json_str)

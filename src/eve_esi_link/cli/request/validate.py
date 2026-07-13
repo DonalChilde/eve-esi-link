@@ -12,7 +12,7 @@ from eve_esi_link.cli.schema.helpers import (
     deserialize_schema,
     get_esi_schema,
 )
-from eve_esi_link.esi_request.models import EsiRequestsRoot
+from eve_esi_link.esi_request.models import EsiRequestGroupRoot
 from eve_esi_link.esi_request.validate import (
     EsiRequestValidationErrors,
 )
@@ -23,7 +23,7 @@ app = typer.Typer(no_args_is_help=True)
 
 @app.command(
     name="validate",
-    help="Validate ESI requests from JSON input against a schema JSON file.",
+    help="Validate EsiRequestGroup from JSON input against a schema JSON file.",
 )
 def validate_requests(
     ctx: typer.Context,
@@ -86,7 +86,7 @@ def validate_requests(
             raise typer.Exit(code=1) from e
 
     try:
-        esi_requests = EsiRequestsRoot.model_validate_json(requests_data).root
+        esi_requests = EsiRequestGroupRoot.model_validate_json(requests_data).root
     except Exception as e:
         messenger.print(f"[red]Error: Failed to parse ESI requests JSON - {e}[/red]")
         raise typer.Exit(code=1) from e
@@ -107,7 +107,7 @@ def validate_requests(
 
     all_errors: list[str] = []
     valid_count = 0
-    for request_id, request in esi_requests.items():
+    for request_id, request in esi_requests.requests.items():
         try:
             esi_link.validate_request(request, esi_schema)
             valid_count += 1
@@ -122,8 +122,8 @@ def validate_requests(
 
     if all_errors:
         messenger.print(
-            f"[red]Validation failed for {len(esi_requests) - valid_count} of "
-            f"{len(esi_requests)} request(s).[/red]"
+            f"[red]Validation failed for {len(esi_requests.requests) - valid_count} of "
+            f"{len(esi_requests.requests)} request(s).[/red]"
         )
         for error in all_errors:
             messenger.print(f"[red]- {error}[/red]")

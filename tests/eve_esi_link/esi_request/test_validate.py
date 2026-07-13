@@ -4,7 +4,7 @@ from uuid import uuid4
 
 import pytest
 
-from eve_esi_link.esi_request.models import EsiAuthorization, EsiRequest
+from eve_esi_link.esi_request.models import EsiRequest
 from eve_esi_link.esi_request.validate import (
     EsiRequestValidationErrors,
     validate_esi_request,
@@ -112,9 +112,12 @@ def _make_schema() -> EsiSchema:
     return EsiSchema.from_raw_schema(raw_schema)
 
 
-def _auth() -> EsiAuthorization:
-    """Create authorization without an access token set."""
-    return EsiAuthorization(character_id=123, credential_id=uuid4())
+def _auth_fields() -> dict[str, object]:
+    """Create authorization field values for an authenticated request."""
+    return {
+        "character_id": 123,
+        "credential_id": uuid4(),
+    }
 
 
 def test_validate_allows_valid_authenticated_request_without_token_by_default() -> None:
@@ -125,7 +128,7 @@ def test_validate_allows_valid_authenticated_request_without_token_by_default() 
         path_parameters={"character_id": 123},
         query_parameters={"datasource": "tranquility"},
         header_parameters={"Accept-Language": "en"},
-        authorization=_auth(),
+        **_auth_fields(),
     )
 
     validate_esi_request(request, schema)
@@ -149,7 +152,7 @@ def test_validate_rejects_page_query_parameter() -> None:
         operation_id="get_character_assets",
         path_parameters={"character_id": 123},
         query_parameters={"datasource": "tranquility", "page": 2},
-        authorization=_auth(),
+        **_auth_fields(),
     )
 
     with pytest.raises(EsiRequestValidationErrors) as exc_info:
@@ -170,7 +173,7 @@ def test_validate_rejects_runtime_managed_headers_and_unknown_headers() -> None:
             "X-Tenant": "tenant-a",
             "Accept-Language": "zz",
         },
-        authorization=_auth(),
+        **_auth_fields(),
     )
 
     with pytest.raises(EsiRequestValidationErrors) as exc_info:
@@ -189,7 +192,7 @@ def test_validate_rejects_authorization_on_public_operation() -> None:
     request = EsiRequest(
         operation_id="get_status",
         query_parameters={"datasource": "tranquility"},
-        authorization=_auth(),
+        **_auth_fields(),
     )
 
     with pytest.raises(EsiRequestValidationErrors) as exc_info:
@@ -205,8 +208,8 @@ def test_validate_aggregates_multiple_errors() -> None:
         operation_id="post_character_note",
         path_parameters={"character_id": "bad"},
         query_parameters={"page": 1, "unknown": "value"},
-        json_body={"priority": "invalid", "extra": "x"},
-        authorization=_auth(),
+        json_payload={"priority": "invalid", "extra": "x"},
+        **_auth_fields(),
     )
 
     with pytest.raises(EsiRequestValidationErrors) as exc_info:

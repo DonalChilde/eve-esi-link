@@ -2,7 +2,6 @@
 
 import json
 from dataclasses import asdict
-from enum import StrEnum
 from pathlib import Path
 from typing import Annotated
 
@@ -37,7 +36,6 @@ def fetch_esi_schema(
             "--to",
             help="Path to the output formatted JSON file. Defaults to `-` for stdout.",
             allow_dash=True,
-            dir_okay=False,
         ),
     ] = Path("-"),
     indent: Annotated[
@@ -119,10 +117,19 @@ def fetch_esi_schema(
         else:
             messenger.print(JSON.from_data(output_data, indent=indent))
         raise typer.Exit()
+    # If file_out ends in .json, use file_out for file_path.
+    # If file_out is a directory, use a default file name that includes the schema
+    # date and SchemaIIOformat
+    if file_out.suffix == ".json":
+        file_path = file_out
+    else:
+        schema_compat_date = schema_data.schema["info"]["version"]
+        default_file_name = f"schema_{schema_compat_date}_{format.value}.json"
+        file_path = file_out / default_file_name
     output_path = save_text_file(
         text=json.dumps(output_data, indent=indent),
-        output_directory=file_out.parent,
-        file_name=file_out.name,
+        output_directory=file_path.parent,
+        file_name=file_path.name,
         overwrite=overwrite,
     )
     messenger.print(f"[green]Schema saved to {output_path}[/green]")

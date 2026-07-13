@@ -1,0 +1,15 @@
+{
+  "name": "Request with Parameters",
+  "description": "An example request that includes both path and query parameters.",
+  "requests": {
+    "cd19aba8-d8d7-4756-b256-b5d31e413b7e": {
+      "request_id": "cd19aba8-d8d7-4756-b256-b5d31e413b7e",
+      "name": "Get Markets Region Id History",
+      "description": "Retrieves the market history for a specific region and type.",
+      "operation_id": "GetMarketsRegionIdHistory",
+      "path_parameters": {"region_id":10000002},
+      "query_parameters": {"type_id":34},
+      "header_parameters": {}
+    }
+  }
+}

@@ -8,7 +8,7 @@ from uuid import UUID
 
 from ..language import LangEnum
 from ..schema.models import EsiSchema, SchemaOperation
-from .models import EsiAuthorization, EsiRequest
+from .models import EsiRequest
 
 logger = logging.getLogger(__name__)
 
@@ -250,40 +250,32 @@ def _validate_authorization(
     *,
     errors: list[str],
 ) -> None:
-    """Validate authorization presence and token mode policy."""
-    auth = esi_request.authorization
-    if operation.is_authentication_required:
-        if auth is None:
+    """Validate authorization presence."""
+    if not operation.is_authentication_required:
+        if esi_request.character_id is not None:
             _add_error(
                 errors,
                 operation.operation_id,
-                "Authorization is required for this operation.",
+                "Authorization must be None for operations that do not require authentication.",
             )
-            return
-    elif auth is not None:
-        _add_error(
-            errors,
-            operation.operation_id,
-            "Authorization must be None for operations that do not require authentication.",
-        )
+
+        if esi_request.credential_id is not None:
+            _add_error(
+                errors,
+                operation.operation_id,
+                "Authorization must be None for operations that do not require authentication.",
+            )
         return
 
-    if auth is None:
-        return
-    if not isinstance(auth, EsiAuthorization):
-        _add_error(
-            errors,
-            operation.operation_id,
-            "Authorization object must be an EsiAuthorization instance.",
-        )
-        return
-    if not isinstance(auth.character_id, int) or isinstance(auth.character_id, bool):
+    if not isinstance(esi_request.character_id, int) or isinstance(
+        esi_request.character_id, bool
+    ):
         _add_error(
             errors,
             operation.operation_id,
             "Authorization.character_id must be an integer.",
         )
-    if not isinstance(auth.credential_id, UUID):
+    if not isinstance(esi_request.credential_id, UUID):
         _add_error(
             errors,
             operation.operation_id,
@@ -422,7 +414,7 @@ def _validate_request_body(
     """Validate json_body against the operation requestBody schema."""
     request_body_schema = operation.request_body
     if request_body_schema is None:
-        if esi_request.json_body is not None:
+        if esi_request.json_payload is not None:
             _add_error(
                 errors,
                 operation.operation_id,
@@ -431,14 +423,14 @@ def _validate_request_body(
         return
 
     required = bool(request_body_schema.get("required", False))
-    if required and esi_request.json_body is None:
+    if required and esi_request.json_payload is None:
         _add_error(
             errors,
             operation.operation_id,
             "json_body is required for this operation.",
         )
         return
-    if esi_request.json_body is None:
+    if esi_request.json_payload is None:
         return
 
     content = request_body_schema.get("content", {})
@@ -467,7 +459,7 @@ def _validate_request_body(
         return
 
     _validate_json_schema_subset(
-        esi_request.json_body,
+        esi_request.json_payload,
         body_schema,
         path="json_body",
         operation_id=operation.operation_id,

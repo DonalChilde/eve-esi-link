@@ -12,12 +12,22 @@ Implementing the remaining code required for an end to end run through.
 
 ### Goals for this session
 
+- implement list to group cli command
+- consider allowing download of schema if not supplied on cli commands
+- autodetect saved schema formats on load.
+- markdown docs from cli with usage exmples and request templates.
+
 - make more live requests, and test
   - an authenticated request
-  - a request with path and query params
-  - a request with pages.
-  - a different response languageS
+  - a different response language
   - a post request
+
+### Next Steps
+
+- docs pass to define contracts.
+- cli cache management tools, info, clear with options, etc. from api-request
+- api-request stats on paged requests.
+- Defined request commands, eg market groups, types published types, types in market, 5 percent prices, market history, etc.
 
 ### Key Dependencies
 

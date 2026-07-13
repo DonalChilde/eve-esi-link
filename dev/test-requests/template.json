@@ -1,15 +1,18 @@
 {
-  "THIS_IS_A_UUID": {
-    "request_id": "THIS_IS_A_UUID",
-    "description": "THIS_IS_AN_OPTIONAL_DESCRIPTION",
-    "operation_id": "THIS_IS_AN_OPERATION_ID",
-    "path_parameters": {},
-    "query_parameters": {},
-    "header_parameters": {},
-    "authorization": {
-      "character_id": 2112625428,
-      "credential_id": "THIS_IS_A_UUID__AUTHORIZATION_IS_NONE_IF_THE_REQUEST_IS_PUBLIC"
-    },
-    "json_body": null
+  "name": "THIS_IS_AN_OPTIONAL_NAME",
+  "description": "THIS_IS_AN_OPTIONAL_DESCRIPTION",
+  "requests": {
+    "THIS_IS_A_UUID": {
+      "request_id": "THIS_IS_A_UUID",
+      "name": "THIS_IS_A_NAME",
+      "description": "THIS_IS_AN_OPTIONAL_DESCRIPTION",
+      "operation_id": "THIS_IS_AN_OPERATION_ID",
+      "path_parameters": {},
+      "query_parameters": {},
+      "header_parameters": {},
+      "character_id": "THIS_IS_INT_OR_NONE_IS_NONE_IF_THE_REQUEST_IS_PUBLIC",
+      "credential_id": "THIS_IS_UUID_OR_NONE_IS_NONE_IF_THE_REQUEST_IS_PUBLIC",
+      "json_payload": null
+    }
   }
 }
