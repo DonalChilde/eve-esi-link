@@ -186,6 +186,9 @@ class EsiRequestList:
     """The list of ESI requests."""
 
 
+EsiRequestListRoot = RootModel[EsiRequestList]
+
+
 @dataclass(slots=True, kw_only=True)
 class EsiRequestGroup:
     name: str
@@ -194,6 +197,9 @@ class EsiRequestGroup:
     """An optional description of this group of runtime ESI requests."""
     requests: dict[UUID, EsiRequest] = field(default_factory=dict[UUID, EsiRequest])
     """The dict of  ESI requests in this group."""
+
+
+EsiRequestGroupRoot = RootModel[EsiRequestGroup]
 
 
 @dataclass(slots=True, kw_only=True)

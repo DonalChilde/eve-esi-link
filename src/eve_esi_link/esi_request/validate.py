@@ -8,7 +8,7 @@ from uuid import UUID
 
 from ..language import LangEnum
 from ..schema.models import EsiSchema, SchemaOperation
-from .models import EsiAuthorization, EsiRequest
+from .models import EsiRequest
 
 logger = logging.getLogger(__name__)
 
@@ -250,40 +250,32 @@ def _validate_authorization(
     *,
     errors: list[str],
 ) -> None:
-    """Validate authorization presence and token mode policy."""
-    auth = esi_request.authorization
-    if operation.is_authentication_required:
-        if auth is None:
+    """Validate authorization presence."""
+    if not operation.is_authentication_required:
+        if esi_request.character_id is not None:
             _add_error(
                 errors,
                 operation.operation_id,
-                "Authorization is required for this operation.",
+                "Authorization must be None for operations that do not require authentication.",
             )
             return
-    elif auth is not None:
-        _add_error(
-            errors,
-            operation.operation_id,
-            "Authorization must be None for operations that do not require authentication.",
-        )
-        return
+        if esi_request.credential_id is not None:
+            _add_error(
+                errors,
+                operation.operation_id,
+                "Authorization must be None for operations that do not require authentication.",
+            )
+            return
 
-    if auth is None:
-        return
-    if not isinstance(auth, EsiAuthorization):
-        _add_error(
-            errors,
-            operation.operation_id,
-            "Authorization object must be an EsiAuthorization instance.",
-        )
-        return
-    if not isinstance(auth.character_id, int) or isinstance(auth.character_id, bool):
+    if not isinstance(esi_request.character_id, int) or isinstance(
+        esi_request.character_id, bool
+    ):
         _add_error(
             errors,
             operation.operation_id,
             "Authorization.character_id must be an integer.",
         )
-    if not isinstance(auth.credential_id, UUID):
+    if not isinstance(esi_request.credential_id, UUID):
         _add_error(
             errors,
             operation.operation_id,
