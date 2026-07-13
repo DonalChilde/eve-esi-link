@@ -178,7 +178,7 @@ class FailedEsiResponse:
 
 @dataclass(slots=True, kw_only=True)
 class EsiRequestList:
-    name: str
+    name: str | None = None
     """The name of this list of runtime ESI requests."""
     description: str | None = None
     """An optional description of this list of runtime ESI requests."""
@@ -191,7 +191,7 @@ EsiRequestListRoot = RootModel[EsiRequestList]
 
 @dataclass(slots=True, kw_only=True)
 class EsiRequestGroup:
-    name: str
+    name: str | None = None
     """The name of this group of runtime ESI requests."""
     description: str | None = None
     """An optional description of this group of runtime ESI requests."""

@@ -26,11 +26,15 @@ def build_runtime_esi_request(
     headers = _headers(esi_request, esi_schema)
     query_parameters = _query_parameters(esi_request, esi_schema)
     json_payload = esi_request.json_payload
+    if esi_request.has_authorization:
+        authorization_slug = esi_request.authorization_slug
+    else:
+        authorization_slug = None
     cache_key = _cache_key(
         method=method,
         url=url,
         query_parameters=query_parameters,
-        authorization_slug=esi_request.authorization_slug,
+        authorization_slug=authorization_slug,
         compatibility_date=headers["x-compatibility-date"],
         accept_language=headers["accept-language"],
     )

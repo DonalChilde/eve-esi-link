@@ -258,14 +258,14 @@ def _validate_authorization(
                 operation.operation_id,
                 "Authorization must be None for operations that do not require authentication.",
             )
-            return
+
         if esi_request.credential_id is not None:
             _add_error(
                 errors,
                 operation.operation_id,
                 "Authorization must be None for operations that do not require authentication.",
             )
-            return
+        return
 
     if not isinstance(esi_request.character_id, int) or isinstance(
         esi_request.character_id, bool
