@@ -14,7 +14,7 @@ from eve_esi_link.helpers.http_session_factory import client_manager
 from eve_esi_link.helpers.save_text_file import save_text_file
 from eve_esi_link.schema.helpers.fetch import TimestampedSchemaRoot, fetch_schema
 from eve_esi_link.schema.helpers.io_format import SchemaIOFormat
-from eve_esi_link.schema.models import EsiSchema, EsiSchemaRoot
+from eve_esi_link.schema.models import EsiSchema
 
 app = typer.Typer(no_args_is_help=True)
 
