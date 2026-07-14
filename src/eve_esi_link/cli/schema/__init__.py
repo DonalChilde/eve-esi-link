@@ -10,6 +10,8 @@ app = typer.Typer(
 
 from .doc import app as generate_doc_app
 from .fetch import app as fetch_schema_app
+from .fetch_dates import app as fetch_dates_app
 
 app.add_typer(fetch_schema_app)
+app.add_typer(fetch_dates_app)
 app.add_typer(generate_doc_app)

@@ -3,13 +3,13 @@
 import logging
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Any
+from typing import Any, TypedDict
 
 from httpx2 import Client
 from pydantic import RootModel
 from whenever import Instant
 
-from eve_esi_link.settings import ESI_SCHEMA_URL
+from eve_esi_link.settings import COMPATIBILITY_DATES_URL, ESI_SCHEMA_URL
 
 logger = logging.getLogger(__name__)
 
@@ -33,7 +33,7 @@ TimestampedSchemaRoot = RootModel[TimestampedSchema]
 class TimestampedCompatibilityDates:
     """Represents a list of compatibility dates with an associated timestamp."""
 
-    dates: tuple[str, ...]
+    compatibility_dates: tuple[str, ...]
     """The tuple of compatibility dates, typically fetched from the ESI API."""
     timestamp: int
     """The timestamp associated with the compatibility dates, representing the 
@@ -85,6 +85,10 @@ def fetch_schema(
         raise
 
 
+class CompatibilityDatesResponse(TypedDict):
+    compatibility_dates: list[str]
+
+
 def fetch_compatibility_dates(session: Client) -> TimestampedCompatibilityDates:
     """Fetch the list of compatibility dates from the ESI API.
 
@@ -101,13 +105,11 @@ def fetch_compatibility_dates(session: Client) -> TimestampedCompatibilityDates:
             dates are invalid.
     """
     try:
-        response = session.get(f"{ESI_SCHEMA_URL}/compatibility-dates")
+        response = session.get(COMPATIBILITY_DATES_URL)
         response.raise_for_status()
-        dates: list[str] = response.json()
-        if not isinstance(dates, list):  # type: ignore
-            raise ValueError("Invalid response format for compatibility dates")
+        dates: CompatibilityDatesResponse = response.json()
         # Check that all items in the list are dates in string format (YYYY-MM-DD)
-        for date_str in dates:
+        for date_str in dates["compatibility_dates"]:
             try:
                 datetime.strptime(date_str, "%Y-%m-%d").date()
             except ValueError as e:
@@ -115,7 +117,8 @@ def fetch_compatibility_dates(session: Client) -> TimestampedCompatibilityDates:
                     f"Invalid date format in compatibility dates: {date_str}"
                 ) from e
         return TimestampedCompatibilityDates(
-            dates=tuple(dates), timestamp=Instant.now().timestamp_nanos()
+            compatibility_dates=tuple(dates["compatibility_dates"]),
+            timestamp=Instant.now().timestamp_nanos(),
         )
     except Exception as e:
         logger.error("Error fetching compatibility dates: %s", e)
