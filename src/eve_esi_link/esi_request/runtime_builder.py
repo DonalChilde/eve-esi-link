@@ -20,6 +20,7 @@ def build_runtime_esi_request(
     Returns:
         RuntimeEsiRequest: The constructed runtime ESI request.
     """
+    operation = _check_operation(esi_schema, esi_request.operation_id)
     url = _url(esi_request, esi_schema)
     method = _method(esi_request, esi_schema)
     rate_limit_key = _rate_limit_key(esi_request, esi_schema)
@@ -30,14 +31,17 @@ def build_runtime_esi_request(
         authorization_slug = esi_request.authorization_slug
     else:
         authorization_slug = None
-    cache_key = _cache_key(
-        method=method,
-        url=url,
-        query_parameters=query_parameters,
-        authorization_slug=authorization_slug,
-        compatibility_date=headers["x-compatibility-date"],
-        accept_language=headers["accept-language"],
-    )
+    if operation.is_cached:
+        cache_key = _cache_key(
+            method=method,
+            url=url,
+            query_parameters=query_parameters,
+            authorization_slug=authorization_slug,
+            compatibility_date=headers["x-compatibility-date"],
+            accept_language=headers["accept-language"],
+        )
+    else:
+        cache_key = None
 
     runtime_request = RuntimeEsiRequest(
         request_key=uuid5(APP_NAMESPACE, str(esi_request.request_id)),
@@ -76,7 +80,6 @@ def _url(esi_request: EsiRequest, esi_schema: EsiSchema) -> str:
     """
     url_template = esi_schema.operation_url(esi_request.operation_id)
     path_parameters = esi_request.path_parameters
-    # TODO ensure this gets the behavior i want.
     url = url_template.format(**path_parameters)
     return url
 

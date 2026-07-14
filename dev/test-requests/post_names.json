@@ -1,0 +1,16 @@
+{
+  "name": "Post Universe Names",
+  "description": "Post universe names for the specified IDs.",
+  "requests": {
+    "aa00af9e-6693-46f4-81e4-7074db6dee00": {
+      "request_id": "aa00af9e-6693-46f4-81e4-7074db6dee00",
+      "name": "Post Universe Names",
+      "description": "Post universe names for the specified IDs.",
+      "operation_id": "PostUniverseNames",
+      "path_parameters": {},
+      "query_parameters": {},
+      "header_parameters": {},
+      "json_payload": [34,10000002]
+    }
+  }
+}

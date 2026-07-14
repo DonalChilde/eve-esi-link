@@ -1,0 +1,26 @@
+{
+  "name": "Get type information in two languages",
+  "description": "Retrieve information about a specific universe type in multiple languages.",
+  "requests": {
+    "01f0b1bf-6e7c-4aca-b262-7bbd1163b3ae": {
+      "request_id": "01f0b1bf-6e7c-4aca-b262-7bbd1163b3ae",
+      "name": "Universe Types Type ID request",
+      "description": "Retrieve information about a specific universe type.",
+      "operation_id": "GetUniverseTypesTypeId",
+      "path_parameters": {"type_id": 34},
+      "query_parameters": {},
+      "header_parameters": {}
+      
+    },
+    "b9dd592f-cdc0-4cec-91ed-ff36d841d47c": {
+      "request_id": "b9dd592f-cdc0-4cec-91ed-ff36d841d47c",
+      "name": "Universe Types Type ID request",
+      "description": "Retrieve information about a specific universe type. In Spanish.",
+      "operation_id": "GetUniverseTypesTypeId",
+      "path_parameters": {"type_id": 34},
+      "query_parameters": {},
+      "header_parameters": {"accept-language": "es"}
+      
+    }
+  }
+}

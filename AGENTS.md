@@ -17,10 +17,7 @@ Implementing the remaining code required for an end to end run through.
 - autodetect saved schema formats on load.
 - markdown docs from cli with usage exmples and request templates.
 
-- make more live requests, and test
-  - an authenticated request
-  - a different response language
-  - a post request
+
 
 ### Next Steps
 
