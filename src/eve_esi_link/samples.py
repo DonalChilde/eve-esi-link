@@ -2,6 +2,7 @@
 
 from collections.abc import Callable
 from pathlib import Path
+from typing import Any
 from uuid import UUID, uuid4
 
 from eve_esi_link.esi_request.models import (
@@ -9,6 +10,7 @@ from eve_esi_link.esi_request.models import (
     EsiRequestGroup,
     EsiRequestGroupRoot,
 )
+from eve_esi_link.helpers import json_io
 from eve_esi_link.helpers.save_text_file import save_text_file
 
 
@@ -141,6 +143,26 @@ def status() -> EsiRequestGroup:
     return request_group
 
 
+TEMPLATE_JSON: dict[str, Any] = {
+    "name": "THIS_IS_AN_OPTIONAL_NAME",
+    "description": "THIS_IS_AN_OPTIONAL_DESCRIPTION",
+    "requests": {
+        "THIS_IS_A_UUID": {
+            "request_id": "THIS_IS_A_UUID",
+            "name": "THIS_IS_A_NAME",
+            "description": "THIS_IS_AN_OPTIONAL_DESCRIPTION",
+            "operation_id": "THIS_IS_AN_OPERATION_ID",
+            "path_parameters": {},
+            "query_parameters": {},
+            "header_parameters": {},
+            "character_id": "THIS_IS_INT_OR_NONE_IS_NONE_IF_THE_REQUEST_IS_PUBLIC",
+            "credential_id": "THIS_IS_UUID_OR_NONE_IS_NONE_IF_THE_REQUEST_IS_PUBLIC",
+            "json_payload": None,
+        }
+    },
+}
+
+
 def export_examples(
     output_directory: Path, *, indent: int | None = 2, overwrite: bool = False
 ) -> None:
@@ -169,3 +191,9 @@ def export_examples(
             file_name=filename,
             overwrite=overwrite,
         )
+    save_text_file(
+        text=json_io.json_dumps(TEMPLATE_JSON, indent=indent) + "\n",
+        output_directory=output_directory,
+        file_name="template.json",
+        overwrite=overwrite,
+    )
