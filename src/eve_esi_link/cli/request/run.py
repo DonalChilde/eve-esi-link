@@ -11,7 +11,6 @@ from rich.json import JSON
 from eve_esi_link.cli.helpers import get_eve_link_settings_from_context, get_stdin
 from eve_esi_link.esi_request.models import (
     EsiRequestGroupRoot,
-    EsiResponseGroupRoot,
 )
 from eve_esi_link.esi_request.validate import (
     EsiRequestValidationErrors,
@@ -182,16 +181,16 @@ def make_requests(
             return responses
 
     responses = asyncio.run(run_requests())
-    output_text = EsiResponseGroupRoot(root=responses).model_dump_json(indent=indent)
+
     if file_out == Path("-"):
         if plain:
-            print(output_text)
+            print(responses.serialize(indent=indent))
         else:
-            messenger.print(JSON(output_text))
+            messenger.print(JSON(responses.serialize(indent=indent)))
         raise typer.Exit(code=0)
 
     output_path = save_text_file(
-        text=output_text,
+        text=responses.serialize(indent=indent),
         output_directory=file_out.parent,
         file_name=file_out.name,
         overwrite=overwrite,

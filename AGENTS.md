@@ -12,8 +12,7 @@ Implementing the remaining code required for an end to end run through.
 
 ### Goals for this session
 
-- implement list to group cli command
-- consider allowing download of schema if not supplied on cli commands
+- purge access tokens from EsiResponseGroup and members before serializing.
 - markdown docs from cli with usage exmples and request templates.
 
 

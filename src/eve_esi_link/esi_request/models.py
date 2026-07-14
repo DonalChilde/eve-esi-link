@@ -1,5 +1,6 @@
 """Models for ESI requests and responses."""
 
+from copy import deepcopy
 from dataclasses import dataclass, field
 from enum import StrEnum
 from typing import Any
@@ -235,12 +236,22 @@ class EsiResponseGroup(EsiRequestGroup):
     )
     """The dict of failed ESI responses in this group."""
 
-    def purge_tokens(self) -> None:
+    def _purge_secrets(self) -> None:
         """Purge the access tokens from all successful and failed ESI responses in this group."""
         for response in self.successful_responses.values():
             response.esi_runtime_request.purge_access_token()
+            # FIXME: will be in next api-request release.
+            # response.response.purge_secrets()
         for failed_response in self.failed_responses.values():
             failed_response.esi_runtime_request.purge_access_token()
+            # FIXME: will be in next api-request release.
+            # failed_response.failed_response.purge_secrets()
+
+    def serialize(self, indent: int | None = None) -> str:
+        """Purge secrets and serialize the EsiResponseGroup to a JSON string."""
+        copied_object = deepcopy(self)
+        copied_object._purge_secrets()
+        return EsiResponseGroupRoot(root=copied_object).model_dump_json(indent=indent)
 
 
 EsiResponseGroupRoot = RootModel[EsiResponseGroup]
