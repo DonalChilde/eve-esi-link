@@ -1,19 +1,54 @@
-from pathlib import Path
+"""List cached ESI schema entries."""
+
 from typing import Annotated
 
 import typer
 from rich.console import Console
-from rich.json import JSON
+from rich.markdown import Markdown
 from whenever import Instant
 
-from eve_esi_link.cli.helpers import get_eve_link_settings_from_context, get_stdin
-from eve_esi_link.helpers import json_io
-from eve_esi_link.helpers.http_session_factory import client_manager
-from eve_esi_link.helpers.save_text_file import save_text_file
+from eve_esi_link.cli.helpers import get_eve_link_settings_from_context
+from eve_esi_link.helpers.markdown_table import MarkdownTable
 from eve_esi_link.schema.cache import SchemaCacheManager
-from eve_esi_link.schema.helpers.fetch import fetch_compatibility_dates
 
 app = typer.Typer(no_args_is_help=True)
 
-# can list available cached schemas by compatibility date and timestamp as an iso date string.
-# follow cli conventions
+
+@app.command(name="list", help="List cached ESI schema entries.")
+def list_cache(
+    ctx: typer.Context,
+    plain: Annotated[
+        bool,
+        typer.Option(
+            "--plain",
+            help="Display output as plain-text markdown instead of rendered markdown.",
+        ),
+    ] = False,
+):
+    """List all cached ESI schema entries as a markdown table.
+
+    Columns:
+        Compatibility Date: Schema version date in YYYY-MM-DD format.
+        Fetched At: UTC timestamp of when the schema was fetched, or empty.
+    """
+    # ctx is an invisible typer context parameter — not documented in help.
+    settings = get_eve_link_settings_from_context(ctx)
+    console = Console()
+    manager = SchemaCacheManager(cache_directory=settings.schema_cache_directory)
+    entries = manager.list_entries()
+
+    table = MarkdownTable(headers=["Compatibility Date", "Fetched At"])
+    for entry in entries:
+        fetched_at = (
+            Instant.from_timestamp_nanos(entry.timestamp).format("YYYY-MM-DD hh:mm:ss")
+            if entry.timestamp is not None
+            else ""
+        )
+        table.add_row([entry.compatibility_date, fetched_at])
+
+    rendered = table.render()
+    report = f"# Cached ESI schema entries\n\n{rendered}"
+    if plain:
+        print(report)
+    else:
+        console.print(Markdown(report))
