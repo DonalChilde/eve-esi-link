@@ -12,7 +12,7 @@ from eve_esi_link.esi_request.validate import (
     EsiRequestValidationErrors,
 )
 from eve_esi_link.helpers.esi_link_factory import esi_link_factory
-from eve_esi_link.schema.helpers.io_format import SchemaIOFormat
+from eve_esi_link.schema.cache import SchemaCacheManager
 from eve_esi_link.schema.helpers.schema_files import load_esi_schema_from_file
 
 app = typer.Typer(no_args_is_help=True)
@@ -25,7 +25,7 @@ app = typer.Typer(no_args_is_help=True)
 def validate_requests(
     ctx: typer.Context,
     schema_file: Annotated[
-        Path,
+        Path | None,
         typer.Option(
             "--schema",
             exists=True,
@@ -34,15 +34,14 @@ def validate_requests(
             readable=True,
             help="Path to schema JSON file.",
         ),
-    ],
-    input_format: Annotated[
-        SchemaIOFormat,
+    ] = None,
+    compatibility_date: Annotated[
+        str | None,
         typer.Option(
-            "--input-format",
-            help="Input format for the schema JSON. Options are: unaltered, timestamped, "
-            "and esi_schema. Defaults to esi_schema.",
+            "--date",
+            help="Compatibility date (YYYY-MM-DD) of the schema to use for validation.",
         ),
-    ] = SchemaIOFormat.ESI_SCHEMA,
+    ] = None,
     file_in: Annotated[
         Path,
         typer.Option(
@@ -70,6 +69,9 @@ def validate_requests(
         messenger = Console(stderr=True, quiet=True)
     else:
         messenger = Console(stderr=True)
+    if schema_file is not None and compatibility_date is not None:
+        messenger.print("[red]Error: --schema and --date are mutually exclusive.[/red]")
+        raise typer.Exit(code=1)
     settings = get_eve_link_settings_from_context(ctx)
     esi_link = esi_link_factory(settings)
 
@@ -88,11 +90,38 @@ def validate_requests(
         messenger.print(f"[red]Error: Failed to parse ESI requests JSON - {e}[/red]")
         raise typer.Exit(code=1) from e
 
-    try:
-        esi_schema = load_esi_schema_from_file(schema_file)
-    except Exception as e:
-        messenger.print(f"[red]Error: Failed to load schema from file - {e}[/red]")
-        raise typer.Exit(code=1) from e
+    if schema_file is not None:
+        try:
+            esi_schema = load_esi_schema_from_file(schema_file)
+        except Exception as e:
+            messenger.print(f"[red]Error: Failed to load schema from file - {e}[/red]")
+            raise typer.Exit(code=1) from e
+    else:
+        # if compatibility_date is None, get the most recent cached schema
+        manager = SchemaCacheManager(cache_directory=settings.schema_cache_directory)
+        try:
+            if compatibility_date is not None:
+                esi_schema = manager.load(compatibility_date=compatibility_date)
+            else:
+                available_dates = manager.list_entries()
+                if not available_dates:
+                    messenger.print(
+                        "[red]Error: No cached schemas found. Use --schema or update the cache.[/red]"
+                    )
+                    raise typer.Exit(code=1)
+                most_recent_date = max(
+                    entry.compatibility_date for entry in available_dates
+                )
+                esi_schema = manager.load(compatibility_date=most_recent_date)
+                messenger.print(f"Using most recent cached schema: {most_recent_date}")
+        except FileNotFoundError as e:
+            messenger.print(
+                f"[red]Error: No cached schema found for {compatibility_date}.[/red]"
+            )
+            raise typer.Exit(code=1) from e
+        except Exception as e:
+            messenger.print(f"[red]Error: Failed to load cached schema - {e}[/red]")
+            raise typer.Exit(code=1) from e
 
     all_errors: list[str] = []
     valid_count = 0
