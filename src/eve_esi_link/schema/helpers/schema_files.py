@@ -74,3 +74,15 @@ def load_esi_schema_from_file(
     loaded_schema = json_io.json_load_path(file_path)
 
     return load_esi_schema(loaded_schema, timestamp=timestamp)
+
+
+def default_file_name_for_cached_schema(schema: EsiSchema) -> str:
+    """Generate a default file name for the given ESI schema.
+
+    Args:
+        schema: An instance of EsiSchema.
+
+    Returns:
+        A string representing the default file name for the schema.
+    """
+    return f"schema_{schema.compatibility_date}_{schema.timestamp}_esi_schema.json"

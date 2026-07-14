@@ -13,7 +13,7 @@ from eve_esi_link.esi_request.validate import (
 )
 from eve_esi_link.helpers.esi_link_factory import esi_link_factory
 from eve_esi_link.schema.helpers.io_format import SchemaIOFormat
-from eve_esi_link.schema.helpers.load_schema import load_esi_schema_from_file
+from eve_esi_link.schema.helpers.schema_files import load_esi_schema_from_file
 
 app = typer.Typer(no_args_is_help=True)
 

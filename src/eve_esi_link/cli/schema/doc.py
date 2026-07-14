@@ -10,7 +10,7 @@ from rich.markdown import Markdown
 from eve_esi_link.helpers import json_io
 from eve_esi_link.helpers.save_text_file import save_text_file
 from eve_esi_link.schema.helpers.io_format import SchemaIOFormat
-from eve_esi_link.schema.helpers.load_schema import (
+from eve_esi_link.schema.helpers.schema_files import (
     load_esi_schema,
     load_esi_schema_from_file,
 )
