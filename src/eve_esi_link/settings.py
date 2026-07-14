@@ -29,6 +29,7 @@ class EsiLinkSettings:
 
     application_directory: Path
     logging_directory: Path
+    schema_cache_directory: Path
     # Eve Auth Manager settings
     auth_manager_db_file: Path
     # API Request settings
@@ -67,6 +68,7 @@ def get_settings() -> EsiLinkSettings:
     settings = EsiLinkSettings(
         application_directory=application_directory,
         logging_directory=application_directory / "logs",
+        schema_cache_directory=application_directory / "schema_cache",
         api_request_cache_file=application_directory / "api_requests_web_cache.sqlite",
         auth_manager_db_file=application_directory / "eve_auth_manager.sqlite",
     )
