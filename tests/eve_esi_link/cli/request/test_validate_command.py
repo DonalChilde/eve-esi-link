@@ -6,13 +6,7 @@ from uuid import uuid4
 import pytest
 from typer.testing import CliRunner
 
-try:
-    from eve_esi_link.cli.main_typer import app
-except ImportError:
-    pytest.skip(
-        "CLI request model roots are mid-refactor and currently unavailable.",
-        allow_module_level=True,
-    )
+from eve_esi_link.cli.main_typer import app
 
 runner = CliRunner()
 

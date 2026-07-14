@@ -98,11 +98,22 @@ def make_requests(
         ),
     ] = False,
 ) -> None:
-    """Make requests to the ESI API based on the provided ESI requests JSON and schema JSON."""
+    """Make requests to the ESI API based on the provided ESI requests JSON and schema JSON.
+
+    If neither --schema nor --date is provided, the most recent cached schema will be used.
+
+    NOTE: access tokens are currently serialized in the EsiResponses JSON, so be careful
+    not to expose them in logs or output files. They are only valid for 20 minutes or less.
+    """
     if quiet:
         messenger = Console(stderr=True, quiet=True)
     else:
         messenger = Console(stderr=True)
+    if schema_file is not None and compatibility_date is not None:
+        messenger.print(
+            "[red]Error: Cannot specify both --schema and --date options.[/red]"
+        )
+        raise typer.Exit(code=1)
     settings = get_eve_link_settings_from_context(ctx)
     esi_link = esi_link_factory(settings)
 

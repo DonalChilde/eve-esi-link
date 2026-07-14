@@ -212,8 +212,11 @@ def _validate_headers(
     """Validate user-supplied headers against operation and runtime policy."""
     header_specs = _normalize_parameter_specs(operation.header_params)
     allowed_header_names = set(header_name.lower() for header_name in header_specs)
+    user_header_names = {
+        name.lower(): value for name, value in esi_request.header_parameters.items()
+    }
 
-    for name, value in esi_request.header_parameters.items():
+    for name, value in user_header_names.items():
         if name in _RUNTIME_FORBIDDEN_HEADERS:
             _add_error(
                 errors,
