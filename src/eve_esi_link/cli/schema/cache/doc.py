@@ -10,7 +10,7 @@ from rich.markdown import Markdown
 from eve_esi_link.cli.helpers import get_eve_link_settings_from_context
 from eve_esi_link.helpers.save_text_file import save_text_file
 from eve_esi_link.schema.cache import SchemaCacheManager
-from eve_esi_link.schema.schema_doc_2 import (
+from eve_esi_link.schema.schema_doc import (
     FencedDataFormat,
     generate_esi_schema_markdown_doc,
 )

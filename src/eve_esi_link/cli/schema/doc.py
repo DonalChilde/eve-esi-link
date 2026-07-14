@@ -14,7 +14,7 @@ from eve_esi_link.schema.helpers.schema_files import (
     load_esi_schema,
     load_esi_schema_from_file,
 )
-from eve_esi_link.schema.schema_doc_2 import (
+from eve_esi_link.schema.schema_doc import (
     FencedDataFormat,
     generate_esi_schema_markdown_doc,
 )
