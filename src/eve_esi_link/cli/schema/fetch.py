@@ -1,6 +1,5 @@
 """Fetch the ESI schema for a given date and save it to a file."""
 
-import json
 from pathlib import Path
 from typing import Annotated
 
@@ -19,7 +18,7 @@ from eve_esi_link.schema.models import EsiSchema
 app = typer.Typer(no_args_is_help=True)
 
 
-@app.command(name="fetch-schema", help="Fetch the ESI schema for a given date.")
+@app.command(name="fetch", help="Fetch the ESI schema for a given date.")
 def fetch_esi_schema(
     ctx: typer.Context,
     date: Annotated[
@@ -110,9 +109,9 @@ def fetch_esi_schema(
             output_data = esi_echema.serialize(indent=indent)
     if file_out == Path("-"):
         if plain:
-            print(json.dumps(output_data, indent=indent))
+            print(json_io.json_dumps(output_data, indent=indent))
         else:
-            messenger.print(JSON.from_data(output_data, indent=indent))
+            messenger.print(JSON(output_data, indent=indent))
         raise typer.Exit()
     # If file_out ends in .json, use file_out for file_path.
     # If file_out is a directory, use a default file name that includes the schema

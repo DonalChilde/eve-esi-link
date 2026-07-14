@@ -5,15 +5,16 @@ from dataclasses import asdict
 from typing import Annotated
 
 import typer
-from api_request.cli import app as api_request_app
 from api_request.settings import SETTINGS_KEY as API_REQUEST_SETTINGS_KEY
 from eve_auth_manager.cli import app as auth_manager_app
 from eve_auth_manager.settings import SETTINGS_KEY as AUTH_MANAGER_SETTINGS_KEY
+from rich.console import Console
 
 from eve_esi_link import __app_name__, __version__
 from eve_esi_link.cli.helpers import (
     construct_api_request_settings,
     construct_eve_auth_manager_settings,
+    get_eve_link_settings_from_context,
 )
 from eve_esi_link.logging_config import (
     flush_deferred_handler,
@@ -23,20 +24,8 @@ from eve_esi_link.logging_config import (
 from eve_esi_link.settings import SETTINGS_KEY, get_settings
 
 from . import app as main_app
-from .examples import app as examples_app
 
 logger = logging.getLogger(__name__)
-
-
-def version_callback(value: bool) -> None:
-    """Display the application version and exit.
-
-    Args:
-        value: A boolean indicating whether to display the version.
-    """
-    if value:
-        typer.echo(f"{__app_name__} v{__version__}")
-        raise typer.Exit()
 
 
 def default_options(
@@ -47,7 +36,6 @@ def default_options(
             "--version",
             help="Show the application version and exit",
             is_eager=True,
-            callback=version_callback,
         ),
     ] = False,
 ) -> None:
@@ -81,11 +69,15 @@ app = typer.Typer(
 )
 
 
-app.add_typer(
-    examples_app,
-    name="examples",
-    help="A collection of example commands.",
-)
+@app.command()
+def version(ctx: typer.Context) -> None:
+    """Display the application version and exit."""
+    settings = get_eve_link_settings_from_context(ctx)
+    console = Console(stderr=True)
+    console.print(f"{__app_name__} v{__version__}")
+    console.print(f"Settings:")
+    console.print(settings)
+
+
 app.add_typer(main_app)
 app.add_typer(auth_manager_app, name="auth-manager")
-app.add_typer(api_request_app, name="api-request")
