@@ -14,7 +14,6 @@ Implementing the remaining code required for an end to end run through.
 
 - implement list to group cli command
 - consider allowing download of schema if not supplied on cli commands
-- autodetect saved schema formats on load.
 - markdown docs from cli with usage exmples and request templates.
 
 
@@ -23,7 +22,7 @@ Implementing the remaining code required for an end to end run through.
 
 - docs pass to define contracts.
 - cli cache management tools, info, clear with options, etc. from api-request
-- api-request stats on paged requests.
+- api-request stats on paged requests. add expires_on to ResponseMetadata?
 - Defined request commands, eg market groups, types published types, types in market, 5 percent prices, market history, etc.
 
 ### Key Dependencies
