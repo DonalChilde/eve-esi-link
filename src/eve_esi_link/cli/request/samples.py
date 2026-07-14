@@ -17,8 +17,8 @@ def export(
         Path, typer.Option("--to", help="Directory to export examples to.")
     ],
     indent: Annotated[
-        int | None, typer.Option(None, help="Indentation level for JSON files.")
-    ] = 2,
+        int | None, typer.Option("--indent", help="Indentation level for JSON files.")
+    ] = None,
     overwrite: Annotated[
         bool,
         typer.Option("--overwrite", help="Overwrite existing files if they exist."),

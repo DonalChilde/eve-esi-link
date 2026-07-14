@@ -24,10 +24,11 @@ app = typer.Typer(no_args_is_help=True)
 )
 def doc_cache(
     ctx: typer.Context,
-    date: Annotated[
+    compatibility_date: Annotated[
         str,
         typer.Option(
             "--date",
+            metavar="YYYY-MM-DD",
             help="Compatibility date (YYYY-MM-DD) of the cached schema to document.",
         ),
     ],
@@ -95,9 +96,18 @@ def doc_cache(
     manager = SchemaCacheManager(cache_directory=settings.schema_cache_directory)
 
     try:
-        esi_schema = manager.load(compatibility_date=date)
+        available_dates = [entry.compatibility_date for entry in manager.list_entries()]
+        if compatibility_date not in available_dates:
+            messenger.print(
+                f"[red]Error: No cached schema found for {compatibility_date}. Available "
+                f"dates are {available_dates}[/red]"
+            )
+            raise typer.Exit(code=1)
+        esi_schema = manager.load(compatibility_date=compatibility_date)
     except FileNotFoundError as e:
-        messenger.print(f"[red]Error: No cached schema found for {date}.[/red]")
+        messenger.print(
+            f"[red]Error: No cached schema found for {compatibility_date}.[/red]"
+        )
         raise typer.Exit(code=1) from e
     except Exception as e:
         messenger.print(f"[red]Error: Failed to load cached schema - {e}[/red]")
@@ -118,7 +128,7 @@ def doc_cache(
     if file_out.suffix == ".md":
         file_path = file_out
     else:
-        default_file_name = f"schema_docs_{date}.md"
+        default_file_name = f"schema_docs_{compatibility_date}.md"
         file_path = file_out / default_file_name
 
     try:
