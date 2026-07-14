@@ -7,6 +7,8 @@ from typing import Any, Self, TypedDict, cast
 
 from pydantic import RootModel
 
+from eve_esi_link.helpers import json_io
+
 from ..helpers.resolve_json_ref import resolve_internal_refs
 
 
@@ -169,6 +171,9 @@ class EsiSchemaTD(TypedDict):
     timestamp: int | None
 
 
+EsiSchemaTDRoot = RootModel[EsiSchemaTD]
+
+
 @dataclass(slots=True, kw_only=True)
 class EsiSchema:
     """Represents the dereferenced ESI OpenAPI schema.
@@ -198,6 +203,16 @@ class EsiSchema:
         # fill the schema operations dictionary
         self._build_schema_operations()
         self._build_operation_id_by_tag()
+
+    def serialize(self, indent: int | None = None) -> str:
+        """Serialize the EsiSchema to a JSON string."""
+        return json_io.json_dumps(
+            {
+                "dereferenced_schema": deepcopy(self.dereferenced_schema),
+                "timestamp": self.timestamp,
+            },
+            indent=indent,
+        )
 
     def _build_schema_operations(self) -> None:
         """Build the schema operations dictionary from the dereferenced schema."""

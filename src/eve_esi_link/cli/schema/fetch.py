@@ -8,6 +8,7 @@ import typer
 from rich.console import Console
 from rich.json import JSON
 
+from eve_esi_link.helpers import json_io
 from eve_esi_link.helpers.eve_dates import previous_downtime
 from eve_esi_link.helpers.http_session_factory import client_manager
 from eve_esi_link.helpers.save_text_file import save_text_file
@@ -97,7 +98,7 @@ def fetch_esi_schema(
             raise typer.Exit(code=1) from e
     match format:
         case SchemaIOFormat.UNALTERED:
-            output_data = schema_data.schema
+            output_data = json_io.json_dumps(schema_data.schema, indent=indent)
         case SchemaIOFormat.TIMESTAMPED:
             output_data = TimestampedSchemaRoot(root=schema_data).model_dump_json(
                 indent=indent
@@ -106,7 +107,7 @@ def fetch_esi_schema(
             esi_echema = EsiSchema.from_raw_schema(
                 raw_schema=schema_data.schema, timestamp=schema_data.timestamp
             )
-            output_data = EsiSchemaRoot(root=esi_echema).model_dump_json(indent=indent)
+            output_data = esi_echema.serialize(indent=indent)
     if file_out == Path("-"):
         if plain:
             print(json.dumps(output_data, indent=indent))
@@ -123,7 +124,7 @@ def fetch_esi_schema(
         default_file_name = f"schema_{schema_compat_date}_{format.value}.json"
         file_path = file_out / default_file_name
     output_path = save_text_file(
-        text=json.dumps(output_data, indent=indent),
+        text=output_data,
         output_directory=file_path.parent,
         file_name=file_path.name,
         overwrite=overwrite,

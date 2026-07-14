@@ -127,7 +127,6 @@ def test_validate_allows_valid_authenticated_request_without_token_by_default() 
         operation_id="get_character_assets",
         path_parameters={"character_id": 123},
         query_parameters={"datasource": "tranquility"},
-        header_parameters={"Accept-Language": "en"},
         **_auth_fields(),
     )
 

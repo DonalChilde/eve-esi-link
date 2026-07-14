@@ -50,10 +50,12 @@ def _requests_json(*, operation_id: str) -> str:
     """Create a single-request EsiRequestsRoot JSON payload."""
     request_id = str(uuid4())
     payload = {
-        request_id: {
-            "request_id": request_id,
-            "operation_id": operation_id,
-            "query_parameters": {"datasource": "tranquility"},
+        "requests": {
+            request_id: {
+                "request_id": request_id,
+                "operation_id": operation_id,
+                "query_parameters": {"datasource": "tranquility"},
+            }
         }
     }
     return json.dumps(payload)

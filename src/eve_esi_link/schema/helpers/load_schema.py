@@ -53,7 +53,7 @@ def load_esi_schema(
         )
 
     raise ValueError(
-        "Invalid schema format. The loaded schema must be an OpenAPI schema or an EsiSchemaTD dictionary."
+        f"Invalid schema format. The loaded schema must be an OpenAPI schema, an EsiSchemaTD dictionary, or a timestamped schema. top-level keys were {', '.join(schema_dict.keys())}"
     )
 
 
