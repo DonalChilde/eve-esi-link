@@ -9,11 +9,6 @@ from rich.console import Console
 from rich.json import JSON
 
 from eve_esi_link.cli.helpers import get_eve_link_settings_from_context, get_stdin
-from eve_esi_link.cli.schema.helpers import (
-    SchemaIOFormat,
-    deserialize_schema,
-    get_esi_schema,
-)
 from eve_esi_link.esi_request.models import (
     EsiRequestGroupRoot,
     EsiResponseGroupRoot,
@@ -23,6 +18,8 @@ from eve_esi_link.esi_request.validate import (
 )
 from eve_esi_link.helpers.esi_link_factory import esi_link_factory
 from eve_esi_link.helpers.save_text_file import save_text_file
+from eve_esi_link.schema.helpers.io_format import SchemaIOFormat
+from eve_esi_link.schema.helpers.load_schema import load_esi_schema_from_file
 
 app = typer.Typer(no_args_is_help=True)
 
@@ -48,10 +45,10 @@ def make_requests(
         SchemaIOFormat,
         typer.Option(
             "--input-format",
-            help="Input format for the schema JSON. Options are: bare, timestamped_bare, "
-            "dereferenced, timestamped_dereferenced. Defaults to timestamped_bare.",
+            help="Input format for the schema JSON. Options are: unaltered, timestamped, "
+            "and esi_schema. Defaults to esi_schema.",
         ),
-    ] = SchemaIOFormat.TIMESTAMPED_BARE,
+    ] = SchemaIOFormat.ESI_SCHEMA,
     file_in: Annotated[
         Path,
         typer.Option(
@@ -127,16 +124,9 @@ def make_requests(
 
     # Load and parse the ESI schema JSON from the schema file
     try:
-        schema_data = deserialize_schema(
-            schema_file.read_text(encoding="utf-8"), input_format
-        )
+        esi_schema = load_esi_schema_from_file(schema_file)
     except Exception as e:
-        messenger.print(f"[red]Error: Failed to read schema file - {e}[/red]")
-        raise typer.Exit(code=1) from e
-    try:
-        esi_schema = get_esi_schema(schema_data)
-    except Exception as e:
-        messenger.print(f"[red]Error: Failed to parse EsiSchema JSON - {e}[/red]")
+        messenger.print(f"[red]Error: Failed to load schema from file - {e}[/red]")
         raise typer.Exit(code=1) from e
 
     async def run_requests():

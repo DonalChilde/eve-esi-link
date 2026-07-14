@@ -1,7 +1,6 @@
 """Fetch the ESI schema for a given date and save it to a file."""
 
 import json
-from dataclasses import asdict
 from pathlib import Path
 from typing import Annotated
 
@@ -9,12 +8,12 @@ import typer
 from rich.console import Console
 from rich.json import JSON
 
-from eve_esi_link.cli.schema.helpers import SchemaIOFormat
 from eve_esi_link.helpers.eve_dates import previous_downtime
 from eve_esi_link.helpers.http_session_factory import client_manager
 from eve_esi_link.helpers.save_text_file import save_text_file
-from eve_esi_link.schema.fetch import fetch_schema
-from eve_esi_link.schema.models import TimestampedDereferencedSchema
+from eve_esi_link.schema.helpers.fetch import TimestampedSchemaRoot, fetch_schema
+from eve_esi_link.schema.helpers.io_format import SchemaIOFormat
+from eve_esi_link.schema.models import EsiSchema, EsiSchemaRoot
 
 app = typer.Typer(no_args_is_help=True)
 
@@ -50,10 +49,10 @@ def fetch_esi_schema(
         SchemaIOFormat,
         typer.Option(
             "--format",
-            help="The output format for the schema. Options are: bare, timestamped_bare, "
-            "dereferenced, timestamped_dereferenced. Defaults to timestamped_bare.",
+            help="The output format for the schema. Options are: unaltered, timestamped,"
+            " and esi_schema. Defaults to esi_schema.",
         ),
-    ] = SchemaIOFormat.TIMESTAMPED_BARE,
+    ] = SchemaIOFormat.ESI_SCHEMA,
     quiet: Annotated[
         bool,
         typer.Option(
@@ -97,20 +96,17 @@ def fetch_esi_schema(
             messenger.print(f"[red]Error: Failed to fetch schema - {e}[/red]")
             raise typer.Exit(code=1) from e
     match format:
-        case SchemaIOFormat.BARE:
+        case SchemaIOFormat.UNALTERED:
             output_data = schema_data.schema
-        case SchemaIOFormat.TIMESTAMPED_BARE:
-            output_data = asdict(schema_data)
-        case SchemaIOFormat.DEREFERENCED:
-            dereferenced_schema = TimestampedDereferencedSchema.from_timestamped_schema(
-                schema_data
+        case SchemaIOFormat.TIMESTAMPED:
+            output_data = TimestampedSchemaRoot(root=schema_data).model_dump_json(
+                indent=indent
             )
-            output_data = dereferenced_schema.dereferenced_schema
-        case SchemaIOFormat.TIMESTAMPED_DEREFERENCED:
-            dereferenced_schema = TimestampedDereferencedSchema.from_timestamped_schema(
-                schema_data
+        case SchemaIOFormat.ESI_SCHEMA:
+            esi_echema = EsiSchema.from_raw_schema(
+                raw_schema=schema_data.schema, timestamp=schema_data.timestamp
             )
-            output_data = asdict(dereferenced_schema)
+            output_data = EsiSchemaRoot(root=esi_echema).model_dump_json(indent=indent)
     if file_out == Path("-"):
         if plain:
             print(json.dumps(output_data, indent=indent))

@@ -7,12 +7,13 @@ import typer
 from rich.console import Console
 from rich.markdown import Markdown
 
-from eve_esi_link.cli.schema.helpers import (
-    SchemaIOFormat,
-    deserialize_schema,
-    get_esi_schema,
-)
+from eve_esi_link.helpers import json_io
 from eve_esi_link.helpers.save_text_file import save_text_file
+from eve_esi_link.schema.helpers.io_format import SchemaIOFormat
+from eve_esi_link.schema.helpers.load_schema import (
+    load_esi_schema,
+    load_esi_schema_from_file,
+)
 from eve_esi_link.schema.schema_doc_2 import (
     FencedDataFormat,
     generate_esi_schema_markdown_doc,
@@ -53,10 +54,10 @@ def generate_schema_doc(
         SchemaIOFormat,
         typer.Option(
             "--input-format",
-            help="Input format for the schema JSON. Options are: bare, timestamped_bare, "
-            "dereferenced, timestamped_dereferenced. Defaults to timestamped_bare.",
+            help="Input format for the schema JSON. Options are: unaltered, timestamped, "
+            "and esi_schema. Defaults to esi_schema.",
         ),
-    ] = SchemaIOFormat.TIMESTAMPED_BARE,
+    ] = SchemaIOFormat.ESI_SCHEMA,
     fenced_format: Annotated[
         FencedDataFormat,
         typer.Option(
@@ -96,21 +97,22 @@ def generate_schema_doc(
         messenger = Console(stderr=True, quiet=True)
     else:
         messenger = Console(stderr=True)
+    # Get the EsiSchema from the input file or stdin
     if file_in == Path("-"):
         input_data = get_stdin()
+        try:
+            schema_dict = json_io.json_loads(input_data)
+        except Exception as e:
+            messenger.print(f"[red]Error: Failed to parse JSON input - {e}[/red]")
+            raise typer.Exit(code=1) from e
+        esi_schema = load_esi_schema(schema_dict)
     else:
         try:
-            input_data = file_in.read_text(encoding="utf-8")
+            esi_schema = load_esi_schema_from_file(file_path=file_in)
         except Exception as e:
             messenger.print(f"[red]Error: Failed to read input file - {e}[/red]")
             raise typer.Exit(code=1) from e
-    try:
-        schema = deserialize_schema(input_data, format=input_format)
-    except Exception as e:
-        messenger.print(f"[red]Error: Failed to deserialize schema - {e}[/red]")
-        raise typer.Exit(code=1) from e
 
-    esi_schema = get_esi_schema(schema)
     markdown_doc = generate_esi_schema_markdown_doc(
         schema=esi_schema,
         fenced_format=fenced_format,

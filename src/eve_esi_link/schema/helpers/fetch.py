@@ -1,15 +1,43 @@
 """Module for fetching the ESI OpenAPI schema and compatibility dates."""
 
 import logging
+from dataclasses import dataclass
 from datetime import datetime
+from typing import Any
 
 from httpx2 import Client
+from pydantic import RootModel
 from whenever import Instant
 
-from eve_esi_link.schema.models import TimestampedCompatibilityDates, TimestampedSchema
 from eve_esi_link.settings import ESI_SCHEMA_URL
 
 logger = logging.getLogger(__name__)
+
+
+@dataclass(slots=True, kw_only=True, frozen=True)
+class TimestampedSchema:
+    """Represents a schema with an associated timestamp."""
+
+    schema: dict[str, Any]
+    """The downloaded schema data as a dictionary, typically representing the OpenAPI 
+        schema fetched from the ESI API."""
+    timestamp: int
+    """The timestamp associated with the schema, representing the timestamp when the 
+        schema was fetched in nanoseconds."""
+
+
+TimestampedSchemaRoot = RootModel[TimestampedSchema]
+
+
+@dataclass(slots=True, kw_only=True, frozen=True)
+class TimestampedCompatibilityDates:
+    """Represents a list of compatibility dates with an associated timestamp."""
+
+    dates: tuple[str, ...]
+    """The tuple of compatibility dates, typically fetched from the ESI API."""
+    timestamp: int
+    """The timestamp associated with the compatibility dates, representing the 
+        timestamp when the dates were fetched in nanoseconds."""
 
 
 def fetch_schema(

@@ -9,11 +9,6 @@ from rich.console import Console
 from rich.json import JSON
 
 from eve_esi_link.cli.helpers import get_eve_link_settings_from_context, get_stdin
-from eve_esi_link.cli.schema.helpers import (
-    SchemaIOFormat,
-    deserialize_schema,
-    get_esi_schema,
-)
 from eve_esi_link.esi_request.models import (
     EsiRequestGroupRoot,
     EsiResponseGroupRoot,

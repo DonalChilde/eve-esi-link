@@ -3,76 +3,11 @@
 from copy import deepcopy
 from dataclasses import dataclass, field
 from enum import StrEnum
-from typing import Any, Self, cast
+from typing import Any, Self, TypedDict, cast
 
 from pydantic import RootModel
 
 from ..helpers.resolve_json_ref import resolve_internal_refs
-
-
-@dataclass(slots=True, kw_only=True, frozen=True)
-class TimestampedSchema:
-    """Represents a schema with an associated timestamp."""
-
-    schema: dict[str, Any]
-    """The downloaded schema data as a dictionary, typically representing the OpenAPI 
-        schema fetched from the ESI API."""
-    timestamp: int
-    """The timestamp associated with the schema, representing the timestamp when the 
-        schema was fetched in nanoseconds."""
-
-
-TimestampedSchemaRoot = RootModel[TimestampedSchema]
-
-
-@dataclass(slots=True, kw_only=True, frozen=True)
-class TimestampedDereferencedSchema:
-    """Represents a dereferenced schema with an associated timestamp."""
-
-    dereferenced_schema: dict[str, Any]
-    """The dereferenced schema data as a dictionary, typically representing the 
-        OpenAPI schema fetched from the ESI API."""
-    timestamp: int
-    """The timestamp associated with the dereferenced schema, representing the 
-        timestamp when the schema was fetched in nanoseconds."""
-
-    @classmethod
-    def from_timestamped_schema(cls, timestamped_schema: TimestampedSchema) -> Self:
-        """Create a TimestampedDereferencedSchema from a TimestampedSchema.
-
-        This method dereferences the schema contained in the TimestampedSchema and
-        returns a new instance of TimestampedDereferencedSchema with the dereferenced
-        schema and the same timestamp.
-
-        Args:
-            timestamped_schema (TimestampedSchema): The input TimestampedSchema to be
-                dereferenced.
-
-        Returns:
-            TimestampedDereferencedSchema: A new instance containing the dereferenced
-                schema and the original timestamp.
-        """
-        dereferenced_schema = resolve_internal_refs(
-            timestamped_schema.schema, timestamped_schema.schema
-        )
-        return cls(
-            dereferenced_schema=dereferenced_schema,
-            timestamp=timestamped_schema.timestamp,
-        )
-
-
-TimestampedDereferencedSchemaRoot = RootModel[TimestampedDereferencedSchema]
-
-
-@dataclass(slots=True, kw_only=True, frozen=True)
-class TimestampedCompatibilityDates:
-    """Represents a list of compatibility dates with an associated timestamp."""
-
-    dates: tuple[str, ...]
-    """The tuple of compatibility dates, typically fetched from the ESI API."""
-    timestamp: int
-    """The timestamp associated with the compatibility dates, representing the 
-        timestamp when the dates were fetched in nanoseconds."""
 
 
 class HttpMethod(StrEnum):
@@ -227,6 +162,11 @@ class SchemaOperation:
             if key.startswith("x-"):
                 x_list.append({key: deepcopy(value)})
         return x_list
+
+
+class EsiSchemaTD(TypedDict):
+    dereferenced_schema: dict[str, Any]
+    timestamp: int | None
 
 
 @dataclass(slots=True, kw_only=True)
