@@ -77,7 +77,8 @@ def update_cache(
                 raise typer.Exit(code=1) from e
             dates = list(dates_data.compatibility_dates)
         else:
-            dates = [date]  # type: ignore[list-item]
+            assert date is not None
+            dates = [date]
 
         saved = 0
         for schema_date in dates:
