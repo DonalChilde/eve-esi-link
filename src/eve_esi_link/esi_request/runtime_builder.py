@@ -1,4 +1,4 @@
-"""Build a RuntimeEsiRequest."""
+"""Build deterministic RuntimeEsiRequest objects from validated EsiRequest inputs."""
 
 from uuid import UUID, uuid5
 

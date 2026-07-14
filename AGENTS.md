@@ -8,18 +8,21 @@ A cli and api for working with the EVE Online ESI web api.
 
 ### State
 
-Implementing the remaining code required for an end to end run through.
+Documentation and testing
 
 ### Goals for this session
 
-- purge access tokens from EsiResponseGroup and members before serializing.
-- markdown docs from cli with usage exmples and request templates.
+- WAITING FOR API-REQUEST UPDATE- purge access tokens from EsiResponseGroup and members before serializing.
+- docs pass to define contracts.
+- testing to 100% coverage.
 
 
 
 ### Next Steps
 
-- docs pass to define contracts.
+- download and display schema changelog.
+- markdown docs from cli with usage exmples and request templates.
+
 - cli cache management tools, info, clear with options, etc. from api-request
 - api-request stats on paged requests. add expires_on to ResponseMetadata?
 - Defined request commands, eg market groups, types published types, types in market, 5 percent prices, market history, etc.

@@ -20,7 +20,7 @@ app = typer.Typer(no_args_is_help=True)
 
 @app.command(
     name="validate",
-    help="Validate EsiRequestGroup from JSON input against a schema JSON file.",
+    help="Validate EsiRequestGroup JSON input against a selected schema.",
 )
 def validate_requests(
     ctx: typer.Context,
@@ -32,14 +32,14 @@ def validate_requests(
             file_okay=True,
             dir_okay=False,
             readable=True,
-            help="Path to schema JSON file.",
+            help="Path to schema JSON file. Mutually exclusive with --date.",
         ),
     ] = None,
     compatibility_date: Annotated[
         str | None,
         typer.Option(
             "--date",
-            help="Compatibility date (YYYY-MM-DD) of the schema to use for validation.",
+            help="Compatibility date (YYYY-MM-DD) of cached schema to use. Mutually exclusive with --schema.",
         ),
     ] = None,
     file_in: Annotated[
@@ -60,10 +60,10 @@ def validate_requests(
         ),
     ] = False,
 ) -> None:
-    """Validate an EsiRequests dictionary against a schema.
+    """Validate requests from an EsiRequestGroup JSON payload.
 
-    This command validates input shape with EsiRequestsRoot, loads EsiSchema from a
-    schema file, and then validates each request against the matching operation.
+    Input JSON is parsed as EsiRequestGroup. Each request is validated against
+    the matching schema operation and validation errors are reported per request_id.
     """
     if quiet:
         messenger = Console(stderr=True, quiet=True)

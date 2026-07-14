@@ -9,7 +9,6 @@ from rich.markdown import Markdown
 
 from eve_esi_link.helpers import json_io
 from eve_esi_link.helpers.save_text_file import save_text_file
-from eve_esi_link.schema.helpers.io_format import SchemaIOFormat
 from eve_esi_link.schema.helpers.schema_files import (
     load_esi_schema,
     load_esi_schema_from_file,
@@ -26,7 +25,7 @@ app = typer.Typer(no_args_is_help=True)
 
 @app.command(
     name="generate-doc",
-    help="Generate operation-focused markdown documentation from a schema JSON file.",
+    help="Generate operation-focused markdown documentation from schema JSON input.",
 )
 def generate_schema_doc(
     file_in: Annotated[
@@ -38,26 +37,18 @@ def generate_schema_doc(
             dir_okay=False,
             readable=True,
             allow_dash=True,
-            help="Path to schema JSON. Defaults to `-` for stdin.",
+            help="Path to schema JSON. Use - for stdin.",
         ),
     ] = Path("-"),
     file_out: Annotated[
         Path,
         typer.Option(
             "--to",
-            help="Output markdown file path. Defaults to `-` for stdout.",
+            help="Output markdown file path. Use - for stdout.",
             allow_dash=True,
             dir_okay=False,
         ),
     ] = Path("-"),
-    input_format: Annotated[
-        SchemaIOFormat,
-        typer.Option(
-            "--input-format",
-            help="Input format for the schema JSON. Options are: unaltered, timestamped, "
-            "and esi_schema. Defaults to esi_schema.",
-        ),
-    ] = SchemaIOFormat.ESI_SCHEMA,
     fenced_format: Annotated[
         FencedDataFormat,
         typer.Option(

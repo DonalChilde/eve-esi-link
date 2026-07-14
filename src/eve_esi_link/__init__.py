@@ -1,4 +1,12 @@
-"""This is the eve-esi-link package, a command line first interface to the Eve Online API."""
+"""eve-esi-link package.
+
+CLI and library interface for working with EVE Online ESI.
+
+For library usage, EsiLink is the primary entrypoint. See:
+- docs/esi-link-library-contracts.md
+- docs/esi-request-package-contracts.md
+- docs/schema-package-contracts.md
+"""
 
 __project_namespace__ = "pfmsoft"
 __author__ = "Chad Lowe"
@@ -17,7 +25,19 @@ __license__ = "MIT"
 
 
 from eve_esi_link.esi_link import EsiLink
+from eve_esi_link.esi_request.models import (
+    EsiRequest,
+    EsiRequestGroup,
+    EsiResponse,
+    EsiResponseGroup,
+)
+from eve_esi_link.schema.models import EsiSchema
 
 __all__ = [
     "EsiLink",
+    "EsiRequest",
+    "EsiRequestGroup",
+    "EsiResponse",
+    "EsiResponseGroup",
+    "EsiSchema",
 ]

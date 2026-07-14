@@ -36,7 +36,7 @@ def doc_cache(
         Path,
         typer.Option(
             "--to",
-            help="Output markdown file path. Defaults to `-` for stdout.",
+            help="Output markdown file path. Use - for stdout.",
             allow_dash=True,
             dir_okay=True,
         ),
@@ -78,13 +78,13 @@ def doc_cache(
 
     Examples:
         Print docs to stdout:
-            eve-link schema cache doc-cache --date 2026-06-09
+            eve-link schema cache doc --date 2026-06-09
 
         Save docs to a directory (auto-named):
-            eve-link schema cache doc-cache --date 2026-06-09 --to ./docs/
+            eve-link schema cache doc --date 2026-06-09 --to ./docs/
 
         Save docs to a specific file:
-            eve-link schema cache doc-cache --date 2026-06-09 --to ./docs/esi.md
+            eve-link schema cache doc --date 2026-06-09 --to ./docs/esi.md
     """
     # ctx is an invisible typer context parameter — not documented in help.
     if quiet:

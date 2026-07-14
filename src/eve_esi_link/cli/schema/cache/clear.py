@@ -32,7 +32,7 @@ def clear_cache(
         bool,
         typer.Option(
             "--quiet",
-            help="Suppress output messages.",
+            help="Suppress status output.",
         ),
     ] = False,
 ):
@@ -42,10 +42,10 @@ def clear_cache(
 
     Examples:
         Clear schema for a specific date:
-            eve-link schema clear-cache --date 2026-06-09
+            eve-link schema cache clear --date 2026-06-09
 
         Clear all cached schemas:
-            eve-link schema clear-cache --all
+            eve-link schema cache clear --all
     """
     # ctx is an invisible typer context parameter — not documented in help.
     messenger = Console(stderr=True, quiet=quiet)

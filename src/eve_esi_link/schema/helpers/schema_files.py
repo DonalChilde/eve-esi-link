@@ -1,4 +1,11 @@
-"""Helpers for loading ESI schemas from files."""
+"""Schema file loading helpers and cache filename conventions.
+
+Accepted top-level shapes:
+
+- OpenAPI dict (openapi/info/paths/components)
+- EsiSchemaTD envelope ({"dereferenced_schema", "timestamp"})
+- Timestamped schema envelope ({"schema", "timestamp"})
+"""
 
 from pathlib import Path
 from typing import Any
@@ -27,26 +34,35 @@ def load_esi_schema(
             timestamp is not available or not applicable.
 
     Returns:
-        An instance of EsiSchema containing the loaded schema and its associated timestamp.
+        An instance of EsiSchema containing the loaded schema and its associated
+        timestamp.
+
+    Notes:
+        For OpenAPI-shaped input, the loader detects whether ``$ref`` keys are
+        present. Raw schemas are dereferenced via ``EsiSchema.from_raw_schema``.
+        Already-dereferenced schemas are validated as ``EsiSchemaTD`` payloads.
     """
     if is_open_api_schema(schema_dict):
+        # dict is an openapi schema, it may or may not be dereferenced.
         if timestamp is None:
             timestamp_int = None
         else:
             timestamp_int = timestamp.timestamp_nanos()
         if is_raw_schema(schema_dict):
-            return EsiSchemaRoot.model_validate({
-                "dereferenced_schema": schema_dict,
-                "timestamp": timestamp_int,
-            }).root
+            return EsiSchema.from_raw_schema(
+                raw_schema=schema_dict,
+                timestamp=timestamp_int,
+            )
         else:
             return EsiSchemaRoot.model_validate({
                 "dereferenced_schema": schema_dict,
                 "timestamp": timestamp_int,
             }).root
     if is_esi_schema_td(schema_dict):
+        # EsiSchemaTD is expected to be dereferenced, so we can just pass it through.
         return EsiSchemaRoot.model_validate(schema_dict).root
     if is_timestamped_schema(schema_dict):
+        # TimestampedSchema is expected not to be dereferenced.
         return EsiSchema.from_raw_schema(
             raw_schema=schema_dict["schema"],
             timestamp=schema_dict["timestamp"],
@@ -83,6 +99,7 @@ def default_file_name_for_cached_schema(schema: EsiSchema) -> str:
         schema: An instance of EsiSchema.
 
     Returns:
-        A string representing the default file name for the schema.
+        Canonical filename in the form
+        ``schema_<compatibility_date>_<timestamp>_esi_schema.json``.
     """
     return f"schema_{schema.compatibility_date}_{schema.timestamp}_esi_schema.json"

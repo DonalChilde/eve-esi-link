@@ -25,7 +25,7 @@ app = typer.Typer(no_args_is_help=True)
 
 @app.command(
     name="run",
-    help="Run ESI requests from JSON input against a schema JSON file.",
+    help="Execute ESI requests from JSON input using a selected schema.",
 )
 def make_requests(
     ctx: typer.Context,
@@ -37,14 +37,16 @@ def make_requests(
             file_okay=True,
             dir_okay=False,
             readable=True,
-            help="Path to schema JSON file.",
+            show_default=True,
+            help="Path to schema JSON file. Mutually exclusive with --date.",
         ),
     ] = None,
     compatibility_date: Annotated[
         str | None,
         typer.Option(
             "--date",
-            help="Compatibility date (YYYY-MM-DD) of the schema to use for validation.",
+            show_default=True,
+            help="Compatibility date (YYYY-MM-DD) of cached schema to use. Mutually exclusive with --schema.",
         ),
     ] = None,
     file_in: Annotated[
@@ -54,7 +56,8 @@ def make_requests(
             file_okay=True,
             dir_okay=False,
             allow_dash=True,
-            help="Path to ESI requests JSON. Defaults to `-` for stdin.",
+            show_default=True,
+            help="Path to ESI requests JSON. Use `-` for stdin.",
         ),
     ] = Path("-"),
     file_out: Annotated[
@@ -65,7 +68,8 @@ def make_requests(
             dir_okay=False,
             writable=True,
             allow_dash=True,
-            help="Path to write ESI responses JSON. Defaults to `-` for stdout.",
+            show_default=True,
+            help="Path to write ESI responses JSON. Use - for stdout.",
         ),
     ] = Path("-"),
     plain: Annotated[
@@ -73,13 +77,15 @@ def make_requests(
         typer.Option(
             "--plain",
             help="Output plain JSON without rich formatting.",
+            show_default=True,
         ),
     ] = False,
     indent: Annotated[
         int | None,
         typer.Option(
             "--indent",
-            help="Number of spaces to use for JSON indentation. Defaults to None.",
+            help="Number of spaces to use for JSON indentation.",
+            show_default=True,
         ),
     ] = None,
     overwrite: Annotated[
@@ -87,6 +93,7 @@ def make_requests(
         typer.Option(
             "--overwrite",
             help="Overwrite the output file if it already exists.",
+            show_default=True,
         ),
     ] = False,
     quiet: Annotated[
@@ -94,12 +101,16 @@ def make_requests(
         typer.Option(
             "--quiet",
             help="Suppress success output.",
+            show_default=True,
         ),
     ] = False,
 ) -> None:
-    """Make requests to the ESI API based on the provided ESI requests JSON and schema JSON.
+    """Execute requests from an EsiRequestGroup JSON payload.
 
-    If neither --schema nor --date is provided, the most recent cached schema will be used.
+    Input JSON is parsed as EsiRequestGroupRoot. Requests are validated against the
+    selected schema before execution.
+
+    If neither --schema nor --date is provided, the most recent cached schema is used.
 
     NOTE: access tokens are currently serialized in the EsiResponses JSON, so be careful
     not to expose them in logs or output files. They are only valid for 20 minutes or less.

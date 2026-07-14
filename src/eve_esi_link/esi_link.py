@@ -1,4 +1,9 @@
-"""Hold the EsiLink class."""
+"""Library entrypoint for schema-validated ESI request execution.
+
+The EsiLink class is the main API used by library consumers. It coordinates
+schema validation, runtime request construction, authorization token lookup,
+batch HTTP execution, and response shaping.
+"""
 
 import logging
 from pathlib import Path
@@ -31,6 +36,12 @@ logger = logging.getLogger(__name__)
 
 
 class EsiLink:
+    """Execute ESI request groups with schema validation and runtime services.
+
+    This class must be used as an async context manager so request and auth
+    backends are initialized and cleaned up correctly.
+    """
+
     def __init__(
         self,
         auth_manager_db_path: Path,
@@ -38,13 +49,13 @@ class EsiLink:
         max_rate: float = 20.0,
         time_period: float = 1.0,
     ):
-        """Initialize the EsiLink class.
+        """Configure an EsiLink instance.
 
         Args:
-            auth_manager_db_path (Path): The path to the database file for the SqliteAuthManager.
-            web_cache_path (Path): The path to the web cache.
-            max_rate (float): The maximum number of requests per time period.
-            time_period (float): The time period for rate limiting in seconds.
+            auth_manager_db_path: Path to the SqliteAuthManager database.
+            web_cache_path: Path to the HTTP response cache database.
+            max_rate: Maximum number of requests per rate-limit window.
+            time_period: Window duration in seconds for rate limiting.
         """
         self.api_requester: api_request.ApiRequester | None = None
         self.auth_manager: SqliteAuthManager | None = None
@@ -54,7 +65,11 @@ class EsiLink:
         self.time_period = time_period
 
     async def __aenter__(self) -> Self:
-        """Async context manager entry point."""
+        """Initialize API requester and auth manager resources.
+
+        Returns:
+            The initialized EsiLink instance.
+        """
         web_cache_factory = SqliteCacheFactory(db_path=self.web_cache_path)
         rate_limiter_factory = AiolimiterRateLimiterFactory(
             max_rate=self.max_rate, time_period=self.time_period
@@ -73,27 +88,33 @@ class EsiLink:
         exc_value: BaseException | None,
         traceback: TracebackType | None,
     ):
-        """Async context manager exit point."""
+        """Release API requester and auth manager resources."""
         if self.api_requester is not None:
             await self.api_requester.__aexit__(exc_type, exc_value, traceback)
         if self.auth_manager is not None:
             self.auth_manager.__exit__(exc_type, exc_value, traceback)
 
     def _check_api_requester_initialized(self) -> api_request.ApiRequester:
-        """Check if the api_requester is initialized.
+        """Return initialized ApiRequester instance.
 
         Returns:
-            ApiRequester: The initialized api_requester.
+            Initialized ApiRequester.
+
+        Raises:
+            RuntimeError: If EsiLink is used outside async context manager scope.
         """
         if self.api_requester is None:
             raise RuntimeError("EsiLink must be used as an async context manager.")
         return self.api_requester
 
     def _check_auth_manager(self) -> SqliteAuthManager:
-        """Check if the auth_manager is initialized.
+        """Return initialized SqliteAuthManager instance.
 
         Returns:
-            SqliteAuthManager: The initialized auth_manager.
+            Initialized SqliteAuthManager.
+
+        Raises:
+            RuntimeError: If EsiLink is used outside async context manager scope.
         """
         if self.auth_manager is None:
             raise RuntimeError("EsiLink must be used as an async context manager.")
@@ -124,13 +145,14 @@ class EsiLink:
         esi_request: EsiRequest,
         runtime_esi_request: RuntimeEsiRequest,
     ) -> None:
-        """Check if the ESI request requires an access token and if it is provided.
+        """Attach access token to runtime request when authorization is required.
 
         Args:
             esi_request: The ESI request to check.
-            runtime_esi_request: The runtime ESI request object to populate with the
-            access token if required.
+            runtime_esi_request: Runtime request to mutate with access token.
 
+        Raises:
+            ValueError: If authorization tuple is incomplete.
         """
         if not esi_request.has_authorization:
             return
@@ -149,14 +171,19 @@ class EsiLink:
         esi_requests: EsiRequestGroup,
         schema: EsiSchema,
     ) -> EsiResponseGroup:
-        """Perform the given ESI requests and return the responses.
+        """Validate, execute, and group responses for an ESI request batch.
 
         Args:
-            esi_requests (EsiRequestGroup): The ESI requests to perform.
-            schema (EsiSchema): The schema to use for the requests.
+            esi_requests: ESI requests to execute.
+            schema: Schema used for operation lookup and validation.
 
         Returns:
-            EsiResponseGroup: The responses from the ESI requests.
+            Grouped successful and failed responses keyed by runtime request key.
+
+        Raises:
+            RuntimeError: If EsiLink is used outside async context manager scope.
+            EsiRequestValidationErrors: If any request fails schema validation.
+            Exception: Any backend execution exception from request or auth layers.
         """
         requester = self._check_api_requester_initialized()
 
@@ -182,14 +209,14 @@ class EsiLink:
         esi_request: EsiRequest,
         schema: EsiSchema,
     ) -> None:
-        """Validate the given ESI requests against the provided schema.
+        """Validate one ESI request against the provided schema.
 
         Args:
-            esi_request (EsiRequest): The ESI request to validate.
-            schema (EsiSchema): The schema to validate against.
+            esi_request: The ESI request to validate.
+            schema: Schema used for validation rules.
 
         Raises:
-            EsiRequestValidationErrors: If any of the requests are invalid according to the schema.
+            EsiRequestValidationErrors: If request data violates schema-derived rules.
         """
         try:
             validate_esi_request(esi_request, schema)
@@ -203,6 +230,7 @@ def _make_esi_response_group(
     requests: EsiRequestGroup,
     runtime_requests: dict[UUID, RuntimeEsiRequest],
 ) -> EsiResponseGroup:
+    """Convert api_request response groups into EsiResponseGroup containers."""
     successful_responses: dict[UUID, EsiResponse] = {}
     failed_responses: dict[UUID, FailedEsiResponse] = {}
     for request_id, response in responses.successful.items():
@@ -228,13 +256,13 @@ def _make_esi_response_group(
 def _make_request_from_runtime_request(
     runtime_request: RuntimeEsiRequest,
 ) -> api_request.Request:
-    """Convert an EsiRequest to a Request object.
+    """Convert RuntimeEsiRequest to api_request.Request.
 
     Args:
-        runtime_request (RuntimeEsiRequest): The runtime ESI request to convert.
+        runtime_request: Runtime ESI request to convert.
 
     Returns:
-        api_request.Request: The converted Request object.
+        Converted api_request.Request object.
     """
     return api_request.Request(
         request_key=runtime_request.request_key,

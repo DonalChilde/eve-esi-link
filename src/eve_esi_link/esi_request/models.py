@@ -1,4 +1,8 @@
-"""Models for ESI requests and responses."""
+"""Data models for ESI request input, runtime request state, and responses.
+
+These models define serialization and token-redaction boundaries for request and
+response payloads used by both CLI and library code.
+"""
 
 from copy import deepcopy
 from dataclasses import dataclass, field
@@ -177,6 +181,10 @@ class FailedEsiResponse:
     """The failed response associated with this FailedEsiResponse."""
 
 
+# NOTE: This is for a future possible feature to make it easier to hand code requests,
+# as the UUID could be generated on deserialization. These would be converted to
+# EsiRequestGroup objects for runtime execution. This is not currently used, but is
+# left here for future consideration.
 @dataclass(slots=True, kw_only=True)
 class EsiRequestList:
     name: str | None = None

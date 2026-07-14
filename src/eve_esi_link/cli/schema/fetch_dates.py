@@ -22,7 +22,7 @@ def fetch_esi_compatibility_dates(
         Path,
         typer.Option(
             "--to",
-            help="Path to the output formatted JSON file. Defaults to `-` for stdout.",
+            help="Path to output JSON file. Use - for stdout.",
             allow_dash=True,
         ),
     ] = Path("-"),
@@ -38,14 +38,14 @@ def fetch_esi_compatibility_dates(
         bool,
         typer.Option(
             "--quiet",
-            help="Suppress output messages.",
+            help="Suppress status output.",
         ),
     ] = False,
     plain: Annotated[
         bool,
         typer.Option(
             "--plain",
-            help="Display the output in plain text JSON instead of Rich JSON.",
+            help="Display JSON as plain text instead of Rich JSON.",
         ),
     ] = False,
     overwrite: Annotated[

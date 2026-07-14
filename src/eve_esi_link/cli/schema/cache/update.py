@@ -35,7 +35,7 @@ def update_cache(
         bool,
         typer.Option(
             "--quiet",
-            help="Suppress output messages.",
+            help="Suppress status output.",
         ),
     ] = False,
 ):
@@ -48,10 +48,10 @@ def update_cache(
 
     Examples:
         Cache schema for a specific date:
-            eve-link schema update-cache --date 2026-06-09
+            eve-link schema cache update --date 2026-06-09
 
         Cache all available schemas:
-            eve-link schema update-cache --all
+            eve-link schema cache update --all
     """
     # ctx is an invisible typer context parameter — not documented in help.
     messenger = Console(stderr=True, quiet=quiet)

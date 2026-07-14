@@ -1,4 +1,8 @@
-"""Module for representing the ESI OpenAPI schema and its operations in a structured way."""
+"""Schema models used to access ESI OpenAPI operations and metadata.
+
+The core contract is that an ``EsiSchema`` instance provides deterministic
+operation lookup by operationId and helper metadata used by validation and docs.
+"""
 
 from copy import deepcopy
 from dataclasses import dataclass, field
@@ -32,8 +36,8 @@ class SchemaOperation:
     operation ID, and the full operation schema. This allows for easy access to the
     details of each operation when generating documentation or validating requests.
 
-    A flattened version of the path, method, and operation object from the OpenAPI schema.
-    "paths":<path>:<method>:<operation_schema> from the OpenAPI schema.
+    This is a flattened view of one OpenAPI operation from
+    ``paths.<path>.<method>``.
     """
 
     path: str
@@ -176,12 +180,12 @@ EsiSchemaTDRoot = RootModel[EsiSchemaTD]
 
 @dataclass(slots=True, kw_only=True)
 class EsiSchema:
-    """Represents the dereferenced ESI OpenAPI schema.
+    """Represents the schema payload used for operation-level lookups.
 
     Can have an optional timestamp associated with it, representing the timestamp when
     the schema was fetched in nanoseconds.
 
-    For ease of access to the details of the schema.
+    The model builds operation and tag indexes during initialization.
     """
 
     dereferenced_schema: dict[str, Any]
@@ -205,7 +209,12 @@ class EsiSchema:
         self._build_operation_id_by_tag()
 
     def serialize(self, indent: int | None = None) -> str:
-        """Serialize the EsiSchema to a JSON string."""
+        """Serialize as an EsiSchemaTD-compatible JSON string.
+
+        Output keys:
+        - dereferenced_schema
+        - timestamp
+        """
         return json_io.json_dumps(
             {
                 "dereferenced_schema": deepcopy(self.dereferenced_schema),
@@ -251,9 +260,7 @@ class EsiSchema:
     ) -> Self:
         """Factory method to create an EsiSchema instance from a raw OpenAPI schema.
 
-        This method will resolve all internal JSON references in the schema, so that
-        the resulting EsiSchema instance contains a fully dereferenced schema for easy
-        access to all the details of the operations defined in the schema.
+        This method resolves internal ``$ref`` values before creating ``EsiSchema``.
 
         Args:
             raw_schema: The raw OpenAPI schema as a dictionary.
@@ -279,7 +286,7 @@ class EsiSchema:
 
     @property
     def compatibility_date(self) -> str:
-        """Get the compatibility date of the ESI schema from the info section."""
+        """Get compatibility date, currently sourced from ``info.version``."""
         return self.version
 
     @property
@@ -294,7 +301,11 @@ class EsiSchema:
         return self.dereferenced_schema["servers"][0]["url"]
 
     def operation_url(self, operation_id: str) -> str:
-        """Get the full URL template for a specific operation based on its operation ID."""
+        """Get full URL template for an operation ID.
+
+        Raises:
+            ValueError: If operation_id is not present in the schema.
+        """
         operation = self.operations.get(operation_id)
         if operation is None:
             raise ValueError(f"Operation ID '{operation_id}' not found in ESI schema.")
