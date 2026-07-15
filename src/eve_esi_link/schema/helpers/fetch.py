@@ -9,7 +9,11 @@ from httpx2 import Client
 from pydantic import RootModel
 from whenever import Instant
 
-from eve_esi_link.settings import COMPATIBILITY_DATES_URL, ESI_SCHEMA_URL
+from eve_esi_link.settings import (
+    COMPATIBILITY_DATES_URL,
+    ESI_SCHEMA_CHANGELOG_URL,
+    ESI_SCHEMA_URL,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -126,7 +130,15 @@ def fetch_compatibility_dates(session: Client) -> TimestampedCompatibilityDates:
 
 
 def fetch_schema_changelog(
-    session: Client, *, compatibility_date: str, url: str = ""
+    session: Client, *, url: str = ESI_SCHEMA_CHANGELOG_URL
 ) -> dict[str, list[str]]:
     """Fetch the ESI OpenAPI schema changelog for a given compatibility date."""
-    ...
+    try:
+        response = session.get(url)
+        response.raise_for_status()
+        changelog_data = response.json()
+        logger.info("Fetched schema changelog")
+        return changelog_data
+    except Exception as e:
+        logger.error("Error fetching schema changelog: %s", e)
+        raise

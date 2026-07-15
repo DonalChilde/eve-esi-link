@@ -16,6 +16,8 @@ COMPATIBILITY_DATES_URL = "https://esi.evetech.net/meta/compatibility-dates"
 """URL to fetch the list of compatibility dates from the ESI API."""
 ESI_SCHEMA_URL = "https://esi.evetech.net/meta/openapi.json"
 """URL to fetch ESI OpenAPI schema."""
+ESI_SCHEMA_CHANGELOG_URL = "https://esi.evetech.net/meta/changelog"
+"""URL to fetch ESI schema changelog."""
 USER_AGENT = f"{__app_name__}/{__version__} ({__url__})"
 APP_DOMAIN = f"{__project_namespace__}.{__app_name__}"
 APP_NAMESPACE = uuid5(NAMESPACE_DNS, APP_DOMAIN)

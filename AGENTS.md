@@ -13,18 +13,18 @@ Documentation and testing
 ### Goals for this session
 
 - WAITING FOR API-REQUEST UPDATE- purge access tokens from EsiResponseGroup and members before serializing.
-- docs pass to define contracts.
+- Manually write user facing docs.
 - testing to 100% coverage.
 
 
 
 ### Next Steps
 
-- download and display schema changelog.
-- markdown docs from cli with usage exmples and request templates.
+- markdown docs from cli with usage exmples and request templates - samples command
 
-- cli cache management tools, info, clear with options, etc. from api-request
-- api-request stats on paged requests. add expires_on to ResponseMetadata?
+- api-request - cli cache management tools, info, clear with options, etc. 
+- api-request - stats on paged requests. add expires_on to ResponseMetadata?
+- api-request - add purge-secrets to ResponseMetadata? Should secrets be purged before return of response?
 - Defined request commands, eg market groups, types published types, types in market, 5 percent prices, market history, etc.
 
 ### Key Dependencies
