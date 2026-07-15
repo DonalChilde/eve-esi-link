@@ -104,6 +104,8 @@ def doc_cache(
             )
             raise typer.Exit(code=1)
         esi_schema = manager.load(compatibility_date=compatibility_date)
+    except typer.Exit:
+        raise
     except FileNotFoundError as e:
         messenger.print(
             f"[red]Error: No cached schema found for {compatibility_date}.[/red]"

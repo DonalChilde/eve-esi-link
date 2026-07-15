@@ -32,7 +32,6 @@ def generate_schema_doc(
         Path,
         typer.Option(
             "--from",
-            exists=True,
             file_okay=True,
             dir_okay=False,
             readable=True,
@@ -96,7 +95,13 @@ def generate_schema_doc(
         except Exception as e:
             messenger.print(f"[red]Error: Failed to parse JSON input - {e}[/red]")
             raise typer.Exit(code=1) from e
-        esi_schema = load_esi_schema(schema_dict)
+        try:
+            esi_schema = load_esi_schema(schema_dict)
+        except Exception as e:
+            messenger.print(
+                f"[red]Error: Failed to load schema from JSON input - {e}[/red]"
+            )
+            raise typer.Exit(code=1) from e
     else:
         try:
             esi_schema = load_esi_schema_from_file(file_path=file_in)
