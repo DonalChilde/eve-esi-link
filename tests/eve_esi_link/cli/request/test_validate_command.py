@@ -31,7 +31,9 @@ class _FakeEsiLink:
 class _FakeSchemaManager:
     """Schema cache stub for validating cached schema selection branches."""
 
-    def __init__(self, *, entries: list[SimpleNamespace], loaded: dict[str, object]) -> None:
+    def __init__(
+        self, *, entries: list[SimpleNamespace], loaded: dict[str, object]
+    ) -> None:
         self._entries = entries
         self._loaded = loaded
         self.load_calls: list[str] = []
@@ -176,8 +178,12 @@ def test_request_validate_uses_most_recent_cached_schema_quietly(
         "get_stdin",
         lambda: _requests_json(operation_id="GetStatus"),
     )
-    monkeypatch.setattr(validate_command, "SchemaCacheManager", lambda **_kwargs: manager)
-    monkeypatch.setattr(validate_command, "esi_link_factory", lambda _settings: fake_link)
+    monkeypatch.setattr(
+        validate_command, "SchemaCacheManager", lambda **_kwargs: manager
+    )
+    monkeypatch.setattr(
+        validate_command, "esi_link_factory", lambda _settings: fake_link
+    )
 
     result = runner.invoke(validate_command.app, ["--quiet"])
 
@@ -235,8 +241,12 @@ def test_request_validate_reports_empty_cache_without_generic_followup(
         "get_stdin",
         lambda: _requests_json(operation_id="GetStatus"),
     )
-    monkeypatch.setattr(validate_command, "SchemaCacheManager", lambda **_kwargs: manager)
-    monkeypatch.setattr(validate_command, "esi_link_factory", lambda _settings: fake_link)
+    monkeypatch.setattr(
+        validate_command, "SchemaCacheManager", lambda **_kwargs: manager
+    )
+    monkeypatch.setattr(
+        validate_command, "esi_link_factory", lambda _settings: fake_link
+    )
 
     result = runner.invoke(validate_command.app, [])
 
@@ -265,7 +275,9 @@ def test_request_validate_reports_unexpected_validator_errors(
         "get_stdin",
         lambda: _requests_json(operation_id="GetStatus"),
     )
-    monkeypatch.setattr(validate_command, "esi_link_factory", lambda _settings: fake_link)
+    monkeypatch.setattr(
+        validate_command, "esi_link_factory", lambda _settings: fake_link
+    )
 
     result = runner.invoke(validate_command.app, ["--schema", str(schema_path)])
 

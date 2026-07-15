@@ -393,7 +393,9 @@ def test_request_run_reports_parse_errors_from_stdin(
     monkeypatch.setattr(
         run_command, "get_eve_link_settings_from_context", lambda _ctx: settings
     )
-    monkeypatch.setattr(run_command, "esi_link_factory", lambda _settings: _FakeEsiLink())
+    monkeypatch.setattr(
+        run_command, "esi_link_factory", lambda _settings: _FakeEsiLink()
+    )
 
     result = runner.invoke(
         run_command.app,
@@ -535,9 +537,9 @@ def test_run_group_reports_validation_errors(
     schema_path = tmp_path / "schema.json"
     schema_path.write_text("{}", encoding="utf-8")
     fake_link = _FakeEsiLink(
-        error=EsiRequestValidationErrors(
-            ["operation_id=GetStatus: Unknown operation_id for provided schema."]
-        )
+        error=EsiRequestValidationErrors([
+            "operation_id=GetStatus: Unknown operation_id for provided schema."
+        ])
     )
 
     monkeypatch.setattr(
@@ -608,7 +610,9 @@ def test_request_run_reports_input_file_read_errors(
     monkeypatch.setattr(
         run_command, "get_eve_link_settings_from_context", lambda _ctx: settings
     )
-    monkeypatch.setattr(run_command, "esi_link_factory", lambda _settings: _FakeEsiLink())
+    monkeypatch.setattr(
+        run_command, "esi_link_factory", lambda _settings: _FakeEsiLink()
+    )
 
     result = runner.invoke(
         run_command.app,
@@ -642,7 +646,9 @@ def test_request_run_reports_schema_file_load_errors(
         "load_esi_schema_from_file",
         lambda _path: (_ for _ in ()).throw(RuntimeError("schema boom")),
     )
-    monkeypatch.setattr(run_command, "esi_link_factory", lambda _settings: _FakeEsiLink())
+    monkeypatch.setattr(
+        run_command, "esi_link_factory", lambda _settings: _FakeEsiLink()
+    )
 
     result = runner.invoke(run_command.app, ["--schema", str(schema_path)])
 
