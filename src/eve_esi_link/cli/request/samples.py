@@ -6,7 +6,7 @@ from typing import Annotated
 import typer
 from rich.console import Console
 
-from eve_esi_link.samples import export_examples
+from eve_esi_link.esi_request.samples import export_examples
 
 app = typer.Typer(no_args_is_help=True)
 
