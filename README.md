@@ -118,6 +118,7 @@ Add your app credentials to the eve-link auth store
 eve-link auth-manager credentials add --from ./credentials.json
 eve-link auth-manager credentials display
 ```
+Note the credential id, you will use this in authenticated requests.
 
 To add a character to the auth store, you need the character id. You can look it up with
 ```bash
@@ -134,6 +135,7 @@ Now, authorize the character
 eve-link auth-manager characters add <character_id> --cred-name "My App Name"
 eve-link auth-manager characters display
 ```
+The add character command should open your system web browser to finish the authentication.
 
     Note eve-link should support multiple separate sets of credential and characters, but it hasnt been tested.
 ## Performance
@@ -412,7 +414,7 @@ cat ./status.request.json | eve-link run --to ./status-response.json
 # or
 cat ./status.request.json | eve-link run | foo-do-something
 ```
-For a single EsiRequest, the --debug flag will output the complete EsiResonse object
+For a single EsiRequest, the --debug flag will output the complete EsiResonse|FailedEsiResponse object
 ```bash
 eve-link run --from ./status.request.json --debug --indent 2
 ```
