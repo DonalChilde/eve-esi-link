@@ -1,6 +1,7 @@
 """Generate sample EsiRequestGroup objects for testing and demonstration purposes."""
 
 from collections.abc import Callable
+from importlib.resources import files
 from pathlib import Path
 from typing import Any
 from uuid import UUID, uuid4
@@ -148,14 +149,8 @@ TEMPLATE_REQUEST_JSON: dict[str, Any] = {
     "json_payload": None,
 }
 
-README = """# EsiRequestGroup and EsiRequest Examples
-
-- Fix the flow of this readme.
-- Stand alone EsiRequests may omit the request_id UUID, as it can be populated during deserialization.
-- path, query, and header parameter fields can be left out of the json if they are not used.
-- character_id (the non query or path parameter) and credential_id should not be included for requests that don't require authorization.
-
-"""
+_samples_readme_parent = "eve_esi_link.esi_request"
+_samples_readme_file = "samples_readme.md"
 
 
 def export_examples(
@@ -201,8 +196,13 @@ def export_examples(
         filename="template.request.json",
         overwrite=overwrite,
     )
+    readme_txt = (
+        files(_samples_readme_parent)
+        .joinpath(_samples_readme_file)
+        .read_text(encoding="utf-8")
+    )
     save_text_file(
-        text=README,
+        text=readme_txt,
         directory=output_directory,
         filename="SAMPLES_README.md",
         overwrite=overwrite,

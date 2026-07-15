@@ -29,7 +29,7 @@ class EsiRequest:
     identify the request.
 
     Requests can be be contained in a RequestGroup, and the request_id is used
-    to link the Request to its RuntimeRequest, and to the final Response.
+    to link the Request to its RuntimeRequest, and to the final EsiResponse.
     """
 
     request_id: UUID = field(default_factory=uuid4)
@@ -58,7 +58,7 @@ class EsiRequest:
     
     This is used to fill in the query parameters in the URL template.
     
-    NOTE: The page parameter is handled automatically by the esi-link, and should not 
+    NOTE: The page parameter is handled automatically by eve-link, and should not 
         be set manually. If it is set, it will raise a validation error. This is to help 
         normalize cache keys, which rely on predictable parameters.
     """
@@ -77,12 +77,12 @@ class EsiRequest:
 
         Those are set at runtime during HTTP execution."""
     json_payload: Any | None = None
-    """The JSON payload of the request, if applicable. This is used for POST, PUT, PATCH 
+    """The JSON payload of the request, if applicable. This is used for POST, PUT, and PATCH 
         requests."""
     character_id: int | None = None
-    """The character ID for the authorization."""
+    """The character ID used for authorization."""
     credential_id: UUID | None = None
-    """The credential ID for the authorization. This is used to link the authorization
+    """The credential ID for authorization. This is used to link the authorization
         to the credential that was used to obtain it. This UUID is obtained from the 
         credential manager that provides the access token."""
 
