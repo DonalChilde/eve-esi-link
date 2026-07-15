@@ -9,32 +9,28 @@ from eve_esi_link.esi_request.models import (
     EsiRequest,
     EsiRequestGroup,
     EsiRequestGroupRoot,
+    EsiRequestRoot,
 )
 from eve_esi_link.helpers import json_io
 from eve_esi_link.helpers.save_text_file import save_text_file
 
 
-def auth(character_id: int, credential_id: UUID) -> EsiRequestGroup:
+def auth(character_id: int, credential_id: UUID) -> tuple[EsiRequest, str]:
     """Generate an EsiRequestGroup with a single authenticated request."""
     request_key = uuid4()
-    request = EsiRequestGroup(
-        name="Character Attributes Request",
-        description="Request to fetch character attributes for a specific character.",
-        requests={
-            request_key: EsiRequest(
-                name="Get Character Attributes",
-                description="Fetches the attributes of a character.",
-                operation_id="GetCharactersCharacterIdAttributes",
-                path_parameters={"character_id": character_id},
-                credential_id=credential_id,
-                character_id=character_id,
-            )
-        },
+    request = EsiRequest(
+        request_id=request_key,
+        name="Get Character Attributes",
+        description="Fetches the attributes of a character.",
+        operation_id="GetCharactersCharacterIdAttributes",
+        path_parameters={"character_id": character_id},
+        credential_id=credential_id,
+        character_id=character_id,
     )
-    return request
+    return request, "authorized.request.json"
 
 
-def lang() -> EsiRequestGroup:
+def lang() -> tuple[EsiRequestGroup, str]:
     """Generate an EsiRequestGroup with two requests for the same operation in different languages."""
     request_key_1 = uuid4()
     request_key_2 = uuid4()
@@ -59,91 +55,68 @@ def lang() -> EsiRequestGroup:
             ),
         },
     )
-    return request_group
+    return request_group, "languages.request-group.json"
 
 
-def paged() -> EsiRequestGroup:
+def paged() -> tuple[EsiRequest, str]:
     """Generate an EsiRequestGroup with a single paged request."""
     request_key = uuid4()
-    request_group = EsiRequestGroup(
-        name="Universe types",
-        description="A single paged request that retrieves a list of universe types.",
-        requests={
-            request_key: EsiRequest(
-                request_id=request_key,
-                name="Get Universe Types",
-                description="Gets a list of the universe types.",
-                operation_id="GetUniverseTypes",
-                path_parameters={},
-                query_parameters={},
-                header_parameters={},
-            )
-        },
+    request_group = EsiRequest(
+        request_id=request_key,
+        name="Get Universe Types",
+        description="Gets a list of the universe types.",
+        operation_id="GetUniverseTypes",
+        path_parameters={},
+        query_parameters={},
+        header_parameters={},
     )
-    return request_group
+
+    return request_group, "paged.request.json"
 
 
-def params() -> EsiRequestGroup:
+def params() -> tuple[EsiRequest, str]:
     """Generate an EsiRequestGroup with a single request that includes path and query parameters."""
     request_key = uuid4()
-    request_group = EsiRequestGroup(
-        name="Request with Parameters",
-        description="An example request that includes both path and query parameters.",
-        requests={
-            request_key: EsiRequest(
-                request_id=request_key,
-                name="Get Markets Region Id History",
-                description="Retrieves the market history for a specific region and type.",
-                operation_id="GetMarketsRegionIdHistory",
-                path_parameters={"region_id": 10000002},
-                query_parameters={"type_id": 34},
-            )
-        },
+    request_group = EsiRequest(
+        request_id=request_key,
+        name="Get Markets Region Id History",
+        description="Retrieves the market history for a specific region and type.",
+        operation_id="GetMarketsRegionIdHistory",
+        path_parameters={"region_id": 10000002},
+        query_parameters={"type_id": 34},
     )
-    return request_group
+
+    return request_group, "parameters.request.json"
 
 
-def post_names() -> EsiRequestGroup:
+def post_names() -> tuple[EsiRequest, str]:
     """Generate an EsiRequestGroup with a single POST request."""
     request_key = uuid4()
-    request_group = EsiRequestGroup(
+    request_group = EsiRequest(
+        request_id=request_key,
         name="Post Universe Names",
         description="Post universe names for the specified IDs.",
-        requests={
-            request_key: EsiRequest(
-                request_id=request_key,
-                name="Post Universe Names",
-                description="Post universe names for the specified IDs.",
-                operation_id="PostUniverseNames",
-                json_payload=[34, 10000002],
-            )
-        },
+        operation_id="PostUniverseNames",
+        json_payload=[34, 10000002],
     )
-    return request_group
+
+    return request_group, "post_names.request.json"
 
 
-def status() -> EsiRequestGroup:
+def status() -> tuple[EsiRequest, str]:
     """Generate an EsiRequestGroup with a single request to get the server status."""
     request_key = uuid4()
-    request_group = EsiRequestGroup(
-        name="Status Example",
-        description="This is a functional example of making a single request to get the server status and player count.",
-        requests={
-            request_key: EsiRequest(
-                request_id=request_key,
-                name="Get Status",
-                description="Get the server status and player count.",
-                operation_id="GetStatus",
-                path_parameters={},
-                query_parameters={},
-                header_parameters={},
-            )
-        },
+    request_group = EsiRequest(
+        request_id=request_key,
+        name="Get Status",
+        description="Get the server status and player count.",
+        operation_id="GetStatus",
     )
-    return request_group
+
+    return request_group, "status.request.json"
 
 
-TEMPLATE_JSON: dict[str, Any] = {
+TEMPLATE_GROUP_JSON: dict[str, Any] = {
     "name": "THIS_IS_AN_OPTIONAL_NAME",
     "description": "THIS_IS_AN_OPTIONAL_DESCRIPTION",
     "requests": {
@@ -162,6 +135,19 @@ TEMPLATE_JSON: dict[str, Any] = {
     },
 }
 
+TEMPLATE_REQUEST_JSON: dict[str, Any] = {
+    "request_id": "THIS_IS_A_UUID",
+    "name": "THIS_IS_A_NAME",
+    "description": "THIS_IS_AN_OPTIONAL_DESCRIPTION",
+    "operation_id": "THIS_IS_AN_OPERATION_ID",
+    "path_parameters": {},
+    "query_parameters": {},
+    "header_parameters": {},
+    "character_id": "THIS_IS_INT_OR_NONE_IS_NONE_IF_THE_REQUEST_IS_PUBLIC",
+    "credential_id": "THIS_IS_UUID_OR_NONE_IS_NONE_IF_THE_REQUEST_IS_PUBLIC",
+    "json_payload": None,
+}
+
 
 def export_examples(
     output_directory: Path, *, indent: int | None = 2, overwrite: bool = False
@@ -173,27 +159,36 @@ def export_examples(
     exported examples, as it requires valid credentials.
     """
     output_directory.mkdir(parents=True, exist_ok=True)
-    sample_generators: list[tuple[str, Callable[[], EsiRequestGroup]]] = [
-        ("params.json", params),
-        ("post_names.json", post_names),
-        ("status.json", status),
-        ("lang.json", lang),
-        ("paged.json", paged),
-    ]
-    for filename, generator in sample_generators:
-        request_group = generator()
-        output_text = EsiRequestGroupRoot(root=request_group).model_dump_json(
-            indent=indent
-        )
+    sample_generators: list[
+        Callable[[], tuple[EsiRequestGroup, str]] | Callable[[], tuple[EsiRequest, str]]
+    ] = [post_names, status, lang, paged, params]
+    for generator in sample_generators:
+        request_obj, filename = generator()
+        if isinstance(request_obj, EsiRequestGroup):
+            output_text = EsiRequestGroupRoot(root=request_obj).model_dump_json(
+                indent=indent
+            )
+        elif isinstance(request_obj, EsiRequest):  # type: ignore
+            output_text = EsiRequestRoot(root=request_obj).model_dump_json(
+                indent=indent
+            )
+        else:
+            raise ValueError("Unknown object")
         save_text_file(
-            text=output_text + "\n",
-            output_directory=output_directory,
-            file_name=filename,
+            text=output_text,
+            directory=output_directory,
+            filename=filename,
             overwrite=overwrite,
         )
     save_text_file(
-        text=json_io.json_dumps(TEMPLATE_JSON, indent=indent) + "\n",
-        output_directory=output_directory,
-        file_name="template.json",
+        text=json_io.json_dumps(TEMPLATE_GROUP_JSON, indent=indent),
+        directory=output_directory,
+        filename="template.request-group.json",
+        overwrite=overwrite,
+    )
+    save_text_file(
+        text=json_io.json_dumps(TEMPLATE_REQUEST_JSON, indent=indent),
+        directory=output_directory,
+        filename="template.request.json",
         overwrite=overwrite,
     )
