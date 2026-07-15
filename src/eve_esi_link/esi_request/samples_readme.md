@@ -1,4 +1,78 @@
-# Eve Esi Link Requests
+# Eve Esi Link
+
+Eve Esi Link provides a simple, scriptable cli and api to access the Eve Online ESI.
+
+Features:
+- Authenticated requests
+- Get character id by name.
+- Caching
+- Paged request handling
+- Async requests
+- Rate Limiting
+- A pipeable cli
+- An Api for use as a library.
+- Generated documentation for the ESI schema.
+
+## Project Status
+
+Stabilizing... Functionality should not revert, but details may still change.
+
+## Requirements
+
+- Python 3.14+
+- uv (recommended)
+
+## Links To More Information
+
+- [ESI Api Explorer](https://developers.eveonline.com/api-explorer)
+- [ESI Application Portal](https://developers.eveonline.com/applications)
+- [EVE Online 3rd party developer docs](https://developers.eveonline.com/docs/)
+
+## Installation
+
+### From pypi
+
+    **Not Yet Available**
+
+### From source (recommended for development)
+
+```bash
+git clone https://github.com/DonalChilde/eve-esi-link
+cd eve-esi-link
+uv sync
+source ./.venv/bin/activate
+eve-link --help
+```
+
+Run the CLI from source:
+
+```bash
+uv run eve-link --help
+```
+
+### Run directly from GitHub with uv (no clone)
+
+Run once:
+
+```bash
+uvx --from git+https://github.com/DonalChilde/eve-esi-link eve-link --help
+```
+
+Install as a uv-managed tool:
+
+```bash
+uv tool install git+https://github.com/DonalChilde/eve-esi-link
+eve-link --help
+```
+
+## Quick Start
+```bash
+# Use the appropriate command format for your install
+eve-link schema cache update --all
+eve-link schema generate-doc --to ./schema-doc.md
+eve-link samples --to ./sample-requests/
+eve-link run --from ./sample-requests/status.request.json
+```
 
 ## Schemas
 First, cache the available ESI schemas
@@ -17,7 +91,64 @@ The schema report will help you find operations, and the parameters needed to ma
 
 ## Authentication
 
-***TODO: Copy authentication quickstart from eve-auth-manager***
+### Create `credentials.json` from EVE Developers
+
+1. Go to https://developers.eveonline.com/applications and sign in.
+2. Create a new ESI application, or open an existing one. Selecting all scopes is recommended.
+3. Copy/paste the application JSON payload from the portal to a file.
+4. Save it locally as `credentials.json`.
+
+Expected JSON shape:
+
+```json
+{
+  "name": "My ESI App",
+  "description": "Optional human-readable description",
+  "clientId": "your_client_id",
+  "clientSecret": "your_client_secret",
+  "callbackUrl": "http://localhost:8080/callback",
+  "scopes": ["scope1", "scope2"]
+}
+```
+
+### Add Credentials and Authorize a Character
+
+Add your app credentials to the eve-link auth store
+```bash
+eve-link auth-manager credentials add --from ./credentials.json
+eve-link auth-manager credentials display
+```
+
+To add a character to the auth store, you need the character id. You can look it up with
+```bash
+eve-link auth-manager characters search --name "My Cool Name"
+```
+This actually searches all in game names, so
+```bash
+eve-link auth-manager characters search --name "Tritanium"
+```
+gets back a character, and a mineral.
+
+Now, authorize the character
+```bash
+eve-link auth-manager characters add <character_id> --cred-name "My App Name"
+eve-link auth-manager characters display
+```
+
+    Note eve-link should support multiple separate sets of credential and characters, but it hasnt been tested.
+## Performance
+
+### Rate Limiting
+
+***TODO Explain the current rate limiting scheme, and how to change settings.***
+
+### Concurrent Requests
+
+Requests are made using httpx2's asyncio support. This means that within the eve-link ratelimiting scheme, requests are made all at once. This can make a huge difference even with single EsiRequests, because many of the endpoints are paged. Internally, those pages are turned into requests themselves, and fetched at the same time. The combined pages are then all return as one response. For example, the region of space with Jita might have 400 or more pages of market order data. At about .5 seconds per page, that would take over 3 minutes. But making concurrent requests cuts that time down dramatically. The ESI api does not rate limit by successful request (Though that is changing) but still, please don't ddos the servers. Keep resonable rate limit settings.
+
+### Caching
+
+eve-link caches GET requests, so the same request may return cached data if it has not expired. This can also be a huge time saver, and can simplify data retrieval strategies. The cache could be treated just like a database (it is) and requests can be made as often as desired. Network calls will only be made if the data has not been cached, or the cache is stale.
 
 ## Requests
 eve-link requests are defined internally by two python dataclasses - 
@@ -100,6 +231,8 @@ class EsiRequestGroup:
 
 When you are working from the command line, you will be using json representations of these dataclasses. This json is loaded by eve-link, validated, and the requests are made.
 
+### EsiRequest
+
 A complete EsiRequest object might look something like this
 
 ```json
@@ -166,7 +299,7 @@ This request has no required parameters, so only some values are needed. You cou
 }
 ```
 
- Note, that for an EsiRequest, a request_id will be generated automatically during deserialization, and used internally. It is usually not important to the user, because there is only one request/response, and no need to be able to tell different requests apart.
+ Note, that for an EsiRequest, a request_id will be generated automatically during deserialization, and used internally. It is usually not important to the user, because there is only one request/response, and there is no need to be able to tell different requests apart.
 
  A request that uses parameters might look like:
  ```json
@@ -199,6 +332,8 @@ This request has no required parameters, so only some values are needed. You cou
 }
  ```
  Note that character_id is used twice, once as a required path parameter, and once as part of the authentication request fields
+
+### EsiRequestGroup
 
  An EsiRequestGroup has one or more requests inside:
  ```json
@@ -252,6 +387,8 @@ eve-link uuid --qty 5
 ]
  ```
 
+### Making Requests
+
 To make a single request, you might run
 ```bash
 eve-link run --from ./status.request.json
@@ -287,14 +424,10 @@ An example EsiRequestGroup
 eve-link run-group --from ./languages.request-group.json --indent 2
 ```
 
-### Rate Limiting
+## Api Usage
 
-***TODO Explain the current rate limiting scheme, and how to change settings.***
+***TODO***
 
-### Concurrent Requests
+## Contributing
 
-Requests are made using httpx2's asyncio support. This means that within the eve-link ratelimiting scheme, requests are made all at once. This can make a huge difference even with single EsiRequests, because many of the endpoints are paged. Internally, those pages are turned into requests themselves, and fetched at the same time. The combined pages are then all return as one response. For example, the region of space with Jita might have 400 or more pages of market order data. At about .5 seconds per page, that would take over 3 minutes. But making concurrent requests cuts that time down dramatically. The ESI api does not rate limit by successful request (Though that is changing) but still, please don't ddos the servers. Keep resonable rate limit settings.
-
-### Caching
-
-eve-link caches GET requests, so the same request may return cached data if it has not expired. This can also be a huge time saver, and can simplify data retrieval strategies. The cache could be treated just like a database (it is) and requests can be made as often as desired. Network calls will only be made if the data has not been cached, or the cache is stale.
+Lets be honest. This has been a miracle of monkeys pounding on typewriters to get this far. While I would love to say "bring on your code!", I still have not figured out how to make that work. So, ideas and suggestions are great! Bug reports and problems, that too! But.... It will take a bit for me to sort that out.
