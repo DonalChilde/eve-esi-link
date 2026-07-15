@@ -210,7 +210,7 @@ def make_requests(
 def _fail_check(messenger: Console, response: EsiResponseGroup) -> None:
     """Checks for failures before exit."""
     if response.failed_responses:
-        messenger.print(f"There were {response.failed_responses} failed requests.")
+        messenger.print(f"There were {len(response.failed_responses)} failed requests.")
         for request_key, failed_response in response.failed_responses.items():
             messenger.print(
                 f"Request {request_key} reports {failed_response.failed_response.error_messages}"

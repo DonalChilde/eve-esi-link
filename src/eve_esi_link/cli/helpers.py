@@ -96,6 +96,8 @@ def get_schema(
             )
             esi_schema = schema_manager.load(compatibility_date=most_recent_date)
             messenger.print(f"Using most recent cached schema: {most_recent_date}")
+    except typer.Exit:
+        raise
     except FileNotFoundError as e:
         messenger.print(
             f"[red]Error: No cached schema found for {compatibility_date}.[/red]"

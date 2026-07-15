@@ -42,7 +42,7 @@ class EsiRequestValidationErrors(EsiRequestValidationError):
         )
 
 
-_RUNTIME_FORBIDDEN_HEADERS = frozenset({"If-None-Match", "If-Modified-Since"})
+_RUNTIME_FORBIDDEN_HEADERS = frozenset({"if-none-match", "if-modified-since"})
 _VALID_ACCEPT_LANGUAGES = frozenset(lang.value for lang in LangEnum)
 
 

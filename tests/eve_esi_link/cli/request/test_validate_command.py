@@ -63,7 +63,6 @@ def test_request_validate_accepts_valid_input_from_stdin(tmp_path) -> None:
     result = runner.invoke(
         app,
         [
-            "request",
             "validate",
             "--schema",
             str(schema_path),
@@ -88,7 +87,6 @@ def test_request_validate_reports_request_validation_errors(tmp_path) -> None:
     result = runner.invoke(
         app,
         [
-            "request",
             "validate",
             "--from",
             str(requests_path),
