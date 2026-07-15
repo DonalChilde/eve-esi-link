@@ -2,7 +2,7 @@
 
 import typer
 
-from .run import app as run_request_app
+from .run_group import app as run_request_app
 from .samples import app as samples_app
 from .validate import app as validate_request_app
 

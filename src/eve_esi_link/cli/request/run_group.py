@@ -24,7 +24,7 @@ app = typer.Typer(no_args_is_help=True)
 
 
 @app.command(
-    name="run",
+    name="run-group",
     help="Execute ESI requests from JSON input using a selected schema.",
 )
 def make_requests(
@@ -202,8 +202,8 @@ def make_requests(
 
     output_path = save_text_file(
         text=responses.serialize(indent=indent),
-        output_directory=file_out.parent,
-        file_name=file_out.name,
+        directory=file_out.parent,
+        filename=file_out.name,
         overwrite=overwrite,
     )
     messenger.print(f"[green]ESI responses written to {output_path}[/green]")
