@@ -172,6 +172,21 @@ class EsiResponse:
     response: Response
     """The response associated with this EsiResponse."""
 
+    def _purge_secrets(self) -> None:
+        """Purge the access tokens from this response."""
+        self.esi_runtime_request.purge_access_token()
+        # FIXME: will be in next api-request release.
+        # self.response.purge_secrets()
+
+    def serialize(self, indent: int | None = None) -> str:
+        """Serialize the EsiResponse."""
+        response_copy = deepcopy(self)
+        response_copy._purge_secrets()
+        return EsiResponseRoot(root=response_copy).model_dump_json(indent=indent)
+
+
+EsiResponseRoot = RootModel[EsiResponse]
+
 
 @dataclass(slots=True, kw_only=True, frozen=True)
 class FailedEsiResponse:
@@ -179,6 +194,21 @@ class FailedEsiResponse:
     """The request that generated this failed response."""
     failed_response: FailedResponse
     """The failed response associated with this FailedEsiResponse."""
+
+    def _purge_secrets(self) -> None:
+        """Purge the access tokens from this response."""
+        self.esi_runtime_request.purge_access_token()
+        # FIXME: will be in next api-request release.
+        # self.failed_response.purge_secrets()
+
+    def serialize(self, indent: int | None = None) -> str:
+        """Serialize the FailedEsiResponse."""
+        response_copy = deepcopy(self)
+        response_copy._purge_secrets()
+        return FailedEsiResponseRoot(root=response_copy).model_dump_json(indent=indent)
+
+
+FailedEsiResponseRoot = RootModel[FailedEsiResponse]
 
 
 # NOTE: This is for a future possible feature to make it easier to hand code requests,
@@ -247,13 +277,9 @@ class EsiResponseGroup(EsiRequestGroup):
     def _purge_secrets(self) -> None:
         """Purge the access tokens from all successful and failed ESI responses in this group."""
         for response in self.successful_responses.values():
-            response.esi_runtime_request.purge_access_token()
-            # FIXME: will be in next api-request release.
-            # response.response.purge_secrets()
+            response._purge_secrets()  # type: ignore
         for failed_response in self.failed_responses.values():
-            failed_response.esi_runtime_request.purge_access_token()
-            # FIXME: will be in next api-request release.
-            # failed_response.failed_response.purge_secrets()
+            failed_response._purge_secrets()  # type: ignore
 
     def serialize(self, indent: int | None = None) -> str:
         """Purge secrets and serialize the EsiResponseGroup to a JSON string."""
