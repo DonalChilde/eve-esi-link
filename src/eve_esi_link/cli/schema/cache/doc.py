@@ -134,8 +134,8 @@ def doc_cache(
     try:
         output_path = save_text_file(
             text=markdown_doc,
-            output_directory=file_path.parent,
-            file_name=file_path.name,
+            directory=file_path.parent,
+            filename=file_path.name,
             overwrite=overwrite,
         )
     except Exception as e:

@@ -124,8 +124,8 @@ def fetch_esi_schema(
         file_path = file_out / default_file_name
     output_path = save_text_file(
         text=output_data,
-        output_directory=file_path.parent,
-        file_name=file_path.name,
+        directory=file_path.parent,
+        filename=file_path.name,
         overwrite=overwrite,
     )
     messenger.print(f"[green]Schema saved to {output_path}[/green]")
