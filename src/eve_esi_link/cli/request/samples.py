@@ -11,7 +11,7 @@ from eve_esi_link.samples import export_examples
 app = typer.Typer(no_args_is_help=True)
 
 
-@app.command(name="export", help="Export example request payload files.")
+@app.command(name="samples", help="Export example request payload files.")
 def export(
     output_directory: Annotated[
         Path,
@@ -22,7 +22,7 @@ def export(
     indent: Annotated[
         int | None,
         typer.Option("--indent", help="Number of spaces for JSON indentation."),
-    ] = None,
+    ] = 2,
     overwrite: Annotated[
         bool,
         typer.Option("--overwrite", help="Overwrite existing files if they exist."),

@@ -122,7 +122,7 @@ TEMPLATE_GROUP_JSON: dict[str, Any] = {
     "requests": {
         "THIS_IS_A_UUID": {
             "request_id": "THIS_IS_A_UUID",
-            "name": "THIS_IS_A_NAME",
+            "name": "THIS_IS_AN_OPTIONAL_NAME",
             "description": "THIS_IS_AN_OPTIONAL_DESCRIPTION",
             "operation_id": "THIS_IS_AN_OPERATION_ID",
             "path_parameters": {},
@@ -136,8 +136,8 @@ TEMPLATE_GROUP_JSON: dict[str, Any] = {
 }
 
 TEMPLATE_REQUEST_JSON: dict[str, Any] = {
-    "request_id": "THIS_IS_A_UUID",
-    "name": "THIS_IS_A_NAME",
+    "request_id": "THIS_IS_A_UUID_OPTIONAL_WHEN_LOADED_FROM_JSON",
+    "name": "THIS_IS_AN_OPTIONAL_NAME",
     "description": "THIS_IS_AN_OPTIONAL_DESCRIPTION",
     "operation_id": "THIS_IS_AN_OPERATION_ID",
     "path_parameters": {},
@@ -147,6 +147,15 @@ TEMPLATE_REQUEST_JSON: dict[str, Any] = {
     "credential_id": "THIS_IS_UUID_OR_NONE_IS_NONE_IF_THE_REQUEST_IS_PUBLIC",
     "json_payload": None,
 }
+
+README = """# EsiRequestGroup and EsiRequest Examples
+
+- Fix the flow of this readme.
+- Stand alone EsiRequests may omit the request_id UUID, as it can be populated during deserialization.
+- path, query, and header parameter fields can be left out of the json if they are not used.
+- character_id (the non query or path parameter) and credential_id should not be included for requests that don't require authorization.
+
+"""
 
 
 def export_examples(
@@ -190,5 +199,11 @@ def export_examples(
         text=json_io.json_dumps(TEMPLATE_REQUEST_JSON, indent=indent),
         directory=output_directory,
         filename="template.request.json",
+        overwrite=overwrite,
+    )
+    save_text_file(
+        text=README,
+        directory=output_directory,
+        filename="SAMPLES_README.md",
         overwrite=overwrite,
     )

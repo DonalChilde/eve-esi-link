@@ -44,7 +44,7 @@ def build_runtime_esi_request(
         cache_key = None
 
     runtime_request = RuntimeEsiRequest(
-        request_key=uuid5(APP_NAMESPACE, str(esi_request.request_id)),
+        request_key=esi_request.request_id,
         url=url,
         method=method,
         cache_key=cache_key,
