@@ -49,6 +49,24 @@ class _FakeEsiLink:
         return self.result
 
 
+class _FakeSchemaManager:
+    """Minimal schema manager stub for cached-schema CLI branches."""
+
+    def __init__(self) -> None:
+        self.created = True
+
+
+class _FakeMessenger:
+    """Minimal messenger stub for direct helper tests."""
+
+    def __init__(self) -> None:
+        self.messages: list[str] = []
+
+    def print(self, message: str) -> None:
+        """Record printed messages."""
+        self.messages.append(message)
+
+
 @pytest.fixture
 def settings(tmp_path: Path) -> EsiLinkSettings:
     """Build EsiLink settings rooted in the pytest temp directory."""
@@ -347,3 +365,476 @@ def test_run_group_reports_failed_requests_after_writing_output(
     assert saved["filename"] == output_path.name
     assert "There were 1 failed requests." in result.stderr
     assert "request failed" in result.stderr
+
+
+def test_request_run_rejects_schema_and_date_together(tmp_path: Path) -> None:
+    """Return an error when both schema selectors are provided."""
+    schema_path = tmp_path / "schema.json"
+    schema_path.write_text("{}", encoding="utf-8")
+
+    result = runner.invoke(
+        run_command.app,
+        ["--schema", str(schema_path), "--date", "2026-06-09"],
+    )
+
+    assert result.exit_code == 1
+    assert "Cannot specify both --schema and --date options" in result.stderr
+
+
+def test_request_run_reports_parse_errors_from_stdin(
+    monkeypatch: pytest.MonkeyPatch,
+    settings: EsiLinkSettings,
+    tmp_path: Path,
+) -> None:
+    """Fail before execution when stdin does not contain valid request JSON."""
+    schema_path = tmp_path / "schema.json"
+    schema_path.write_text("{}", encoding="utf-8")
+
+    monkeypatch.setattr(
+        run_command, "get_eve_link_settings_from_context", lambda _ctx: settings
+    )
+    monkeypatch.setattr(run_command, "esi_link_factory", lambda _settings: _FakeEsiLink())
+
+    result = runner.invoke(
+        run_command.app,
+        ["--schema", str(schema_path)],
+        input="{not json}",
+    )
+
+    assert result.exit_code == 1
+    assert "Failed to parse ESI requests JSON" in result.stderr
+
+
+def test_request_run_writes_success_file_before_exiting(
+    monkeypatch: pytest.MonkeyPatch,
+    settings: EsiLinkSettings,
+    tmp_path: Path,
+) -> None:
+    """Save successful plain response JSON to a file and report the output path."""
+    request_id = uuid4()
+    schema_path = tmp_path / "schema.json"
+    schema_path.write_text("{}", encoding="utf-8")
+    output_path = tmp_path / "response.json"
+    fake_link = _FakeEsiLink(result=_successful_response_group(request_id=request_id))
+    saved: dict[str, object] = {}
+
+    monkeypatch.setattr(
+        run_command, "get_eve_link_settings_from_context", lambda _ctx: settings
+    )
+    monkeypatch.setattr(
+        run_command,
+        "get_stdin",
+        lambda: _single_request_json(request_id=request_id),
+    )
+    monkeypatch.setattr(
+        run_command, "load_esi_schema_from_file", lambda _path: object()
+    )
+    monkeypatch.setattr(run_command, "esi_link_factory", lambda _settings: fake_link)
+
+    def fake_save_text_file(**kwargs):  # noqa: ANN003
+        saved.update(kwargs)
+        return output_path
+
+    monkeypatch.setattr(run_command, "save_text_file", fake_save_text_file)
+
+    result = runner.invoke(
+        run_command.app,
+        ["--schema", str(schema_path), "--to", str(output_path)],
+    )
+
+    assert result.exit_code == 0
+    assert saved["directory"] == output_path.parent
+    assert saved["filename"] == output_path.name
+    assert json.loads(saved["text"]) == {"status": "ok"}
+    assert "ESI response written to" in result.stderr
+    assert str(output_path) in result.stderr
+
+
+def test_request_run_uses_cached_schema_when_schema_not_provided(
+    monkeypatch: pytest.MonkeyPatch,
+    settings: EsiLinkSettings,
+) -> None:
+    """Resolve the execution schema through the shared cache helper when no file is given."""
+    request_id = uuid4()
+    schema = object()
+    fake_link = _FakeEsiLink(result=_successful_response_group(request_id=request_id))
+    manager = _FakeSchemaManager()
+
+    monkeypatch.setattr(
+        run_command, "get_eve_link_settings_from_context", lambda _ctx: settings
+    )
+    monkeypatch.setattr(
+        run_command,
+        "get_stdin",
+        lambda: _single_request_json(request_id=request_id),
+    )
+    monkeypatch.setattr(run_command, "SchemaCacheManager", lambda **_kwargs: manager)
+    monkeypatch.setattr(run_command, "get_schema", lambda **_kwargs: schema)
+    monkeypatch.setattr(run_command, "esi_link_factory", lambda _settings: fake_link)
+
+    result = runner.invoke(run_command.app, ["--plain", "--quiet"])
+
+    assert result.exit_code == 0
+    assert json.loads(result.stdout) == {"status": "ok"}
+    assert fake_link.calls[0][1] is schema
+
+
+def test_request_run_helper_functions_cover_failure_edges() -> None:
+    """Exercise response helper functions for failure and missing-key branches."""
+    request_id = uuid4()
+    failed_group = _failed_response_group(request_id=request_id)
+    failed_response = failed_group.failed_responses[request_id]
+
+    assert run_command._get_response_json(failed_response) is None
+    assert run_command._get_response(failed_group, request_id) is failed_response
+
+    with pytest.raises(KeyError, match="not found"):
+        run_command._get_response(EsiResponseGroup(), request_id)
+
+    messenger = _FakeMessenger()
+    with pytest.raises(run_command.typer.Exit) as exc_info:
+        run_command._fail_check(messenger, object())  # type: ignore[arg-type]
+
+    assert exc_info.value.exit_code == 1
+    assert messenger.messages == ["[red]Error: Unknown response type[/red]"]
+
+
+def test_run_group_reports_parse_errors_from_stdin(
+    monkeypatch: pytest.MonkeyPatch,
+    settings: EsiLinkSettings,
+    tmp_path: Path,
+) -> None:
+    """Fail early when stdin is not valid EsiRequestGroup JSON."""
+    schema_path = tmp_path / "schema.json"
+    schema_path.write_text("{}", encoding="utf-8")
+
+    monkeypatch.setattr(
+        run_group_command, "get_eve_link_settings_from_context", lambda _ctx: settings
+    )
+    monkeypatch.setattr(
+        run_group_command, "esi_link_factory", lambda _settings: _FakeEsiLink()
+    )
+
+    result = runner.invoke(
+        run_group_command.app,
+        ["--schema", str(schema_path)],
+        input="{not json}",
+    )
+
+    assert result.exit_code == 1
+    assert "Failed to parse EsiRequestGroup JSON" in result.stderr
+
+
+def test_run_group_reports_validation_errors(
+    monkeypatch: pytest.MonkeyPatch,
+    settings: EsiLinkSettings,
+    tmp_path: Path,
+) -> None:
+    """Surface aggregated request validation errors from run-group execution."""
+    request_id = uuid4()
+    schema_path = tmp_path / "schema.json"
+    schema_path.write_text("{}", encoding="utf-8")
+    fake_link = _FakeEsiLink(
+        error=EsiRequestValidationErrors(
+            ["operation_id=GetStatus: Unknown operation_id for provided schema."]
+        )
+    )
+
+    monkeypatch.setattr(
+        run_group_command, "get_eve_link_settings_from_context", lambda _ctx: settings
+    )
+    monkeypatch.setattr(
+        run_group_command,
+        "get_stdin",
+        lambda: _request_group_json(request_id=request_id),
+    )
+    monkeypatch.setattr(
+        run_group_command, "load_esi_schema_from_file", lambda _path: object()
+    )
+    monkeypatch.setattr(
+        run_group_command, "esi_link_factory", lambda _settings: fake_link
+    )
+
+    result = runner.invoke(run_group_command.app, ["--schema", str(schema_path)])
+
+    assert result.exit_code == 1
+    assert "Requests failed due to validation errors" in result.stderr
+    assert "Unknown operation_id for provided schema" in result.stderr
+
+
+def test_run_group_uses_cached_schema_and_renders_rich_output(
+    monkeypatch: pytest.MonkeyPatch,
+    settings: EsiLinkSettings,
+) -> None:
+    """Resolve cached schema and render the response group through Rich JSON."""
+    request_id = uuid4()
+    schema = object()
+    fake_link = _FakeEsiLink(result=_successful_response_group(request_id=request_id))
+    manager = _FakeSchemaManager()
+
+    monkeypatch.setattr(
+        run_group_command, "get_eve_link_settings_from_context", lambda _ctx: settings
+    )
+    monkeypatch.setattr(
+        run_group_command,
+        "get_stdin",
+        lambda: _request_group_json(request_id=request_id),
+    )
+    monkeypatch.setattr(
+        run_group_command, "SchemaCacheManager", lambda **_kwargs: manager
+    )
+    monkeypatch.setattr(run_group_command, "get_schema", lambda **_kwargs: schema)
+    monkeypatch.setattr(
+        run_group_command, "esi_link_factory", lambda _settings: fake_link
+    )
+
+    result = runner.invoke(run_group_command.app, [])
+
+    assert result.exit_code == 0
+    assert "successful_responses" in result.stderr
+    assert fake_link.calls[0][1] is schema
+
+
+def test_request_run_reports_input_file_read_errors(
+    monkeypatch: pytest.MonkeyPatch,
+    settings: EsiLinkSettings,
+    tmp_path: Path,
+) -> None:
+    """Return a user-facing error when the request input file cannot be read."""
+    missing_path = Path("missing-request.json")
+    schema_path = tmp_path / "schema.json"
+    schema_path.write_text("{}", encoding="utf-8")
+
+    monkeypatch.setattr(
+        run_command, "get_eve_link_settings_from_context", lambda _ctx: settings
+    )
+    monkeypatch.setattr(run_command, "esi_link_factory", lambda _settings: _FakeEsiLink())
+
+    result = runner.invoke(
+        run_command.app,
+        ["--schema", str(schema_path), "--from", str(missing_path)],
+    )
+
+    assert result.exit_code == 1
+    assert "Failed to read requests input" in result.stderr
+
+
+def test_request_run_reports_schema_file_load_errors(
+    monkeypatch: pytest.MonkeyPatch,
+    settings: EsiLinkSettings,
+    tmp_path: Path,
+) -> None:
+    """Return a user-facing error when schema loading from file fails."""
+    request_id = uuid4()
+    schema_path = tmp_path / "schema.json"
+    schema_path.write_text("{}", encoding="utf-8")
+
+    monkeypatch.setattr(
+        run_command, "get_eve_link_settings_from_context", lambda _ctx: settings
+    )
+    monkeypatch.setattr(
+        run_command,
+        "get_stdin",
+        lambda: _single_request_json(request_id=request_id),
+    )
+    monkeypatch.setattr(
+        run_command,
+        "load_esi_schema_from_file",
+        lambda _path: (_ for _ in ()).throw(RuntimeError("schema boom")),
+    )
+    monkeypatch.setattr(run_command, "esi_link_factory", lambda _settings: _FakeEsiLink())
+
+    result = runner.invoke(run_command.app, ["--schema", str(schema_path)])
+
+    assert result.exit_code == 1
+    assert "Failed to load schema from file - schema boom" in result.stderr
+
+
+def test_request_run_prints_plain_debug_response_to_stdout(
+    monkeypatch: pytest.MonkeyPatch,
+    settings: EsiLinkSettings,
+    tmp_path: Path,
+) -> None:
+    """Serialize the full response object to stdout in plain debug mode."""
+    request_id = uuid4()
+    schema_path = tmp_path / "schema.json"
+    schema_path.write_text("{}", encoding="utf-8")
+    fake_link = _FakeEsiLink(result=_successful_response_group(request_id=request_id))
+
+    monkeypatch.setattr(
+        run_command, "get_eve_link_settings_from_context", lambda _ctx: settings
+    )
+    monkeypatch.setattr(
+        run_command,
+        "get_stdin",
+        lambda: _single_request_json(request_id=request_id),
+    )
+    monkeypatch.setattr(
+        run_command, "load_esi_schema_from_file", lambda _path: object()
+    )
+    monkeypatch.setattr(run_command, "esi_link_factory", lambda _settings: fake_link)
+
+    result = runner.invoke(
+        run_command.app,
+        ["--schema", str(schema_path), "--plain", "--debug"],
+    )
+
+    assert result.exit_code == 0
+    assert "esi_runtime_request" in result.stdout
+    assert "REDACTED" in result.stdout
+
+
+def test_request_run_renders_rich_json_response(
+    monkeypatch: pytest.MonkeyPatch,
+    settings: EsiLinkSettings,
+    tmp_path: Path,
+) -> None:
+    """Render successful response bodies through Rich JSON when not using --plain."""
+    request_id = uuid4()
+    schema_path = tmp_path / "schema.json"
+    schema_path.write_text("{}", encoding="utf-8")
+    fake_link = _FakeEsiLink(result=_successful_response_group(request_id=request_id))
+
+    monkeypatch.setattr(
+        run_command, "get_eve_link_settings_from_context", lambda _ctx: settings
+    )
+    monkeypatch.setattr(
+        run_command,
+        "get_stdin",
+        lambda: _single_request_json(request_id=request_id),
+    )
+    monkeypatch.setattr(
+        run_command, "load_esi_schema_from_file", lambda _path: object()
+    )
+    monkeypatch.setattr(run_command, "esi_link_factory", lambda _settings: fake_link)
+
+    result = runner.invoke(run_command.app, ["--schema", str(schema_path)])
+
+    assert result.exit_code == 0
+    assert "status" in result.stderr
+    assert "ok" in result.stderr
+
+
+def test_request_run_helper_rejects_unknown_response_json_type() -> None:
+    """Raise a ValueError when helper receives an unsupported response object."""
+    with pytest.raises(ValueError, match="Unknown response type"):
+        run_command._get_response_json(object())  # type: ignore[arg-type]
+
+
+def test_run_group_rejects_schema_and_date_together(tmp_path: Path) -> None:
+    """Return an error when both schema selectors are provided."""
+    schema_path = tmp_path / "schema.json"
+    schema_path.write_text("{}", encoding="utf-8")
+
+    result = runner.invoke(
+        run_group_command.app,
+        ["--schema", str(schema_path), "--date", "2026-06-09"],
+    )
+
+    assert result.exit_code == 1
+    assert "Cannot specify both --schema and --date options" in result.stderr
+
+
+def test_run_group_reports_input_file_read_errors(
+    monkeypatch: pytest.MonkeyPatch,
+    settings: EsiLinkSettings,
+    tmp_path: Path,
+) -> None:
+    """Return a user-facing error when the request-group file cannot be read."""
+    missing_path = Path("missing-group.json")
+    schema_path = tmp_path / "schema.json"
+    schema_path.write_text("{}", encoding="utf-8")
+
+    monkeypatch.setattr(
+        run_group_command, "get_eve_link_settings_from_context", lambda _ctx: settings
+    )
+    monkeypatch.setattr(
+        run_group_command, "esi_link_factory", lambda _settings: _FakeEsiLink()
+    )
+
+    result = runner.invoke(
+        run_group_command.app,
+        ["--schema", str(schema_path), "--from", str(missing_path)],
+    )
+
+    assert result.exit_code == 1
+    assert "Failed to read requests input" in result.stderr
+
+
+def test_run_group_reports_schema_file_load_errors(
+    monkeypatch: pytest.MonkeyPatch,
+    settings: EsiLinkSettings,
+    tmp_path: Path,
+) -> None:
+    """Return a user-facing error when request-group schema loading fails."""
+    request_id = uuid4()
+    schema_path = tmp_path / "schema.json"
+    schema_path.write_text("{}", encoding="utf-8")
+
+    monkeypatch.setattr(
+        run_group_command, "get_eve_link_settings_from_context", lambda _ctx: settings
+    )
+    monkeypatch.setattr(
+        run_group_command,
+        "get_stdin",
+        lambda: _request_group_json(request_id=request_id),
+    )
+    monkeypatch.setattr(
+        run_group_command,
+        "load_esi_schema_from_file",
+        lambda _path: (_ for _ in ()).throw(RuntimeError("schema boom")),
+    )
+    monkeypatch.setattr(
+        run_group_command, "esi_link_factory", lambda _settings: _FakeEsiLink()
+    )
+
+    result = runner.invoke(run_group_command.app, ["--schema", str(schema_path)])
+
+    assert result.exit_code == 1
+    assert "Failed to load schema from file - schema boom" in result.stderr
+
+
+def test_run_group_writes_success_file_and_honors_quiet(
+    monkeypatch: pytest.MonkeyPatch,
+    settings: EsiLinkSettings,
+    tmp_path: Path,
+) -> None:
+    """Save a successful response group and suppress status messages with --quiet."""
+    request_id = uuid4()
+    schema_path = tmp_path / "schema.json"
+    schema_path.write_text("{}", encoding="utf-8")
+    output_path = tmp_path / "responses.json"
+    fake_link = _FakeEsiLink(result=_successful_response_group(request_id=request_id))
+    saved: dict[str, object] = {}
+
+    monkeypatch.setattr(
+        run_group_command, "get_eve_link_settings_from_context", lambda _ctx: settings
+    )
+    monkeypatch.setattr(
+        run_group_command,
+        "get_stdin",
+        lambda: _request_group_json(request_id=request_id),
+    )
+    monkeypatch.setattr(
+        run_group_command, "load_esi_schema_from_file", lambda _path: object()
+    )
+    monkeypatch.setattr(
+        run_group_command, "esi_link_factory", lambda _settings: fake_link
+    )
+
+    def fake_save_text_file(**kwargs):  # noqa: ANN003
+        saved.update(kwargs)
+        return output_path
+
+    monkeypatch.setattr(run_group_command, "save_text_file", fake_save_text_file)
+
+    result = runner.invoke(
+        run_group_command.app,
+        ["--schema", str(schema_path), "--to", str(output_path), "--quiet"],
+    )
+
+    assert result.exit_code == 0
+    assert saved["directory"] == output_path.parent
+    assert saved["filename"] == output_path.name
+    assert "successful_responses" in saved["text"]
+    assert result.stderr == ""

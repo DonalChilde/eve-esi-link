@@ -109,7 +109,7 @@ def fetch_esi_schema(
             output_data = esi_echema.serialize(indent=indent)
     if file_out == Path("-"):
         if plain:
-            print(json_io.json_dumps(output_data, indent=indent))
+            print(output_data)
         else:
             messenger.print(JSON(output_data, indent=indent))
         raise typer.Exit()
