@@ -119,7 +119,7 @@ def test_generate_doc_reports_invalid_stdin_schema(
     """Return a user-facing error when stdin JSON is valid but not a schema."""
     monkeypatch.setattr(doc_command, "get_stdin", lambda: '{"invalid": true}')
 
-    result = runner.invoke(doc_command.app, [])
+    result = runner.invoke(doc_command.app, ["--from", "-"])
 
     assert result.exit_code == 1
     assert "Failed to load schema from JSON input" in result.stderr
@@ -140,7 +140,7 @@ def test_generate_doc_prints_plain_markdown_from_stdin(
         lambda *, schema, fenced_format: "# Generated Schema Doc\n",
     )
 
-    result = runner.invoke(doc_command.app, ["--plain"])
+    result = runner.invoke(doc_command.app, ["--from", "-", "--plain"])
 
     assert result.exit_code == 0
     assert result.stdout == "# Generated Schema Doc\n\n"
