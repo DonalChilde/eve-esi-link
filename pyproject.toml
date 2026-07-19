@@ -6,11 +6,12 @@ readme = "README.md"
 authors = [{ name = "Chad Lowe", email = "pfmsoft.dev@gmail.com" }]
 requires-python = ">=3.14"
 dependencies = [
-    "api-request>=0.1.0",
-    "eve-auth-manager>=0.4.0",
     "httpx2>=2.5.0",
     "mdformat>=1.0.0",
     "mdformat-gfm>=1.0.0",
+    "pfmsoft-api-request>=0.1.3",
+    "pfmsoft-eve-auth-manager>=0.4.3",
+    "pfmsoft-eve-snippets>=0.1.4",
     "pydantic>=2.13.4",
     "pydantic-settings>=2.14.2",
     "pyyaml>=6.0.3",
@@ -43,9 +44,11 @@ module-name = "pfmsoft.eve_link"
 [tool.uv]
 exclude-newer = "1 week"
 
-[tool.uv.sources]
-api-request = { git = "https://github.com/DonalChilde/api-request", branch = "main" }
-eve-auth-manager = { git = "https://github.com/DonalChilde/eve-auth-manager", branch = "main" }
+# Don't wait for internal package updates.
+[tool.uv.exclude-newer-package]
+pfmsoft-eve-snippets = false
+pfmsoft-api-request = false
+pfmsoft-eve-auth-manager = false
 
 [tool.pytest.ini_options]
 pythonpath = "src"
