@@ -5,8 +5,8 @@ from types import SimpleNamespace
 
 import pytest
 import typer
-from api_request.settings import ApiRequestSettings
-from eve_auth_manager.settings import EveAuthManagerSettings
+from pfmsoft.api_request.settings import ApiRequestSettings
+from pfmsoft.eve_auth_manager.settings import EveAuthManagerSettings
 
 from pfmsoft.eve_link.cli import helpers
 from pfmsoft.eve_link.settings import SETTINGS_KEY, EsiLinkSettings

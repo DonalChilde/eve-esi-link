@@ -10,8 +10,8 @@ from enum import StrEnum
 from typing import Any
 from uuid import UUID, uuid4, uuid5
 
-from api_request import Response
-from api_request.request.models import FailedResponse
+from pfmsoft.api_request import Response
+from pfmsoft.api_request.request.models import FailedResponse
 from pydantic import RootModel
 
 

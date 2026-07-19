@@ -11,11 +11,11 @@ from types import TracebackType
 from typing import Self
 from uuid import UUID
 
-import api_request
-from api_request.cache import SqliteCacheFactory
-from api_request.rate_limit import AiolimiterRateLimiterFactory
-from api_request.request.models import Responses
-from eve_auth_manager.sqlite.manager import SqliteAuthManager
+import pfmsoft.api_request as api_request
+from pfmsoft.api_request.cache import SqliteCacheFactory
+from pfmsoft.api_request.rate_limit import AiolimiterRateLimiterFactory
+from pfmsoft.api_request.request.models import Responses
+from pfmsoft.eve_auth_manager.sqlite.manager import SqliteAuthManager
 
 from pfmsoft.eve_link.esi_request.models import (
     EsiRequest,

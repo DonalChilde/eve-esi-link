@@ -5,8 +5,13 @@ from pathlib import Path
 from uuid import UUID, uuid4
 
 import pytest
-from api_request import Response
-from api_request.request.models import FailedResponse, Request, ResponseMetadata, Source
+from pfmsoft.api_request import Response
+from pfmsoft.api_request.request.models import (
+    FailedResponse,
+    Request,
+    ResponseMetadata,
+    Source,
+)
 from typer.testing import CliRunner
 
 from pfmsoft.eve_link.cli.request import run as run_command

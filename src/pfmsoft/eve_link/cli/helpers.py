@@ -4,8 +4,8 @@ import sys
 from typing import cast
 
 import typer
-from api_request.settings import ApiRequestSettings
-from eve_auth_manager.settings import EveAuthManagerSettings
+from pfmsoft.api_request.settings import ApiRequestSettings
+from pfmsoft.eve_auth_manager.settings import EveAuthManagerSettings
 from rich.console import Console
 
 from pfmsoft.eve_link.schema.cache import SchemaCacheManager

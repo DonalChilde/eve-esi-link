@@ -5,9 +5,9 @@ from dataclasses import asdict
 from typing import Annotated
 
 import typer
-from api_request.settings import SETTINGS_KEY as API_REQUEST_SETTINGS_KEY
-from eve_auth_manager.cli import app as auth_manager_app
-from eve_auth_manager.settings import SETTINGS_KEY as AUTH_MANAGER_SETTINGS_KEY
+from pfmsoft.api_request.settings import SETTINGS_KEY as API_REQUEST_SETTINGS_KEY
+from pfmsoft.eve_auth_manager.cli import app as auth_manager_app
+from pfmsoft.eve_auth_manager.settings import SETTINGS_KEY as AUTH_MANAGER_SETTINGS_KEY
 from rich.console import Console
 
 from pfmsoft.eve_link import __app_name__, __version__
