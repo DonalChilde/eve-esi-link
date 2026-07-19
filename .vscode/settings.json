@@ -8,8 +8,8 @@
   "python.testing.pytestEnabled": true,
   "python.testing.cwd": "${workspaceFolder}",
   "python.testing.pytestArgs": [
-    "tests/eve_esi_link",
-    "--cov=src/eve_esi_link",
+    "tests/pfmsoft/eve_link",
+    "--cov=src/pfmsoft/eve_link",
     "--cov-report=term-missing",
     "--cov-report=xml:coverage.xml"
   ],
