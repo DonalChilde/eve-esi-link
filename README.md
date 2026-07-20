@@ -32,9 +32,20 @@ Stabilizing... Functionality should not revert, but details may still change.
 
 ### From pypi
 
-    **Not Yet Available**
+```bash
+# add to your projects pyproject.toml
+uv add pfmsoft-eve-link
+```
 
-### From source (recommended for development)
+```bash
+# run with uv
+uvx  --from pfmsoft-eve-link eve-link --help
+# To disable a system wide --exclude-newer for one command:
+# You might want do do this to get the latest version during development
+uvx  --from pfmsoft-eve-link --exclude-newer '1 second'  eve-link --help
+```
+
+### From source
 
 ```bash
 git clone https://github.com/DonalChilde/eve-esi-link
