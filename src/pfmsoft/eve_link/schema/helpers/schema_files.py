@@ -10,9 +10,9 @@ Accepted top-level shapes:
 from pathlib import Path
 from typing import Any
 
+from pfmsoft.eve_snippets import json_io
 from whenever import Instant
 
-from pfmsoft.eve_link.helpers import json_io
 from pfmsoft.eve_link.schema.helpers.schema_check import (
     is_esi_schema_td,
     is_open_api_schema,

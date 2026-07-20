@@ -3,16 +3,17 @@
 from typing import Annotated
 
 import typer
+from pfmsoft.eve_snippets.httpx2.http_session_factory import client_manager
 from rich.console import Console
 
 from pfmsoft.eve_link.cli.helpers import get_eve_link_settings_from_context
-from pfmsoft.eve_link.helpers.http_session_factory import client_manager
 from pfmsoft.eve_link.schema.cache import SchemaCacheManager
 from pfmsoft.eve_link.schema.helpers.fetch import (
     fetch_compatibility_dates,
     fetch_schema,
 )
 from pfmsoft.eve_link.schema.models import EsiSchema
+from pfmsoft.eve_link.settings import USER_AGENT
 
 app = typer.Typer(no_args_is_help=True)
 
@@ -69,7 +70,7 @@ def update_cache(
     settings = get_eve_link_settings_from_context(ctx)
     manager = SchemaCacheManager(cache_directory=settings.schema_cache_directory)
 
-    with client_manager() as session:
+    with client_manager(user_agent=USER_AGENT) as session:
         if all_dates:
             try:
                 dates_data = fetch_compatibility_dates(session)

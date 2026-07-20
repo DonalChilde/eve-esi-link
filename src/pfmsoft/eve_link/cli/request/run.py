@@ -6,6 +6,7 @@ from typing import Annotated, Any
 from uuid import UUID
 
 import typer
+from pfmsoft.eve_snippets import json_io, save_text_file
 from rich.console import Console
 from rich.json import JSON
 
@@ -24,9 +25,7 @@ from pfmsoft.eve_link.esi_request.models import (
 from pfmsoft.eve_link.esi_request.validate import (
     EsiRequestValidationErrors,
 )
-from pfmsoft.eve_link.helpers import json_io
 from pfmsoft.eve_link.helpers.esi_link_factory import esi_link_factory
-from pfmsoft.eve_link.helpers.save_text_file import save_text_file
 from pfmsoft.eve_link.schema.cache import SchemaCacheManager
 from pfmsoft.eve_link.schema.helpers.schema_files import load_esi_schema_from_file
 

@@ -3,12 +3,12 @@
 from typing import Annotated
 
 import typer
+from pfmsoft.eve_snippets.markdown.markdown_table import MarkdownTable
 from rich.console import Console
 from rich.markdown import Markdown
 from whenever import Instant
 
 from pfmsoft.eve_link.cli.helpers import get_eve_link_settings_from_context
-from pfmsoft.eve_link.helpers.markdown_table import MarkdownTable
 from pfmsoft.eve_link.schema.cache import SchemaCacheManager
 
 app = typer.Typer(no_args_is_help=True)

@@ -4,11 +4,11 @@ from pathlib import Path
 from typing import Annotated
 
 import typer
+from pfmsoft.eve_snippets import save_text_file
 from rich.console import Console
 from rich.markdown import Markdown
 
 from pfmsoft.eve_link.cli.helpers import get_eve_link_settings_from_context
-from pfmsoft.eve_link.helpers.save_text_file import save_text_file
 from pfmsoft.eve_link.schema.cache import SchemaCacheManager
 from pfmsoft.eve_link.schema.schema_doc import (
     FencedDataFormat,

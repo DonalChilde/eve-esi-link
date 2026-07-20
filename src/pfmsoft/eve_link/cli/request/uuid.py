@@ -3,10 +3,8 @@ from typing import Annotated
 from uuid import uuid4
 
 import typer
+from pfmsoft.eve_snippets import json_io, save_text_file
 from rich.console import Console
-
-from pfmsoft.eve_link.helpers import json_io
-from pfmsoft.eve_link.helpers.save_text_file import save_text_file
 
 app = typer.Typer(no_args_is_help=True)
 

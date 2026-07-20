@@ -4,15 +4,15 @@ from pathlib import Path
 from typing import Annotated
 
 import typer
+from pfmsoft.eve_snippets import json_io, save_text_file
+from pfmsoft.eve_snippets.httpx2.http_session_factory import client_manager
 from rich.console import Console
 from rich.json import JSON
 
-from pfmsoft.eve_link.helpers import json_io
-from pfmsoft.eve_link.helpers.http_session_factory import client_manager
-from pfmsoft.eve_link.helpers.save_text_file import save_text_file
 from pfmsoft.eve_link.schema.helpers.fetch import (
     fetch_schema_changelog as fetch_changelog,
 )
+from pfmsoft.eve_link.settings import USER_AGENT
 
 app = typer.Typer(no_args_is_help=True)
 
@@ -65,7 +65,7 @@ def fetch_schema_changelog(
         messenger = Console(stderr=True)
     if indent == -1:
         indent = None
-    with client_manager() as session:
+    with client_manager(user_agent=USER_AGENT) as session:
         try:
             schema_changelog = fetch_changelog(session)
         except Exception as e:
