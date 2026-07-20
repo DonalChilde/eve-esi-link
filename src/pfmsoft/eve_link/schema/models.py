@@ -9,9 +9,9 @@ from dataclasses import dataclass, field
 from enum import StrEnum
 from typing import Any, Self, TypedDict, cast
 
+from pfmsoft.eve_snippets import json_io
 from pydantic import RootModel
 
-from pfmsoft.eve_link.helpers import json_io
 from pfmsoft.eve_link.helpers.resolve_json_ref import resolve_internal_refs
 
 

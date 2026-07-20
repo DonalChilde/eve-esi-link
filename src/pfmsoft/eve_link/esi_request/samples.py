@@ -5,14 +5,14 @@ from pathlib import Path
 from typing import Any
 from uuid import UUID, uuid4
 
+from pfmsoft.eve_snippets import json_io, save_text_file
+
 from pfmsoft.eve_link.esi_request.models import (
     EsiRequest,
     EsiRequestGroup,
     EsiRequestGroupRoot,
     EsiRequestRoot,
 )
-from pfmsoft.eve_link.helpers import json_io
-from pfmsoft.eve_link.helpers.save_text_file import save_text_file
 
 
 def auth(character_id: int, credential_id: UUID) -> tuple[EsiRequest, str]:

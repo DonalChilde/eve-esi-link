@@ -4,16 +4,16 @@ from pathlib import Path
 from typing import Annotated
 
 import typer
+from pfmsoft.eve_snippets import json_io, save_text_file
+from pfmsoft.eve_snippets.eve.eve_dates import previous_downtime
+from pfmsoft.eve_snippets.httpx2.http_session_factory import client_manager
 from rich.console import Console
 from rich.json import JSON
 
-from pfmsoft.eve_link.helpers import json_io
-from pfmsoft.eve_link.helpers.eve_dates import previous_downtime
-from pfmsoft.eve_link.helpers.http_session_factory import client_manager
-from pfmsoft.eve_link.helpers.save_text_file import save_text_file
 from pfmsoft.eve_link.schema.helpers.fetch import TimestampedSchemaRoot, fetch_schema
 from pfmsoft.eve_link.schema.helpers.io_format import SchemaIOFormat
 from pfmsoft.eve_link.schema.models import EsiSchema
+from pfmsoft.eve_link.settings import USER_AGENT
 
 app = typer.Typer(no_args_is_help=True)
 
@@ -89,7 +89,7 @@ def fetch_esi_schema(
         messenger = Console(stderr=True, quiet=True)
     else:
         messenger = Console(stderr=True)
-    with client_manager() as session:
+    with client_manager(user_agent=USER_AGENT) as session:
         try:
             schema_data = fetch_schema(session, schema_as_of=date)
         except Exception as e:

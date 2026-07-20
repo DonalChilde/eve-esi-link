@@ -14,6 +14,11 @@ from pfmsoft.eve_link.cli.schema.cache import update as update_command
 runner = CliRunner()
 
 
+def _fake_client_manager(*, user_agent: str) -> nullcontext[object]:
+    """Provide a client-manager stub compatible with the CLI contract."""
+    return nullcontext(object())
+
+
 class _FakeCacheManager:
     """Minimal schema cache stub for cache CLI command tests."""
 
@@ -149,7 +154,7 @@ def test_cache_update_reports_compatibility_date_fetch_failure(
         lambda _ctx: settings,
     )
     monkeypatch.setattr(update_command, "SchemaCacheManager", lambda **_kwargs: manager)
-    monkeypatch.setattr(update_command, "client_manager", lambda: nullcontext(object()))
+    monkeypatch.setattr(update_command, "client_manager", _fake_client_manager)
     monkeypatch.setattr(
         update_command,
         "fetch_compatibility_dates",
@@ -176,7 +181,7 @@ def test_cache_update_fetches_all_dates_and_continues_after_schema_errors(
         lambda _ctx: settings,
     )
     monkeypatch.setattr(update_command, "SchemaCacheManager", lambda **_kwargs: manager)
-    monkeypatch.setattr(update_command, "client_manager", lambda: nullcontext(object()))
+    monkeypatch.setattr(update_command, "client_manager", _fake_client_manager)
     monkeypatch.setattr(
         update_command,
         "fetch_compatibility_dates",

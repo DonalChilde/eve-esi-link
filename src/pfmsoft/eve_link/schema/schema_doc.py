@@ -15,10 +15,10 @@ from enum import StrEnum
 from typing import Any
 
 from mdformat import text as mdformat_text  # type: ignore
+from pfmsoft.eve_snippets.markdown.markdown_table import Align, MarkdownTable
 from whenever import Instant
 from yaml import safe_dump
 
-from ..helpers.markdown_table import Align, MarkdownTable
 from .models import EsiSchema, SchemaOperation
 
 

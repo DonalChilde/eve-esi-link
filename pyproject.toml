@@ -1,6 +1,6 @@
 [project]
 name = "pfmsoft-eve-link"
-version = "0.4.1"
+version = "0.4.2"
 description = "Add your description here"
 readme = "README.md"
 authors = [{ name = "Chad Lowe", email = "pfmsoft.dev@gmail.com" }]
@@ -11,7 +11,7 @@ dependencies = [
     "mdformat-gfm>=1.0.0",
     "pfmsoft-api-request>=0.1.3",
     "pfmsoft-eve-auth-manager>=0.4.3",
-    "pfmsoft-eve-snippets>=0.1.4",
+    "pfmsoft-eve-snippets>=0.1.7",
     "pydantic>=2.13.4",
     "pydantic-settings>=2.14.2",
     "pyyaml>=6.0.3",
@@ -76,8 +76,4 @@ docstring-code-format = true
 docstring-code-line-length = 88
 
 [dependency-groups]
-dev = [
-    "pytest>=9.1.1",
-    "pytest-cov>=7.1.0",
-    "ruff>=0.15.21",
-]
+dev = ["pytest>=9.1.1", "pytest-cov>=7.1.0", "ruff>=0.15.21"]

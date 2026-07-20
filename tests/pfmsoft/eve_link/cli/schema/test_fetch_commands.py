@@ -19,6 +19,11 @@ from pfmsoft.eve_link.schema.helpers.io_format import SchemaIOFormat
 runner = CliRunner()
 
 
+def _fake_client_manager(*, user_agent: str) -> nullcontext[object]:
+    """Provide a client-manager stub compatible with the CLI contract."""
+    return nullcontext(object())
+
+
 def _timestamped_schema(*, date: str = "2026-06-09") -> TimestampedSchema:
     """Build a minimal fetched schema fixture."""
     return TimestampedSchema(
@@ -39,7 +44,7 @@ def test_fetch_schema_plain_unaltered_stdout_emits_raw_json(
     """Print raw schema JSON in plain stdout mode without double-encoding it."""
     schema_data = _timestamped_schema()
 
-    monkeypatch.setattr(fetch_command, "client_manager", lambda: nullcontext(object()))
+    monkeypatch.setattr(fetch_command, "client_manager", _fake_client_manager)
     monkeypatch.setattr(
         fetch_command,
         "fetch_schema",
@@ -64,7 +69,7 @@ def test_fetch_schema_saves_directory_output_with_default_filename(
     output_dir = tmp_path / "schemas"
     saved: dict[str, object] = {}
 
-    monkeypatch.setattr(fetch_command, "client_manager", lambda: nullcontext(object()))
+    monkeypatch.setattr(fetch_command, "client_manager", _fake_client_manager)
     monkeypatch.setattr(
         fetch_command,
         "fetch_schema",
@@ -96,9 +101,7 @@ def test_fetch_compatibility_dates_saves_default_filename(
     output_dir = tmp_path / "dates"
     saved: dict[str, object] = {}
 
-    monkeypatch.setattr(
-        fetch_dates_command, "client_manager", lambda: nullcontext(object())
-    )
+    monkeypatch.setattr(fetch_dates_command, "client_manager", _fake_client_manager)
     monkeypatch.setattr(
         fetch_dates_command,
         "fetch_compatibility_dates",
@@ -126,9 +129,7 @@ def test_fetch_compatibility_dates_reports_fetch_errors(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     """Return a user-facing error when fetching compatibility dates fails."""
-    monkeypatch.setattr(
-        fetch_dates_command, "client_manager", lambda: nullcontext(object())
-    )
+    monkeypatch.setattr(fetch_dates_command, "client_manager", _fake_client_manager)
     monkeypatch.setattr(
         fetch_dates_command,
         "fetch_compatibility_dates",
@@ -147,9 +148,7 @@ def test_fetch_changelog_plain_minus_one_indent_outputs_compact_json(
     """Treat --indent -1 as compact JSON when printing the changelog."""
     changelog = {"changelog": {"2026-06-09": [{"path": "/status/"}]}}
 
-    monkeypatch.setattr(
-        fetch_changelog_command, "client_manager", lambda: nullcontext(object())
-    )
+    monkeypatch.setattr(fetch_changelog_command, "client_manager", _fake_client_manager)
     monkeypatch.setattr(
         fetch_changelog_command,
         "fetch_changelog",
@@ -169,9 +168,7 @@ def test_fetch_changelog_reports_fetch_errors(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     """Return a user-facing error when fetching the changelog fails."""
-    monkeypatch.setattr(
-        fetch_changelog_command, "client_manager", lambda: nullcontext(object())
-    )
+    monkeypatch.setattr(fetch_changelog_command, "client_manager", _fake_client_manager)
     monkeypatch.setattr(
         fetch_changelog_command,
         "fetch_changelog",
