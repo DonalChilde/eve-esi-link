@@ -9,6 +9,12 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
+from httpx2 import Client
+
+from pfmsoft.eve_link.schema.helpers.fetch import (
+    fetch_compatibility_dates,
+    fetch_schema,
+)
 from pfmsoft.eve_link.schema.helpers.schema_files import (
     default_file_name_for_cached_schema,
     load_esi_schema_from_file,
@@ -170,6 +176,33 @@ class SchemaCacheManager:
             cache_file.unlink(missing_ok=True)
             deleted += 1
         return deleted
+
+    def fetch_updates(self, session: Client) -> None:
+        """Fetch and cache the latest schema for each compatibility date.
+
+        This method fetches the latest schema for each known compatibility date
+        from the EVE Online API and saves them to the cache directory. Existing
+        cached files are replaced with the new versions.
+
+        Args:
+            session: An instance of httpx2.Client for making HTTP requests.
+
+        Raises:
+            httpx2.HTTPError: If any HTTP request fails.
+        """
+        compatibility_dates = fetch_compatibility_dates(session=session)
+        for compatibility_date in compatibility_dates.compatibility_dates:
+            # Fetch the latest schema for the compatibility date
+            timestamped_schema = fetch_schema(
+                session=session, schema_as_of=compatibility_date
+            )
+            # Save the fetched schema to the cache
+            self.save(
+                schema=EsiSchema.from_raw_schema(
+                    raw_schema=timestamped_schema.schema,
+                    timestamp=timestamped_schema.timestamp,
+                )
+            )
 
     def _iter_cache_files(self) -> list[Path]:
         """Return sorted files in the cache directory.

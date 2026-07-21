@@ -3,16 +3,14 @@
 from typing import Annotated
 
 import typer
+from pfmsoft.eve_snippets import markdown_table
 from pfmsoft.eve_snippets.httpx2.http_session_factory import client_manager
 from rich.console import Console
+from rich.markdown import Markdown
+from whenever import Instant
 
 from pfmsoft.eve_link.cli.helpers import get_eve_link_settings_from_context
-from pfmsoft.eve_link.schema.cache import SchemaCacheManager
-from pfmsoft.eve_link.schema.helpers.fetch import (
-    fetch_compatibility_dates,
-    fetch_schema,
-)
-from pfmsoft.eve_link.schema.models import EsiSchema
+from pfmsoft.eve_link.schema.cache import SchemaCacheEntry, SchemaCacheManager
 from pfmsoft.eve_link.settings import USER_AGENT
 
 app = typer.Typer(no_args_is_help=True)
@@ -21,18 +19,11 @@ app = typer.Typer(no_args_is_help=True)
 @app.command(name="update", help="Fetch and save ESI schemas to the local cache.")
 def update_cache(
     ctx: typer.Context,
-    date: Annotated[
-        str | None,
-        typer.Option(
-            "--date",
-            help="Compatibility date (YYYY-MM-DD) of the schema to fetch and cache.",
-        ),
-    ] = None,
-    all_dates: Annotated[
+    plain: Annotated[
         bool,
         typer.Option(
-            "--all",
-            help="Fetch and cache schemas for all available compatibility dates.",
+            "--plain",
+            help="Display the output in plain text instead of Rich Markdown.",
         ),
     ] = False,
     quiet: Annotated[
@@ -58,46 +49,52 @@ def update_cache(
             eve-link schema cache update --all
     """
     # ctx is an invisible typer context parameter — not documented in help.
-    messenger = Console(stderr=True, quiet=quiet)
-
-    if date is None and not all_dates:
-        messenger.print("[red]Error: provide --date DATE or --all.[/red]")
-        raise typer.Exit(code=1)
-    if date is not None and all_dates:
-        messenger.print("[red]Error: --date and --all are mutually exclusive.[/red]")
-        raise typer.Exit(code=1)
+    if quiet:
+        messenger = Console(stderr=True, quiet=True)
+    else:
+        messenger = Console(stderr=True)
 
     settings = get_eve_link_settings_from_context(ctx)
     manager = SchemaCacheManager(cache_directory=settings.schema_cache_directory)
 
     with client_manager(user_agent=USER_AGENT) as session:
-        if all_dates:
-            try:
-                dates_data = fetch_compatibility_dates(session)
-            except Exception as e:
-                messenger.print(
-                    f"[red]Error: Failed to fetch compatibility dates - {e}[/red]"
-                )
-                raise typer.Exit(code=1) from e
-            dates = list(dates_data.compatibility_dates)
-        else:
-            assert date is not None
-            dates = [date]
+        current_entries = manager.list_entries()
+        manager.fetch_updates(session=session)
+        updated_entries = manager.list_entries()
 
-        saved = 0
-        for schema_date in dates:
-            try:
-                schema_data = fetch_schema(session, schema_as_of=schema_date)
-            except Exception as e:
-                messenger.print(
-                    f"[red]Error: Failed to fetch schema for {schema_date} - {e}[/red]"
-                )
-                continue
-            esi_schema = EsiSchema.from_raw_schema(
-                raw_schema=schema_data.schema, timestamp=schema_data.timestamp
-            )
-            manager.save(schema=esi_schema)
-            messenger.print(f"[green]Cached schema for {schema_date}.[/green]")
-            saved += 1
+    report = _build_update_report(current_entries, updated_entries)
+    if plain:
+        print(report)
+    else:
+        messenger.print(Markdown(report))
 
-    messenger.print(f"[green]Done. Cached {saved} schema(s).[/green]")
+
+def _build_update_report(
+    current_entries: list[SchemaCacheEntry], updated_entries: list[SchemaCacheEntry]
+) -> str:
+    """Build a report of the cache update operation as markdown."""
+    output = ["# ESI Schema Cache Update Report", ""]
+    output.append("## Before Update")
+    output.append(_build_cache_entries(current_entries))
+    output.append("")
+    output.append("## After Update")
+    output.append(_build_cache_entries(updated_entries))
+    return "\n".join(output)
+
+
+def _build_cache_entries(entries: list[SchemaCacheEntry]) -> str:
+    """Build a markdown table of cache entries."""
+    table = markdown_table.MarkdownTable(
+        headers=["Compatibility Date", "Timestamp (ns)", "UTC"],
+        rows=[
+            [
+                entry.compatibility_date,
+                str(entry.timestamp) if entry.timestamp else "None",
+                Instant.from_timestamp_nanos(entry.timestamp).format_iso()
+                if entry.timestamp
+                else "None",
+            ]
+            for entry in entries
+        ],
+    )
+    return table.render()
