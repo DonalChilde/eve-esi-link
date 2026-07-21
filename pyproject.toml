@@ -1,7 +1,7 @@
 [project]
 name = "pfmsoft-eve-link"
 version = "0.4.2"
-description = "Add your description here"
+description = "A command line first interface to the Eve Online ESI API"
 readme = "README.md"
 authors = [{ name = "Chad Lowe", email = "pfmsoft.dev@gmail.com" }]
 requires-python = ">=3.14"
@@ -76,4 +76,10 @@ docstring-code-format = true
 docstring-code-line-length = 88
 
 [dependency-groups]
-dev = ["pytest>=9.1.1", "pytest-cov>=7.1.0", "ruff>=0.15.21"]
+dev = [
+    "mkdocstrings-python>=2.0.5",
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.15.21",
+    "zensical>=0.0.50",
+]

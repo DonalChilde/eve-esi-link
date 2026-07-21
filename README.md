@@ -41,7 +41,7 @@ uv add pfmsoft-eve-link
 # run with uv
 uvx  --from pfmsoft-eve-link eve-link --help
 # To disable a system wide --exclude-newer for one command:
-# You might want do do this to get the latest version during development
+# You might want do do this to get the latest version during active development
 uvx  --from pfmsoft-eve-link --exclude-newer '1 second'  eve-link --help
 ```
 
