@@ -115,6 +115,20 @@ def _parameter_type(parameter: dict[str, Any]) -> str:
     return str(schema.get("type", "-"))
 
 
+def _parameter_description(parameter: dict[str, Any]) -> str:
+    """Extract parameter description with schema-level fallback."""
+    top_level_description = parameter.get("description")
+    if isinstance(top_level_description, str) and top_level_description.strip():
+        return top_level_description.replace("\n", " ")
+
+    schema = parameter.get("schema", {})
+    schema_description = schema.get("description")
+    if isinstance(schema_description, str) and schema_description.strip():
+        return schema_description.replace("\n", " ")
+
+    return "-"
+
+
 def _render_parameters_table(operation: SchemaOperation) -> str:
     """Render path/query/header parameter documentation table."""
     parameters = [
@@ -134,7 +148,7 @@ def _render_parameters_table(operation: SchemaOperation) -> str:
             parameter.get("in", "-"),
             "Yes" if parameter.get("required", False) else "No",
             _parameter_type(parameter),
-            parameter.get("description", "-").replace("\n", " "),
+            _parameter_description(parameter),
         ])
     return table.render()
 

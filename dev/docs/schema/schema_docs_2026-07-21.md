@@ -1896,7 +1896,7 @@ Return a list of the characters assets
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | character_id         | path   | Yes      | integer | The ID of the character                                                                                                |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -2180,7 +2180,7 @@ Return a list of the corporation assets
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | corporation_id       | path   | Yes      | integer | The ID of the corporation                                                                                              |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -3221,7 +3221,7 @@ Get 50 event summaries from the calendar. If no from_event ID is given, the reso
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | character_id         | path   | Yes      | integer | The ID of the character                                                                                                |
-| from_event           | query  | No       | integer | -                                                                                                                      |
+| from_event           | query  | No       | integer | The event ID to retrieve events from                                                                                   |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -3396,7 +3396,7 @@ Get all the information for a specific event
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | character_id         | path   | Yes      | integer | The ID of the character                                                                                                |
-| event_id             | path   | Yes      | integer | -                                                                                                                      |
+| event_id             | path   | Yes      | integer | The id of the event requested                                                                                          |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -3599,7 +3599,7 @@ Get all invited attendees for a given event
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | character_id         | path   | Yes      | integer | The ID of the character                                                                                                |
-| event_id             | path   | Yes      | integer | -                                                                                                                      |
+| event_id             | path   | Yes      | integer | The id of the event requested                                                                                          |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -3764,7 +3764,7 @@ Set your response status to an event
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | character_id         | path   | Yes      | integer | The ID of the character                                                                                                |
-| event_id             | path   | Yes      | integer | -                                                                                                                      |
+| event_id             | path   | Yes      | integer | The ID of the event requested                                                                                          |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -4097,7 +4097,7 @@ Return a list of blueprints the character owns
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | character_id         | path   | Yes      | integer | The ID of the character                                                                                                |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -7225,7 +7225,7 @@ Bulk delete contacts
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | character_id         | path   | Yes      | integer | The ID of the character                                                                                                |
-| contact_ids          | query  | Yes      | array   | -                                                                                                                      |
+| contact_ids          | query  | Yes      | array   | A list of contacts to delete                                                                                           |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -7370,7 +7370,7 @@ Return contacts of an alliance
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | alliance_id          | path   | Yes      | integer | The ID of the alliance                                                                                                 |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -7701,7 +7701,7 @@ Return contacts of a character
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | character_id         | path   | Yes      | integer | The ID of the character                                                                                                |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -8040,7 +8040,7 @@ Return contacts of a corporation
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | corporation_id       | path   | Yes      | integer | The ID of the corporation                                                                                              |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -8375,9 +8375,9 @@ Bulk add contacts with same settings
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | character_id         | path   | Yes      | integer | The ID of the character                                                                                                |
-| label_ids            | query  | No       | array   | -                                                                                                                      |
-| standing             | query  | Yes      | number  | -                                                                                                                      |
-| watched              | query  | No       | boolean | -                                                                                                                      |
+| label_ids            | query  | No       | array   | Add custom labels to the new contact                                                                                   |
+| standing             | query  | Yes      | number  | Standing for the contact                                                                                               |
+| watched              | query  | No       | boolean | Whether the contact should be watched, note this is only effective on characters                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -8557,9 +8557,9 @@ Bulk edit contacts with same settings
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | character_id         | path   | Yes      | integer | The ID of the character                                                                                                |
-| label_ids            | query  | No       | array   | -                                                                                                                      |
-| standing             | query  | Yes      | number  | -                                                                                                                      |
-| watched              | query  | No       | boolean | -                                                                                                                      |
+| label_ids            | query  | No       | array   | Add custom labels to the contact                                                                                       |
+| standing             | query  | Yes      | number  | Standing for the contact                                                                                               |
+| watched              | query  | No       | boolean | Whether the contact should be watched, note this is only effective on characters                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -8741,7 +8741,7 @@ Returns contracts available to a character, only if the character is issuer, acc
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | character_id         | path   | Yes      | integer | The ID of the character                                                                                                |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -9033,7 +9033,7 @@ Lists bids on a particular auction contract
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | character_id         | path   | Yes      | integer | The ID of the character                                                                                                |
-| contract_id          | path   | Yes      | integer | -                                                                                                                      |
+| contract_id          | path   | Yes      | integer | ID of a contract                                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -9209,7 +9209,7 @@ Lists items of a particular contract
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | character_id         | path   | Yes      | integer | The ID of the character                                                                                                |
-| contract_id          | path   | Yes      | integer | -                                                                                                                      |
+| contract_id          | path   | Yes      | integer | ID of a contract                                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -9392,8 +9392,8 @@ Lists bids on a public auction contract
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| contract_id          | path   | Yes      | integer | -                                                                                                                      |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| contract_id          | path   | Yes      | integer | ID of a contract                                                                                                       |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -9553,8 +9553,8 @@ Lists items of a public contract
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| contract_id          | path   | Yes      | integer | -                                                                                                                      |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| contract_id          | path   | Yes      | integer | ID of a contract                                                                                                       |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -9742,8 +9742,8 @@ Returns a paginated list of all public contracts in the given region
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| page                 | query  | No       | integer | -                                                                                                                      |
-| region_id            | path   | Yes      | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
+| region_id            | path   | Yes      | integer | An EVE region id                                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -9975,7 +9975,7 @@ Returns contracts available to a corporation, only if the corporation is issuer,
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | corporation_id       | path   | Yes      | integer | The ID of the corporation                                                                                              |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -10266,9 +10266,9 @@ Lists bids on a particular auction contract
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| contract_id          | path   | Yes      | integer | -                                                                                                                      |
+| contract_id          | path   | Yes      | integer | ID of a contract                                                                                                       |
 | corporation_id       | path   | Yes      | integer | The ID of the corporation                                                                                              |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -10453,7 +10453,7 @@ Lists items of a particular contract
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| contract_id          | path   | Yes      | integer | -                                                                                                                      |
+| contract_id          | path   | Yes      | integer | ID of a contract                                                                                                       |
 | corporation_id       | path   | Yes      | integer | The ID of the corporation                                                                                              |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
@@ -11102,7 +11102,7 @@ Returns a list of blueprints the corporation owns
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | corporation_id       | path   | Yes      | integer | The ID of the corporation                                                                                              |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -11430,7 +11430,7 @@ Returns logs recorded in the past seven days from all audit log secure container
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | corporation_id       | path   | Yes      | integer | The ID of the corporation                                                                                              |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -12257,7 +12257,7 @@ Returns a corporation's medals
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | corporation_id       | path   | Yes      | integer | The ID of the corporation                                                                                              |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -12433,7 +12433,7 @@ Returns medals issued by a corporation
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | corporation_id       | path   | Yes      | integer | The ID of the corporation                                                                                              |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -13889,7 +13889,7 @@ Return how roles have changed for a coporation's members, up to a month
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | corporation_id       | path   | Yes      | integer | The ID of the corporation                                                                                              |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -14205,7 +14205,7 @@ Return the current shareholders of a corporation.
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | corporation_id       | path   | Yes      | integer | The ID of the corporation                                                                                              |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -14379,7 +14379,7 @@ Return corporation standings from agents, NPC corporations, and factions
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | corporation_id       | path   | Yes      | integer | The ID of the corporation                                                                                              |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -14550,7 +14550,7 @@ Returns list of corporation starbases (POSes)
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | corporation_id       | path   | Yes      | integer | The ID of the corporation                                                                                              |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -14753,8 +14753,8 @@ Returns various settings and fuels of a starbase (POS)
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | corporation_id       | path   | Yes      | integer | The ID of the corporation                                                                                              |
-| starbase_id          | path   | Yes      | integer | -                                                                                                                      |
-| system_id            | query  | Yes      | integer | -                                                                                                                      |
+| starbase_id          | path   | Yes      | integer | An EVE starbase (POS) ID                                                                                               |
+| system_id            | query  | Yes      | integer | The solar system this starbase (POS) is located in,                                                                    |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -15035,7 +15035,7 @@ Get a list of corporation structures. This route's version includes the changes 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | corporation_id       | path   | Yes      | integer | The ID of the corporation                                                                                              |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -19077,7 +19077,7 @@ Get information on a dogma attribute This route expires daily at 11:05
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| attribute_id         | path   | Yes      | integer | -                                                                                                                      |
+| attribute_id         | path   | Yes      | integer | A dogma attribute ID                                                                                                   |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -19555,7 +19555,7 @@ Get information on a dogma effect This route expires daily at 11:05
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| effect_id            | path   | Yes      | integer | -                                                                                                                      |
+| effect_id            | path   | Yes      | integer | A dogma effect ID                                                                                                      |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -21484,7 +21484,7 @@ Delete a fitting from a character
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | character_id         | path   | Yes      | integer | The ID of the character                                                                                                |
-| fitting_id           | path   | Yes      | integer | -                                                                                                                      |
+| fitting_id           | path   | Yes      | integer | ID for a fitting of this character                                                                                     |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -22089,8 +22089,8 @@ Kick a fleet member
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| fleet_id             | path   | Yes      | integer | -                                                                                                                      |
-| member_id            | path   | Yes      | integer | -                                                                                                                      |
+| fleet_id             | path   | Yes      | integer | ID for a fleet                                                                                                         |
+| member_id            | path   | Yes      | integer | The character ID of a member in this fleet                                                                             |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -22225,8 +22225,8 @@ Delete a fleet squad, only empty squads can be deleted
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| fleet_id             | path   | Yes      | integer | -                                                                                                                      |
-| squad_id             | path   | Yes      | integer | -                                                                                                                      |
+| fleet_id             | path   | Yes      | integer | ID for a fleet                                                                                                         |
+| squad_id             | path   | Yes      | integer | The squad to delete                                                                                                    |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -22361,8 +22361,8 @@ Delete a fleet wing, only empty wings can be deleted. The wing may contain squad
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| fleet_id             | path   | Yes      | integer | -                                                                                                                      |
-| wing_id              | path   | Yes      | integer | -                                                                                                                      |
+| fleet_id             | path   | Yes      | integer | ID for a fleet                                                                                                         |
+| wing_id              | path   | Yes      | integer | The wing to delete                                                                                                     |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -22670,7 +22670,7 @@ Return details about a fleet
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| fleet_id             | path   | Yes      | integer | -                                                                                                                      |
+| fleet_id             | path   | Yes      | integer | ID for a fleet                                                                                                         |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -22824,7 +22824,7 @@ Return information about fleet members
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| fleet_id             | path   | Yes      | integer | -                                                                                                                      |
+| fleet_id             | path   | Yes      | integer | ID for a fleet                                                                                                         |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -23020,7 +23020,7 @@ Return information about wings in a fleet
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| fleet_id             | path   | Yes      | integer | -                                                                                                                      |
+| fleet_id             | path   | Yes      | integer | ID for a fleet                                                                                                         |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -23187,7 +23187,7 @@ Invite a character into the fleet. If a character has a CSPA charge set it is no
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| fleet_id             | path   | Yes      | integer | -                                                                                                                      |
+| fleet_id             | path   | Yes      | integer | ID for a fleet                                                                                                         |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -23352,7 +23352,7 @@ Create a new wing in a fleet
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| fleet_id             | path   | Yes      | integer | -                                                                                                                      |
+| fleet_id             | path   | Yes      | integer | ID for a fleet                                                                                                         |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -23477,8 +23477,8 @@ Create a new squad in a fleet
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| fleet_id             | path   | Yes      | integer | -                                                                                                                      |
-| wing_id              | path   | Yes      | integer | -                                                                                                                      |
+| fleet_id             | path   | Yes      | integer | ID for a fleet                                                                                                         |
+| wing_id              | path   | Yes      | integer | The wing_id to create squad in                                                                                         |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -23613,7 +23613,7 @@ Update settings about a fleet
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| fleet_id             | path   | Yes      | integer | -                                                                                                                      |
+| fleet_id             | path   | Yes      | integer | ID for a fleet                                                                                                         |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -23759,8 +23759,8 @@ Move a fleet member around
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| fleet_id             | path   | Yes      | integer | -                                                                                                                      |
-| member_id            | path   | Yes      | integer | -                                                                                                                      |
+| fleet_id             | path   | Yes      | integer | ID for a fleet                                                                                                         |
+| member_id            | path   | Yes      | integer | The character ID of a member in this fleet                                                                             |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -23929,8 +23929,8 @@ Rename a fleet squad
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| fleet_id             | path   | Yes      | integer | -                                                                                                                      |
-| squad_id             | path   | Yes      | integer | -                                                                                                                      |
+| fleet_id             | path   | Yes      | integer | ID for a fleet                                                                                                         |
+| squad_id             | path   | Yes      | integer | The squad to rename                                                                                                    |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -24085,8 +24085,8 @@ Rename a fleet wing
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| fleet_id             | path   | Yes      | integer | -                                                                                                                      |
-| wing_id              | path   | Yes      | integer | -                                                                                                                      |
+| fleet_id             | path   | Yes      | integer | ID for a fleet                                                                                                         |
+| wing_id              | path   | Yes      | integer | The wing to rename                                                                                                     |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -26441,7 +26441,7 @@ List industry jobs placed by a character
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | character_id         | path   | Yes      | integer | The ID of the character                                                                                                |
-| include_completed    | query  | No       | boolean | -                                                                                                                      |
+| include_completed    | query  | No       | boolean | Whether to retrieve completed character industry jobs. Only includes jobs from the past 90 days                        |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -26719,7 +26719,7 @@ Paginated record of all mining done by a character for the past 30 days
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | character_id         | path   | Yes      | integer | The ID of the character                                                                                                |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -26891,7 +26891,7 @@ Extraction timers for all moon chunks being extracted by refineries belonging to
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | corporation_id       | path   | Yes      | integer | The ID of the corporation                                                                                              |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -27074,7 +27074,7 @@ Paginated list of all entities capable of observing and recording mining for a c
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | corporation_id       | path   | Yes      | integer | The ID of the corporation                                                                                              |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -27248,8 +27248,8 @@ Paginated record of all mining seen by an observer
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | corporation_id       | path   | Yes      | integer | The ID of the corporation                                                                                              |
-| observer_id          | path   | Yes      | integer | -                                                                                                                      |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| observer_id          | path   | Yes      | integer | A mining observer id                                                                                                   |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -27441,8 +27441,8 @@ List industry jobs run by a corporation
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | corporation_id       | path   | Yes      | integer | The ID of the corporation                                                                                              |
-| include_completed    | query  | No       | boolean | -                                                                                                                      |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| include_completed    | query  | No       | boolean | Whether to retrieve completed corporation industry jobs. Only includes jobs from the past 90 days                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -28222,7 +28222,7 @@ Return a list of a character's kills and losses going back 90 days
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | character_id         | path   | Yes      | integer | The ID of the character                                                                                                |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -28385,7 +28385,7 @@ Get a list of a corporation's kills and losses going back 90 days
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | corporation_id       | path   | Yes      | integer | The ID of the corporation                                                                                              |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -28550,8 +28550,8 @@ Return a single killmail from its ID and hash
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| killmail_hash        | path   | Yes      | string  | -                                                                                                                      |
-| killmail_id          | path   | Yes      | integer | -                                                                                                                      |
+| killmail_hash        | path   | Yes      | string  | The killmail hash for verification                                                                                     |
+| killmail_id          | path   | Yes      | integer | The killmail ID to be queried                                                                                          |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -29713,7 +29713,7 @@ Delete a mail label
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | character_id         | path   | Yes      | integer | The ID of the character                                                                                                |
-| label_id             | path   | Yes      | integer | -                                                                                                                      |
+| label_id             | path   | Yes      | integer | An EVE label id                                                                                                        |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -29853,7 +29853,7 @@ Delete a mail
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | character_id         | path   | Yes      | integer | The ID of the character                                                                                                |
-| mail_id              | path   | Yes      | integer | -                                                                                                                      |
+| mail_id              | path   | Yes      | integer | An EVE mail ID                                                                                                         |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -29993,8 +29993,8 @@ Return the 50 most recent mail headers belonging to the character that match the
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | character_id         | path   | Yes      | integer | The ID of the character                                                                                                |
-| labels               | query  | No       | array   | -                                                                                                                      |
-| last_mail_id         | query  | No       | integer | -                                                                                                                      |
+| labels               | query  | No       | array   | Fetch only mails that match one or more of the given labels                                                            |
+| last_mail_id         | query  | No       | integer | List only mail with an ID lower than the given ID, if present                                                          |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -30551,7 +30551,7 @@ Return the contents of an EVE mail
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | character_id         | path   | Yes      | integer | The ID of the character                                                                                                |
-| mail_id              | path   | Yes      | integer | -                                                                                                                      |
+| mail_id              | path   | Yes      | integer | An EVE mail ID                                                                                                         |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -31121,7 +31121,7 @@ Update metadata about a mail
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | character_id         | path   | Yes      | integer | The ID of the character                                                                                                |
-| mail_id              | path   | Yes      | integer | -                                                                                                                      |
+| mail_id              | path   | Yes      | integer | An EVE mail ID                                                                                                         |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -31519,7 +31519,7 @@ List cancelled and expired market orders placed by a character up to 90 days in 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | character_id         | path   | Yes      | integer | The ID of the character                                                                                                |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -31767,7 +31767,7 @@ List open market orders placed on behalf of a corporation
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | corporation_id       | path   | Yes      | integer | The ID of the corporation                                                                                              |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -32017,7 +32017,7 @@ List cancelled and expired market orders placed on behalf of a corporation up to
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | corporation_id       | path   | Yes      | integer | The ID of the corporation                                                                                              |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -32391,7 +32391,7 @@ Get information on an item group This route expires daily at 11:05
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| market_group_id      | path   | Yes      | integer | -                                                                                                                      |
+| market_group_id      | path   | Yes      | integer | An Eve item group ID                                                                                                   |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -32679,8 +32679,8 @@ Return a list of historical market statistics for the specified type in a region
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| region_id            | path   | Yes      | integer | -                                                                                                                      |
-| type_id              | query  | Yes      | integer | -                                                                                                                      |
+| region_id            | path   | Yes      | integer | Return statistics in this region                                                                                       |
+| type_id              | query  | Yes      | integer | Return statistics for this type                                                                                        |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -32852,17 +32852,17 @@ Return a list of orders in a region
 
 #### Parameters
 
-| Name                 | In     | Required | Type    | Description                                                                                                            |
-| -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| order_type           | query  | Yes      | string  | -                                                                                                                      |
-| page                 | query  | No       | integer | -                                                                                                                      |
-| region_id            | path   | Yes      | integer | -                                                                                                                      |
-| type_id              | query  | No       | integer | -                                                                                                                      |
-| Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
-| If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
-| X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
-| X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
-| If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
+| Name                 | In     | Required | Type    | Description                                                                                                                   |
+| -------------------- | ------ | -------- | ------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| order_type           | query  | Yes      | string  | Filter buy/sell orders, return all orders by default. If you query without type_id, we always return both buy and sell orders |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                              |
+| region_id            | path   | Yes      | integer | Return orders in this region                                                                                                  |
+| type_id              | query  | No       | integer | Return orders only for this type                                                                                              |
+| Accept-Language      | header | No       | string  | The language to use for the response.                                                                                         |
+| If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                                    |
+| X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                       |
+| X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                                |
+| If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.        |
 
 #### Parameters Schema
 
@@ -33101,8 +33101,8 @@ Return a list of type IDs that have active orders in the region, for efficient m
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| page                 | query  | No       | integer | -                                                                                                                      |
-| region_id            | path   | Yes      | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
+| region_id            | path   | Yes      | integer | Return statistics in this region                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -33241,8 +33241,8 @@ Return all orders in a structure
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| page                 | query  | No       | integer | -                                                                                                                      |
-| structure_id         | path   | Yes      | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
+| structure_id         | path   | Yes      | integer | Return orders in this structure                                                                                        |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -34318,7 +34318,7 @@ Returns full details on the layout of a single planetary colony, including links
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | character_id         | path   | Yes      | integer | The ID of the character                                                                                                |
-| planet_id            | path   | Yes      | integer | -                                                                                                                      |
+| planet_id            | path   | Yes      | integer | Planet id of the target planet                                                                                         |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -34672,7 +34672,7 @@ List customs offices owned by a corporation
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | corporation_id       | path   | Yes      | integer | The ID of the corporation                                                                                              |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -34904,7 +34904,7 @@ Get information on a planetary factory schematic
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| schematic_id         | path   | Yes      | integer | -                                                                                                                      |
+| schematic_id         | path   | Yes      | integer | A PI schematic ID                                                                                                      |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -35293,10 +35293,10 @@ Search for entities that match a given sub-string.
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| categories           | query  | Yes      | array   | -                                                                                                                      |
+| categories           | query  | Yes      | array   | Type of entities to search for                                                                                         |
 | character_id         | path   | Yes      | integer | The ID of the character                                                                                                |
-| search               | query  | Yes      | string  | -                                                                                                                      |
-| strict               | query  | No       | boolean | -                                                                                                                      |
+| search               | query  | Yes      | string  | The string to search on                                                                                                |
+| strict               | query  | No       | boolean | Whether the search should be a strict match                                                                            |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -39073,7 +39073,7 @@ Get information of an item category This route expires daily at 11:05
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| category_id          | path   | Yes      | integer | -                                                                                                                      |
+| category_id          | path   | Yes      | integer | An Eve item category ID                                                                                                |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -39948,7 +39948,7 @@ Get a list of item groups This route expires daily at 11:05
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -40076,7 +40076,7 @@ Get information on an item group This route expires daily at 11:05
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| group_id             | path   | Yes      | integer | -                                                                                                                      |
+| group_id             | path   | Yes      | integer | An Eve item group ID                                                                                                   |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -41653,7 +41653,7 @@ List all public structures
 
 | Name                 | In     | Required | Type   | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------ | ---------------------------------------------------------------------------------------------------------------------- |
-| filter               | query  | No       | string | -                                                                                                                      |
+| filter               | query  | No       | string | Only list public structures that have this service online                                                              |
 | Accept-Language      | header | No       | string | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string | The compatibility date for the request.                                                                                |
@@ -41785,7 +41785,7 @@ Returns information on requested structure if you are on the ACL. Otherwise, ret
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| structure_id         | path   | Yes      | integer | -                                                                                                                      |
+| structure_id         | path   | Yes      | integer | An Eve structure ID                                                                                                    |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -42574,7 +42574,7 @@ Get a list of type ids This route expires daily at 11:05
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -42702,7 +42702,7 @@ Get information on a type This route expires daily at 11:05
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| type_id              | path   | Yes      | integer | -                                                                                                                      |
+| type_id              | path   | Yes      | integer | An Eve item type ID                                                                                                    |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -43390,9 +43390,9 @@ Set a solar system as autopilot waypoint
 
 | Name                  | In     | Required | Type    | Description                                                                                                            |
 | --------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| add_to_beginning      | query  | Yes      | boolean | -                                                                                                                      |
-| clear_other_waypoints | query  | Yes      | boolean | -                                                                                                                      |
-| destination_id        | query  | Yes      | integer | -                                                                                                                      |
+| add_to_beginning      | query  | Yes      | boolean | Whether this solar system should be added to the beginning of all waypoints                                            |
+| clear_other_waypoints | query  | Yes      | boolean | Whether clean other waypoints beforing adding this one                                                                 |
+| destination_id        | query  | Yes      | integer | The destination to travel to, can be solar system, station or structure's id                                           |
 | Accept-Language       | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match         | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date  | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -43537,7 +43537,7 @@ Open the contract window inside the client
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| contract_id          | query  | Yes      | integer | -                                                                                                                      |
+| contract_id          | query  | Yes      | integer | The contract to open                                                                                                   |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -43662,7 +43662,7 @@ Open the information window for a character, corporation or alliance inside the 
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| target_id            | query  | Yes      | integer | -                                                                                                                      |
+| target_id            | query  | Yes      | integer | The target to open                                                                                                     |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -43787,7 +43787,7 @@ Open the market details window for a specific typeID inside the client
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| type_id              | query  | Yes      | integer | -                                                                                                                      |
+| type_id              | query  | Yes      | integer | The item type to open in market window                                                                                 |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -44210,7 +44210,7 @@ Retrieve the given character's wallet journal going 30 days back
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | character_id         | path   | Yes      | integer | The ID of the character                                                                                                |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -44606,7 +44606,7 @@ Get wallet transactions of a character
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | character_id         | path   | Yes      | integer | The ID of the character                                                                                                |
-| from_id              | query  | No       | integer | -                                                                                                                      |
+| from_id              | query  | No       | integer | Only show transactions happened before the one referenced by this id                                                   |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -44965,8 +44965,8 @@ Retrieve the given corporation's wallet journal for the given division going 30 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | corporation_id       | path   | Yes      | integer | The ID of the corporation                                                                                              |
-| division             | path   | Yes      | integer | -                                                                                                                      |
-| page                 | query  | No       | integer | -                                                                                                                      |
+| division             | path   | Yes      | integer | Wallet key of the division to fetch journals from                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -45376,8 +45376,8 @@ Get wallet transactions of a corporation
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
 | corporation_id       | path   | Yes      | integer | The ID of the corporation                                                                                              |
-| division             | path   | Yes      | integer | -                                                                                                                      |
-| from_id              | query  | No       | integer | -                                                                                                                      |
+| division             | path   | Yes      | integer | Wallet key of the division to fetch journals from                                                                      |
+| from_id              | query  | No       | integer | Only show journal entries happened before the transaction referenced by this id                                        |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -45593,7 +45593,7 @@ Return a list of wars
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| max_war_id           | query  | No       | integer | -                                                                                                                      |
+| max_war_id           | query  | No       | integer | Only return wars with ID smaller than this                                                                             |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -45726,7 +45726,7 @@ Return details about a war
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| war_id               | path   | Yes      | integer | -                                                                                                                      |
+| war_id               | path   | Yes      | integer | ID for a war                                                                                                           |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
@@ -45979,8 +45979,8 @@ Return a list of kills related to a war
 
 | Name                 | In     | Required | Type    | Description                                                                                                            |
 | -------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
-| page                 | query  | No       | integer | -                                                                                                                      |
-| war_id               | path   | Yes      | integer | -                                                                                                                      |
+| page                 | query  | No       | integer | Which page of results to return.                                                                                       |
+| war_id               | path   | Yes      | integer | A valid war ID                                                                                                         |
 | Accept-Language      | header | No       | string  | The language to use for the response.                                                                                  |
 | If-None-Match        | header | No       | string  | The ETag of the previous request. A 304 will be returned if this matches the current ETag.                             |
 | X-Compatibility-Date | header | Yes      | string  | The compatibility date for the request.                                                                                |
