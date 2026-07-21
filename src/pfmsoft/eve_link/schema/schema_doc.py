@@ -160,11 +160,11 @@ def _render_operation_section(
         "",
         _render_parameters_table(operation),
         "",
-        "#### Request Body",
+        "#### Request Body (json_payload) Schema",
         "",
     ]
     if operation.request_body is None:
-        lines.append("No request body.")
+        lines.append("No Request Body Schema.")
     else:
         lines.append(_render_fenced_block(operation.request_body, format=fenced_format))
     lines.extend(["", "#### Response Schema", ""])
