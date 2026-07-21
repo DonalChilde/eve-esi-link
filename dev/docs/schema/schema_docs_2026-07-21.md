@@ -298,9 +298,102 @@ Get the details of an Access List.
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the Access List",
+    "in": "path",
+    "name": "access_list_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        1
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -510,9 +603,88 @@ Lists all Access Lists the character is Manager or Admin of.
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -594,9 +766,102 @@ Get the details of a Mercenary Tactical Operation.
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the operation",
+    "in": "path",
+    "name": "operation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        "3868eaed-8278-4cb7-9709-7d7de9c20dc7"
+      ],
+      "format": "uuid",
+      "type": "string",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -711,9 +976,88 @@ Listing of all Mercenary Tactical Operations for the character.
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -800,9 +1144,74 @@ Listing of all Skyhooks that currently or will shortly be raidable.
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -917,9 +1326,74 @@ List all active player alliances
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -972,9 +1446,88 @@ Public information about an alliance
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the alliance",
+    "in": "path",
+    "name": "alliance_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        99000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -1077,9 +1630,88 @@ List all current member corporations of an alliance
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the alliance",
+    "in": "path",
+    "name": "alliance_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        99000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -1132,9 +1764,88 @@ Get the icon urls for a alliance This route expires daily at 11:05
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the alliance",
+    "in": "path",
+    "name": "alliance_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        99000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -1192,9 +1903,98 @@ Return a list of the characters assets
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -1387,9 +2187,98 @@ Return a list of the corporation assets
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -1620,7 +2509,86 @@ Return locations for a set of item ids, which you can get from character assets 
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
+
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
 
 ```json
 {
@@ -1728,7 +2696,86 @@ Return names for a set of item ids, which you can get from character assets endp
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
+
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
 
 ```json
 {
@@ -1817,7 +2864,86 @@ Return locations for a set of item ids, which you can get from corporation asset
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
+
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
 
 ```json
 {
@@ -1928,7 +3054,86 @@ Return names for a set of item ids, which you can get from corporation assets en
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
+
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
 
 ```json
 {
@@ -2023,9 +3228,97 @@ Get 50 event summaries from the calendar. If no from_event ID is given, the reso
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "from_event",
+    "schema": {
+      "description": "The event ID to retrieve events from",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -2110,9 +3403,98 @@ Get all the information for a specific event
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "path",
+    "name": "event_id",
+    "required": true,
+    "schema": {
+      "description": "The id of the event requested",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -2224,9 +3606,98 @@ Get all invited attendees for a given event
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "path",
+    "name": "event_id",
+    "required": true,
+    "schema": {
+      "description": "The id of the event requested",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -2300,7 +3771,96 @@ Set your response status to an event
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
+
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "path",
+    "name": "event_id",
+    "required": true,
+    "schema": {
+      "description": "The ID of the event requested",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
 
 ```json
 {
@@ -2377,9 +3937,88 @@ Return a list of agents research information for a character. The formula for fi
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -2465,9 +4104,98 @@ Return a list of blueprints the character owns
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -2651,9 +4379,88 @@ Get a list of all the corporations a character has been a member of
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -2728,9 +4535,88 @@ Return a character's jump activation and fatigue information
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -2800,9 +4686,88 @@ Return a list of medals the character has
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -2932,9 +4897,88 @@ Return character notifications
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -3286,9 +5330,88 @@ Return notifications about having been added to someone's contact list
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -3373,9 +5496,88 @@ Get portrait urls for a character This route expires daily at 11:05
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -3441,9 +5643,88 @@ Returns a character's corporation roles
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -3754,9 +6035,88 @@ Return character standings from agents, NPC corporations, and factions
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -3835,9 +6195,88 @@ Returns a character's titles
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -3902,9 +6341,88 @@ Public information about a character
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -4056,7 +6574,72 @@ Bulk lookup of character IDs to corporation, alliance and faction
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
+
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
 
 ```json
 {
@@ -4154,7 +6737,86 @@ Takes a source character ID in the url and a set of target character ID's in the
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
+
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
 
 ```json
 {
@@ -4225,9 +6887,88 @@ A list of the character's clones
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -4350,9 +7091,88 @@ Return implants on the active clone of a character
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -4412,9 +7232,103 @@ Bulk delete contacts
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "contact_ids",
+    "required": true,
+    "schema": {
+      "description": "A list of contacts to delete",
+      "items": {
+        "format": "int64",
+        "type": "integer"
+      },
+      "maxItems": 20,
+      "minItems": 1,
+      "type": "array"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -4463,9 +7377,98 @@ Return contacts of an alliance
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the alliance",
+    "in": "path",
+    "name": "alliance_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        99000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -4554,9 +7557,88 @@ Return custom labels for an alliance's contacts
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the alliance",
+    "in": "path",
+    "name": "alliance_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        99000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -4626,9 +7708,98 @@ Return contacts of a character
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -4725,9 +7896,88 @@ Return custom labels for a character's contacts
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -4797,9 +8047,98 @@ Return contacts of a corporation
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -4892,9 +8231,88 @@ Return custom labels for a corporation's contacts
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -4966,7 +8384,118 @@ Bulk add contacts with same settings
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
+
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "label_ids",
+    "schema": {
+      "description": "Add custom labels to the new contact",
+      "items": {
+        "format": "int64",
+        "type": "integer"
+      },
+      "maxItems": 63,
+      "type": "array"
+    }
+  },
+  {
+    "in": "query",
+    "name": "standing",
+    "required": true,
+    "schema": {
+      "description": "Standing for the contact",
+      "format": "double",
+      "type": "number"
+    }
+  },
+  {
+    "in": "query",
+    "name": "watched",
+    "schema": {
+      "default": false,
+      "description": "Whether the contact should be watched, note this is only effective on characters",
+      "type": "boolean"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
 
 ```json
 {
@@ -5037,7 +8566,118 @@ Bulk edit contacts with same settings
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
+
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "label_ids",
+    "schema": {
+      "description": "Add custom labels to the contact",
+      "items": {
+        "format": "int64",
+        "type": "integer"
+      },
+      "maxItems": 63,
+      "type": "array"
+    }
+  },
+  {
+    "in": "query",
+    "name": "standing",
+    "required": true,
+    "schema": {
+      "description": "Standing for the contact",
+      "format": "double",
+      "type": "number"
+    }
+  },
+  {
+    "in": "query",
+    "name": "watched",
+    "schema": {
+      "default": false,
+      "description": "Whether the contact should be watched, note this is only effective on characters",
+      "type": "boolean"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
 
 ```json
 {
@@ -5108,9 +8748,98 @@ Returns contracts available to a character, only if the character is issuer, acc
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -5311,9 +9040,98 @@ Lists bids on a particular auction contract
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "path",
+    "name": "contract_id",
+    "required": true,
+    "schema": {
+      "description": "ID of a contract",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -5398,9 +9216,98 @@ Lists items of a particular contract
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "path",
+    "name": "contract_id",
+    "required": true,
+    "schema": {
+      "description": "ID of a contract",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -5493,9 +9400,94 @@ Lists bids on a public auction contract
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "contract_id",
+    "required": true,
+    "schema": {
+      "description": "ID of a contract",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -5569,9 +9561,94 @@ Lists items of a public contract
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "contract_id",
+    "required": true,
+    "schema": {
+      "description": "ID of a contract",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -5673,9 +9750,94 @@ Returns a paginated list of all public contracts in the given region
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "in": "path",
+    "name": "region_id",
+    "required": true,
+    "schema": {
+      "description": "An EVE region id",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -5820,9 +9982,98 @@ Returns contracts available to a corporation, only if the corporation is issuer,
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -6024,9 +10275,108 @@ Lists bids on a particular auction contract
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "contract_id",
+    "required": true,
+    "schema": {
+      "description": "ID of a contract",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -6111,9 +10461,98 @@ Lists items of a particular contract
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "contract_id",
+    "required": true,
+    "schema": {
+      "description": "ID of a contract",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -6207,9 +10646,88 @@ Public information about a corporation
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -6435,9 +10953,88 @@ Get a list of all the alliances a corporation has been a member of
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -6512,9 +11109,98 @@ Returns a list of blueprints the corporation owns
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -6751,9 +11437,98 @@ Returns logs recorded in the past seven days from all audit log secure container
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -7018,9 +11793,88 @@ Return corporation hangar and wallet division names, only show if a division is 
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -7110,9 +11964,88 @@ Return a corporation's facilities
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -7190,9 +12123,88 @@ Get the icon urls for a corporation
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -7252,9 +12264,98 @@ Returns a corporation's medals
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -7339,9 +12440,98 @@ Returns medals issued by a corporation
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -7438,9 +12628,88 @@ Return the current member list of a corporation, the token's character need to b
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -7498,9 +12767,88 @@ Return a corporation's member limit, not including CEO himself
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -7557,9 +12905,88 @@ Returns a corporation's members' titles
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -7637,9 +13064,88 @@ Returns additional information about a corporation's members which helps trackin
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -7731,9 +13237,88 @@ Return the roles of all members if the character has the personnel manager role 
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -8311,9 +13896,98 @@ Return how roles have changed for a coporation's members, up to a month
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -8538,9 +14212,98 @@ Return the current shareholders of a corporation.
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -8623,9 +14386,98 @@ Return corporation standings from agents, NPC corporations, and factions
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -8705,9 +14557,98 @@ Returns list of corporation starbases (POSes)
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -8820,9 +14761,108 @@ Returns various settings and fuels of a starbase (POS)
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "path",
+    "name": "starbase_id",
+    "required": true,
+    "schema": {
+      "description": "An EVE starbase (POS) ID",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "in": "query",
+    "name": "system_id",
+    "required": true,
+    "schema": {
+      "description": "The solar system this starbase (POS) is located in,",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -9002,9 +15042,98 @@ Get a list of corporation structures. This route's version includes the changes 
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -9180,9 +15309,88 @@ Returns a corporation's titles
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -9761,9 +15969,74 @@ Get a list of npc corporations This route expires daily at 11:05
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -9818,9 +16091,116 @@ Show your contribution to a corporation project.
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The ID of the project",
+    "in": "path",
+    "name": "project_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        "3868eaed-8278-4cb7-9709-7d7de9c20dc7"
+      ],
+      "format": "uuid",
+      "type": "string",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -9899,9 +16279,136 @@ Listing of all contributors to a corporation project.
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "Return records from after this cursor (mutual exclusive with 'before'). '0' to start from the beginning.",
+    "explode": false,
+    "in": "query",
+    "name": "after",
+    "schema": {
+      "description": "Return records from after this cursor (mutual exclusive with 'before'). '0' to start from the beginning.",
+      "type": "string"
+    }
+  },
+  {
+    "description": "Return records from before this cursor (mutual exclusive with 'after'). '0' to start from the end.",
+    "explode": false,
+    "in": "query",
+    "name": "before",
+    "schema": {
+      "description": "Return records from before this cursor (mutual exclusive with 'after'). '0' to start from the end.",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The amount of records to retrieve per request.",
+    "explode": false,
+    "in": "query",
+    "name": "limit",
+    "schema": {
+      "default": 10,
+      "description": "The amount of records to retrieve per request.",
+      "format": "int64",
+      "maximum": 100,
+      "minimum": 10,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The ID of the project",
+    "in": "path",
+    "name": "project_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        "3868eaed-8278-4cb7-9709-7d7de9c20dc7"
+      ],
+      "format": "uuid",
+      "type": "string",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -10014,9 +16521,102 @@ Get the details of a corporation project.
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The ID of the project",
+    "in": "path",
+    "name": "project_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        "3868eaed-8278-4cb7-9709-7d7de9c20dc7"
+      ],
+      "format": "uuid",
+      "type": "string",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -12047,9 +18647,141 @@ Listing of all (active) corporation projects.
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "Return records from after this cursor (mutual exclusive with 'before'). '0' to start from the beginning.",
+    "explode": false,
+    "in": "query",
+    "name": "after",
+    "schema": {
+      "description": "Return records from after this cursor (mutual exclusive with 'before'). '0' to start from the beginning.",
+      "type": "string"
+    }
+  },
+  {
+    "description": "Return records from before this cursor (mutual exclusive with 'after'). '0' to start from the end.",
+    "explode": false,
+    "in": "query",
+    "name": "before",
+    "schema": {
+      "description": "Return records from before this cursor (mutual exclusive with 'after'). '0' to start from the end.",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The amount of records to retrieve per request.",
+    "explode": false,
+    "in": "query",
+    "name": "limit",
+    "schema": {
+      "default": 10,
+      "description": "The amount of records to retrieve per request.",
+      "format": "int64",
+      "maximum": 100,
+      "minimum": 10,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "Filter by state",
+    "explode": false,
+    "in": "query",
+    "name": "state",
+    "schema": {
+      "default": "Active",
+      "description": "Filter by state",
+      "enum": [
+        "All",
+        "Active"
+      ],
+      "type": "string",
+      "x-enum-descriptions": [
+        "All states",
+        "Active projects only"
+      ]
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -12234,9 +18966,74 @@ Get a list of dogma attribute ids This route expires daily at 11:05
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -12287,9 +19084,84 @@ Get information on a dogma attribute This route expires daily at 11:05
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "attribute_id",
+    "required": true,
+    "schema": {
+      "description": "A dogma attribute ID",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -12376,9 +19248,92 @@ Returns info about a dynamic item resulting from mutation with a mutaplasmid. Th
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "item_id",
+    "required": true,
+    "schema": {
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "in": "path",
+    "name": "type_id",
+    "required": true,
+    "schema": {
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -12489,9 +19444,74 @@ Get a list of dogma effect ids This route expires daily at 11:05
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -12542,9 +19562,84 @@ Get information on a dogma effect This route expires daily at 11:05
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "effect_id",
+    "required": true,
+    "schema": {
+      "description": "A dogma effect ID",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -12702,9 +19797,88 @@ Statistical overview of a character involved in faction warfare This route expir
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -12834,9 +20008,88 @@ Statistics about a corporation involved in faction warfare This route expires da
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -12960,9 +20213,74 @@ Top 4 leaderboard of factions for kills and victory points separated by total, l
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -13155,9 +20473,74 @@ Top 100 leaderboard of pilots for kills and victory points separated by total, l
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -13350,9 +20733,74 @@ Top 10 leaderboard of corporations for kills and victory points separated by tot
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -13545,9 +20993,74 @@ Statistical overviews of factions involved in faction warfare This route expires
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -13676,9 +21189,74 @@ An overview of the current ownership of faction warfare solar systems
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -13772,9 +21350,74 @@ Data about which NPC factions are at war This route expires daily at 11:05
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -13848,9 +21491,98 @@ Delete a fitting from a character
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "path",
+    "name": "fitting_id",
+    "required": true,
+    "schema": {
+      "description": "ID for a fitting of this character",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -13898,9 +21630,88 @@ Return fittings of a character
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -14049,7 +21860,86 @@ Save a new fitting for a character
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
+
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
 
 ```json
 {
@@ -14207,9 +22097,94 @@ Kick a fleet member
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "fleet_id",
+    "required": true,
+    "schema": {
+      "description": "ID for a fleet",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "in": "path",
+    "name": "member_id",
+    "required": true,
+    "schema": {
+      "description": "The character ID of a member in this fleet",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -14258,9 +22233,94 @@ Delete a fleet squad, only empty squads can be deleted
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "fleet_id",
+    "required": true,
+    "schema": {
+      "description": "ID for a fleet",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "in": "path",
+    "name": "squad_id",
+    "required": true,
+    "schema": {
+      "description": "The squad to delete",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -14309,9 +22369,94 @@ Delete a fleet wing, only empty wings can be deleted. The wing may contain squad
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "fleet_id",
+    "required": true,
+    "schema": {
+      "description": "ID for a fleet",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "in": "path",
+    "name": "wing_id",
+    "required": true,
+    "schema": {
+      "description": "The wing to delete",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -14359,9 +22504,88 @@ Return the fleet ID the character is in, if any.
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -14453,9 +22677,84 @@ Return details about a fleet
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "fleet_id",
+    "required": true,
+    "schema": {
+      "description": "ID for a fleet",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -14532,9 +22831,84 @@ Return information about fleet members
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "fleet_id",
+    "required": true,
+    "schema": {
+      "description": "ID for a fleet",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -14653,9 +23027,84 @@ Return information about wings in a fleet
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "fleet_id",
+    "required": true,
+    "schema": {
+      "description": "ID for a fleet",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -14745,7 +23194,82 @@ Invite a character into the fleet. If a character has a CSPA charge set it is no
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
+
+```json
+[
+  {
+    "in": "path",
+    "name": "fleet_id",
+    "required": true,
+    "schema": {
+      "description": "ID for a fleet",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
 
 ```json
 {
@@ -14835,9 +23359,84 @@ Create a new wing in a fleet
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "fleet_id",
+    "required": true,
+    "schema": {
+      "description": "ID for a fleet",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -14886,9 +23485,94 @@ Create a new squad in a fleet
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "fleet_id",
+    "required": true,
+    "schema": {
+      "description": "ID for a fleet",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "in": "path",
+    "name": "wing_id",
+    "required": true,
+    "schema": {
+      "description": "The wing_id to create squad in",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -14936,7 +23620,82 @@ Update settings about a fleet
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
+
+```json
+[
+  {
+    "in": "path",
+    "name": "fleet_id",
+    "required": true,
+    "schema": {
+      "description": "ID for a fleet",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
 
 ```json
 {
@@ -15008,7 +23767,92 @@ Move a fleet member around
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
+
+```json
+[
+  {
+    "in": "path",
+    "name": "fleet_id",
+    "required": true,
+    "schema": {
+      "description": "ID for a fleet",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "in": "path",
+    "name": "member_id",
+    "required": true,
+    "schema": {
+      "description": "The character ID of a member in this fleet",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
 
 ```json
 {
@@ -15093,7 +23937,92 @@ Rename a fleet squad
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
+
+```json
+[
+  {
+    "in": "path",
+    "name": "fleet_id",
+    "required": true,
+    "schema": {
+      "description": "ID for a fleet",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "in": "path",
+    "name": "squad_id",
+    "required": true,
+    "schema": {
+      "description": "The squad to rename",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
 
 ```json
 {
@@ -15164,7 +24093,92 @@ Rename a fleet wing
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
+
+```json
+[
+  {
+    "in": "path",
+    "name": "fleet_id",
+    "required": true,
+    "schema": {
+      "description": "ID for a fleet",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "in": "path",
+    "name": "wing_id",
+    "required": true,
+    "schema": {
+      "description": "The wing to rename",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
 
 ```json
 {
@@ -15236,9 +24250,88 @@ Listing of all freelance jobs you are actively participating in.
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -15410,9 +24503,102 @@ Show your participation in a freelance job.
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The ID of the freelance job",
+    "in": "path",
+    "name": "job_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        "3868eaed-8278-4cb7-9709-7d7de9c20dc7"
+      ],
+      "format": "uuid",
+      "type": "string",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -15511,9 +24697,122 @@ Listing of all freelance jobs for your corporation.
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "Return records from after this cursor (mutual exclusive with 'before'). '0' to start from the beginning.",
+    "explode": false,
+    "in": "query",
+    "name": "after",
+    "schema": {
+      "description": "Return records from after this cursor (mutual exclusive with 'before'). '0' to start from the beginning.",
+      "type": "string"
+    }
+  },
+  {
+    "description": "Return records from before this cursor (mutual exclusive with 'after'). '0' to start from the end.",
+    "explode": false,
+    "in": "query",
+    "name": "before",
+    "schema": {
+      "description": "Return records from before this cursor (mutual exclusive with 'after'). '0' to start from the end.",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The amount of records to retrieve per request.",
+    "explode": false,
+    "in": "query",
+    "name": "limit",
+    "schema": {
+      "default": 10,
+      "description": "The amount of records to retrieve per request.",
+      "format": "int64",
+      "maximum": 100,
+      "minimum": 10,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -15704,9 +25003,136 @@ Listing of all participants of a freelance job.
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "Return records from after this cursor (mutual exclusive with 'before'). '0' to start from the beginning.",
+    "explode": false,
+    "in": "query",
+    "name": "after",
+    "schema": {
+      "description": "Return records from after this cursor (mutual exclusive with 'before'). '0' to start from the beginning.",
+      "type": "string"
+    }
+  },
+  {
+    "description": "Return records from before this cursor (mutual exclusive with 'after'). '0' to start from the end.",
+    "explode": false,
+    "in": "query",
+    "name": "before",
+    "schema": {
+      "description": "Return records from before this cursor (mutual exclusive with 'after'). '0' to start from the end.",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The amount of records to retrieve per request.",
+    "explode": false,
+    "in": "query",
+    "name": "limit",
+    "schema": {
+      "default": 10,
+      "description": "The amount of records to retrieve per request.",
+      "format": "int64",
+      "maximum": 100,
+      "minimum": 10,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The ID of the job",
+    "in": "path",
+    "name": "job_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        "3868eaed-8278-4cb7-9709-7d7de9c20dc7"
+      ],
+      "format": "uuid",
+      "type": "string",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -15838,9 +25264,88 @@ Get the details of a freelance job. Jobs without an ACL (public jobs) does not r
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the freelance job",
+    "in": "path",
+    "name": "job_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        "3868eaed-8278-4cb7-9709-7d7de9c20dc7"
+      ],
+      "format": "uuid",
+      "type": "string",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -16459,9 +25964,122 @@ Listing of all public freelance jobs.
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "Return records from after this cursor (mutual exclusive with 'before'). '0' to start from the beginning.",
+    "explode": false,
+    "in": "query",
+    "name": "after",
+    "schema": {
+      "description": "Return records from after this cursor (mutual exclusive with 'before'). '0' to start from the beginning.",
+      "type": "string"
+    }
+  },
+  {
+    "description": "Return records from before this cursor (mutual exclusive with 'after'). '0' to start from the end.",
+    "explode": false,
+    "in": "query",
+    "name": "before",
+    "schema": {
+      "description": "Return records from before this cursor (mutual exclusive with 'after'). '0' to start from the end.",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The amount of records to retrieve per request.",
+    "explode": false,
+    "in": "query",
+    "name": "limit",
+    "schema": {
+      "default": 10,
+      "description": "The amount of records to retrieve per request.",
+      "format": "int64",
+      "maximum": 100,
+      "minimum": 10,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "Filter on corporation ID",
+    "explode": false,
+    "in": "query",
+    "name": "corporation_id",
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -16646,9 +26264,74 @@ Return a list of current incursions
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -16765,9 +26448,96 @@ List industry jobs placed by a character
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "include_completed",
+    "schema": {
+      "description": "Whether to retrieve completed character industry jobs. Only includes jobs from the past 90 days",
+      "type": "boolean"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -16956,9 +26726,98 @@ Paginated record of all mining done by a character for the past 30 days
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -17039,9 +26898,98 @@ Extraction timers for all moon chunks being extracted by refineries belonging to
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -17133,9 +27081,98 @@ Paginated list of all entities capable of observing and recording mining for a c
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -17219,9 +27256,108 @@ Paginated record of all mining seen by an observer
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "path",
+    "name": "observer_id",
+    "required": true,
+    "schema": {
+      "description": "A mining observer id",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -17313,9 +27449,107 @@ List industry jobs run by a corporation
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "include_completed",
+    "schema": {
+      "default": false,
+      "description": "Whether to retrieve completed corporation industry jobs. Only includes jobs from the past 90 days",
+      "type": "boolean"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -17505,9 +27739,74 @@ Return a list of industry facilities
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -17601,9 +27900,74 @@ Return cost indices for solar systems
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -17702,9 +28066,74 @@ Return available insurance levels for all ship types
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -17800,9 +28229,98 @@ Return a list of a character's kills and losses going back 90 days
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -17874,9 +28392,98 @@ Get a list of a corporation's kills and losses going back 90 days
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -17951,9 +28558,93 @@ Return a single killmail from its ID and hash
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "killmail_hash",
+    "required": true,
+    "schema": {
+      "description": "The killmail hash for verification",
+      "type": "string"
+    }
+  },
+  {
+    "in": "path",
+    "name": "killmail_id",
+    "required": true,
+    "schema": {
+      "description": "The killmail ID to be queried",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -18224,9 +28915,88 @@ Information about the characters current location. Returns the current solar sys
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -18296,9 +29066,88 @@ Checks if the character is currently online
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -18375,9 +29224,88 @@ Get the current ship type, name and id
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -18451,9 +29379,88 @@ Return a list of loyalty points for all corporations the character has worked fo
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -18523,9 +29530,88 @@ Return a list of offers from a specific corporation's loyalty store This route e
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -18634,9 +29720,98 @@ Delete a mail label
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "path",
+    "name": "label_id",
+    "required": true,
+    "schema": {
+      "description": "An EVE label id",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -18685,9 +29860,98 @@ Delete a mail
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "path",
+    "name": "mail_id",
+    "required": true,
+    "schema": {
+      "description": "An EVE mail ID",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -18737,9 +30001,112 @@ Return the 50 most recent mail headers belonging to the character that match the
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "labels",
+    "schema": {
+      "description": "Fetch only mails that match one or more of the given labels",
+      "items": {
+        "format": "int64",
+        "type": "integer"
+      },
+      "maxItems": 25,
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  {
+    "in": "query",
+    "name": "last_mail_id",
+    "schema": {
+      "description": "List only mail with an ID lower than the given ID, if present",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -18855,9 +30222,88 @@ Return a list of the users mail labels, unread counts for each label and a total
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -18960,9 +30406,88 @@ Return all mailing lists that the character is subscribed to
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -19033,9 +30558,98 @@ Return the contents of an EVE mail
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "path",
+    "name": "mail_id",
+    "required": true,
+    "schema": {
+      "description": "An EVE mail ID",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -19150,7 +30764,86 @@ Create and send a new mail
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
+
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
 
 ```json
 {
@@ -19259,7 +30952,86 @@ Create a mail label
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
+
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
 
 ```json
 {
@@ -19356,7 +31128,96 @@ Update metadata about a mail
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
+
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "path",
+    "name": "mail_id",
+    "required": true,
+    "schema": {
+      "description": "An EVE mail ID",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
 
 ```json
 {
@@ -19436,9 +31297,88 @@ List open market orders placed by a character
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -19586,9 +31526,98 @@ List cancelled and expired market orders placed by a character up to 90 days in 
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -19745,9 +31774,98 @@ List open market orders placed on behalf of a corporation
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -19906,9 +32024,98 @@ List cancelled and expired market orders placed on behalf of a corporation up to
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -20073,9 +32280,74 @@ Get a list of item groups This route expires daily at 11:05
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -20126,9 +32398,84 @@ Get information on an item group This route expires daily at 11:05
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "market_group_id",
+    "required": true,
+    "schema": {
+      "description": "An Eve item group ID",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -20204,9 +32551,74 @@ Return a list of prices
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -20275,9 +32687,94 @@ Return a list of historical market statistics for the specified type in a region
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "region_id",
+    "required": true,
+    "schema": {
+      "description": "Return statistics in this region",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "in": "query",
+    "name": "type_id",
+    "required": true,
+    "schema": {
+      "description": "Return statistics for this type",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -20367,9 +32864,118 @@ Return a list of orders in a region
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "query",
+    "name": "order_type",
+    "required": true,
+    "schema": {
+      "default": "all",
+      "description": "Filter buy/sell orders, return all orders by default. If you query without type_id, we always return both buy and sell orders",
+      "enum": [
+        "buy",
+        "sell",
+        "all"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "in": "path",
+    "name": "region_id",
+    "required": true,
+    "schema": {
+      "description": "Return orders in this region",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "in": "query",
+    "name": "type_id",
+    "schema": {
+      "description": "Return orders only for this type",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -20503,9 +33109,94 @@ Return a list of type IDs that have active orders in the region, for efficient m
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "in": "path",
+    "name": "region_id",
+    "required": true,
+    "schema": {
+      "description": "Return statistics in this region",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -20558,9 +33249,94 @@ Return all orders in a structure
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "in": "path",
+    "name": "structure_id",
+    "required": true,
+    "schema": {
+      "description": "Return orders in this structure",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -20683,9 +33459,74 @@ Get the changelog of this API.
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -20822,9 +33663,74 @@ Get a list of compatibility dates.
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -20894,9 +33800,74 @@ Get the name ESI is currently going by, plus the full and glorious history of ev
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -20989,9 +33960,74 @@ Get the health status of each API route.
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -21103,9 +34139,88 @@ Returns a list of all planetary colonies owned by a character.
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -21210,9 +34325,98 @@ Returns full details on the layout of a single planetary colony, including links
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "path",
+    "name": "planet_id",
+    "required": true,
+    "schema": {
+      "description": "Planet id of the target planet",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -21475,9 +34679,98 @@ List customs offices owned by a corporation
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -21618,9 +34911,84 @@ Get information on a planetary factory schematic
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "schematic_id",
+    "required": true,
+    "schema": {
+      "description": "A PI schematic ID",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -21685,7 +35053,100 @@ Calculate the systems between the given origin and destination.
 | X-Tenant              | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since     | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
+
+```json
+[
+  {
+    "description": "Origin system",
+    "in": "path",
+    "name": "origin_system_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        30000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "Destination system",
+    "in": "path",
+    "name": "destination_system_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        30000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
 
 ```json
 {
@@ -21842,9 +35303,135 @@ Search for entities that match a given sub-string.
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "query",
+    "name": "categories",
+    "required": true,
+    "schema": {
+      "description": "Type of entities to search for",
+      "items": {
+        "enum": [
+          "agent",
+          "alliance",
+          "character",
+          "constellation",
+          "corporation",
+          "faction",
+          "inventory_type",
+          "region",
+          "solar_system",
+          "station",
+          "structure"
+        ],
+        "type": "string"
+      },
+      "maxItems": 11,
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "search",
+    "required": true,
+    "schema": {
+      "description": "The string to search on",
+      "minLength": 3,
+      "type": "string"
+    }
+  },
+  {
+    "in": "query",
+    "name": "strict",
+    "schema": {
+      "default": false,
+      "description": "Whether the search should be a strict match",
+      "type": "boolean"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -21984,9 +35571,88 @@ Return attributes of a character
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -22083,9 +35749,88 @@ List the configured skill queue for the given character. Entries that have their
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -22192,9 +35937,88 @@ List all trained skills for the given character. Skills returned by this route c
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -22300,9 +36124,74 @@ Shows sovereignty data for campaigns.
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -22439,9 +36328,74 @@ Listing of sovereignty details for all K-space systems in New Eden.
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -22693,9 +36647,74 @@ EVE Server status
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -22775,9 +36794,102 @@ Get the details of a Mercenary Den.
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the Mercenary Den",
+    "in": "path",
+    "name": "mercenary_den_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        1000000000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -23019,9 +37131,88 @@ Listing of all Mercenary Dens.
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -23110,9 +37301,102 @@ Get the details of a Skyhook.
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the Skyhook",
+    "in": "path",
+    "name": "skyhook_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        1000000000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -23313,9 +37597,88 @@ Listing of all Skyhooks.
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -23407,9 +37770,102 @@ Get the details of a Sovereignty Hub.
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the Sovereignty Hub",
+    "in": "path",
+    "name": "sovereignty_hub_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        1000000000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -23857,9 +38313,88 @@ Listing of all Sovereignty Hubs.
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -23948,9 +38483,74 @@ Get all character ancestries This route expires daily at 11:05
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -24030,9 +38630,83 @@ Get information on an asteroid belt This route expires daily at 11:05
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "asteroid_belt_id",
+    "required": true,
+    "schema": {
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -24115,9 +38789,74 @@ Get a list of bloodlines This route expires daily at 11:05
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -24223,9 +38962,74 @@ Get a list of item categories This route expires daily at 11:05
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -24276,9 +39080,84 @@ Get information of an item category This route expires daily at 11:05
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "category_id",
+    "required": true,
+    "schema": {
+      "description": "An Eve item category ID",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -24350,9 +39229,74 @@ Get a list of constellations This route expires daily at 11:05
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -24403,9 +39347,83 @@ Get information on a constellation This route expires daily at 11:05
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "constellation_id",
+    "required": true,
+    "schema": {
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -24502,9 +39520,74 @@ Get a list of factions This route expires daily at 11:05
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -24601,9 +39684,74 @@ Get a list of graphics This route expires daily at 11:05
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -24654,9 +39802,83 @@ Get information on a graphic This route expires daily at 11:05
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "graphic_id",
+    "required": true,
+    "schema": {
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -24733,9 +39955,84 @@ Get a list of item groups This route expires daily at 11:05
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -24786,9 +40083,84 @@ Get information on an item group This route expires daily at 11:05
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "group_id",
+    "required": true,
+    "schema": {
+      "description": "An Eve item group ID",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -24866,9 +40238,83 @@ Get information on a moon This route expires daily at 11:05
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "moon_id",
+    "required": true,
+    "schema": {
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -24957,9 +40403,83 @@ Get information on a planet This route expires daily at 11:05
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "planet_id",
+    "required": true,
+    "schema": {
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -25052,9 +40572,74 @@ Get a list of character races This route expires daily at 11:05
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -25126,9 +40711,74 @@ Get a list of regions This route expires daily at 11:05
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -25179,9 +40829,83 @@ Get information on a region This route expires daily at 11:05
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "region_id",
+    "required": true,
+    "schema": {
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -25253,9 +40977,83 @@ Get information on a stargate This route expires daily at 11:05
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "stargate_id",
+    "required": true,
+    "schema": {
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -25369,9 +41167,83 @@ Get information on a star This route expires daily at 11:05
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "star_id",
+    "required": true,
+    "schema": {
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -25552,9 +41424,83 @@ Get information on a station This route expires daily at 11:05
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "station_id",
+    "required": true,
+    "schema": {
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -25714,9 +41660,86 @@ List all public structures
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "query",
+    "name": "filter",
+    "schema": {
+      "description": "Only list public structures that have this service online",
+      "enum": [
+        "market",
+        "manufacturing_basic"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -25769,9 +41792,84 @@ Returns information on requested structure if you are on the ACL. Otherwise, ret
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "structure_id",
+    "required": true,
+    "schema": {
+      "description": "An Eve structure ID",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -25865,9 +41963,74 @@ Get the number of jumps in solar systems within the last hour ending at the time
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -25931,9 +42094,74 @@ Get the number of ship, pod and NPC kills per solar system within the last hour 
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -26010,9 +42238,74 @@ Get a list of solar systems This route expires daily at 11:05
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -26063,9 +42356,83 @@ Get information on a solar system. This route expires daily at 11:05
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "system_id",
+    "required": true,
+    "schema": {
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -26214,9 +42581,84 @@ Get a list of type ids This route expires daily at 11:05
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -26267,9 +42709,84 @@ Get information on a type This route expires daily at 11:05
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "type_id",
+    "required": true,
+    "schema": {
+      "description": "An Eve item type ID",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -26419,7 +42936,72 @@ Resolve a set of names to IDs in the following categories: agents, alliances, ch
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
+
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
 
 ```json
 {
@@ -26649,7 +43231,72 @@ Resolve a set of IDs to names and categories. Supported ID's for resolving are: 
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
+
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
 
 ```json
 {
@@ -26752,9 +43399,104 @@ Set a solar system as autopilot waypoint
 | X-Tenant              | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since     | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "query",
+    "name": "add_to_beginning",
+    "required": true,
+    "schema": {
+      "default": false,
+      "description": "Whether this solar system should be added to the beginning of all waypoints",
+      "type": "boolean"
+    }
+  },
+  {
+    "in": "query",
+    "name": "clear_other_waypoints",
+    "required": true,
+    "schema": {
+      "default": false,
+      "description": "Whether clean other waypoints beforing adding this one",
+      "type": "boolean"
+    }
+  },
+  {
+    "in": "query",
+    "name": "destination_id",
+    "required": true,
+    "schema": {
+      "description": "The destination to travel to, can be solar system, station or structure's id",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -26802,9 +43544,84 @@ Open the contract window inside the client
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "query",
+    "name": "contract_id",
+    "required": true,
+    "schema": {
+      "description": "The contract to open",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -26852,9 +43669,84 @@ Open the information window for a character, corporation or alliance inside the 
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "query",
+    "name": "target_id",
+    "required": true,
+    "schema": {
+      "description": "The target to open",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -26902,9 +43794,84 @@ Open the market details window for a specific typeID inside the client
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "query",
+    "name": "type_id",
+    "required": true,
+    "schema": {
+      "description": "The item type to open in market window",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -26951,7 +43918,72 @@ Open the New Mail window, according to settings from the request if applicable
 | X-Tenant             | header | No       | string | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
+
+```json
+[
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
 
 ```json
 {
@@ -27048,9 +44080,88 @@ Returns a character's wallet balance
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -27106,9 +44217,98 @@ Retrieve the given character's wallet journal going 30 days back
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -27413,9 +44613,97 @@ Get wallet transactions of a character
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the character",
+    "in": "path",
+    "name": "character_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        90000001
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "query",
+    "name": "from_id",
+    "schema": {
+      "description": "Only show transactions happened before the one referenced by this id",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -27528,9 +44816,88 @@ Get a corporation's wallets
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -27606,9 +44973,108 @@ Retrieve the given corporation's wallet journal for the given division going 30 
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "path",
+    "name": "division",
+    "required": true,
+    "schema": {
+      "description": "Wallet key of the division to fetch journals from",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -27918,9 +45384,107 @@ Get wallet transactions of a corporation
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "description": "The ID of the corporation",
+    "in": "path",
+    "name": "corporation_id",
+    "required": true,
+    "schema": {
+      "examples": [
+        98777771
+      ],
+      "format": "int64",
+      "type": "integer",
+      "x-common-model": "true"
+    }
+  },
+  {
+    "in": "path",
+    "name": "division",
+    "required": true,
+    "schema": {
+      "description": "Wallet key of the division to fetch journals from",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "in": "query",
+    "name": "from_id",
+    "schema": {
+      "description": "Only show journal entries happened before the transaction referenced by this id",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -28036,9 +45600,83 @@ Return a list of wars
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "query",
+    "name": "max_war_id",
+    "schema": {
+      "description": "Only return wars with ID smaller than this",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -28095,9 +45733,84 @@ Return details about a war
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "path",
+    "name": "war_id",
+    "required": true,
+    "schema": {
+      "description": "ID for a war",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 
@@ -28274,9 +45987,94 @@ Return a list of kills related to a war
 | X-Tenant             | header | No       | string  | The tenant ID for the request.                                                                                         |
 | If-Modified-Since    | header | No       | string  | The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date. |
 
-#### Request Body
+#### Parameters Schema
 
-No request body.
+```json
+[
+  {
+    "in": "query",
+    "name": "page",
+    "schema": {
+      "description": "Which page of results to return.",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    }
+  },
+  {
+    "in": "path",
+    "name": "war_id",
+    "required": true,
+    "schema": {
+      "description": "A valid war ID",
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  {
+    "description": "The language to use for the response.",
+    "in": "header",
+    "name": "Accept-Language",
+    "schema": {
+      "default": "en",
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "ja",
+        "ru",
+        "zh",
+        "ko",
+        "es"
+      ],
+      "type": "string"
+    }
+  },
+  {
+    "description": "The ETag of the previous request. A 304 will be returned if this matches the current ETag.",
+    "in": "header",
+    "name": "If-None-Match",
+    "schema": {
+      "type": "string"
+    }
+  },
+  {
+    "description": "The compatibility date for the request.",
+    "in": "header",
+    "name": "X-Compatibility-Date",
+    "required": true,
+    "schema": {
+      "enum": [
+        "2026-07-21"
+      ],
+      "format": "date",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The tenant ID for the request.",
+    "example": "",
+    "in": "header",
+    "name": "X-Tenant",
+    "schema": {
+      "default": "tranquility",
+      "type": "string"
+    }
+  },
+  {
+    "description": "The date the resource was last modified. A 304 will be returned if the resource has not been modified since this date.",
+    "in": "header",
+    "name": "If-Modified-Since",
+    "schema": {
+      "type": "string"
+    }
+  }
+]
+```
+
+#### Request Body (json_payload) Schema
+
+No Request Body Schema.
 
 #### Response Schema
 

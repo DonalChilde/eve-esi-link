@@ -139,6 +139,21 @@ def _render_parameters_table(operation: SchemaOperation) -> str:
     return table.render()
 
 
+def _render_parameters_schema(
+    operation: SchemaOperation,
+    *,
+    fenced_format: FencedDataFormat,
+) -> str:
+    """Render path/query/header parameters as a fenced schema block."""
+    parameters = [
+        *operation.path_and_query_parameters,
+        *operation.header_params,
+    ]
+    if not parameters:
+        return "No Parameters Schema."
+    return _render_fenced_block(parameters, format=fenced_format)
+
+
 def _render_operation_section(
     operation: SchemaOperation,
     *,
@@ -159,6 +174,10 @@ def _render_operation_section(
         "#### Parameters",
         "",
         _render_parameters_table(operation),
+        "",
+        "#### Parameters Schema",
+        "",
+        _render_parameters_schema(operation, fenced_format=fenced_format),
         "",
         "#### Request Body (json_payload) Schema",
         "",
