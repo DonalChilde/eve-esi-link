@@ -146,6 +146,17 @@ class SchemaCacheManager:
             ),
         )
 
+    def latest_entry(self) -> SchemaCacheEntry | None:
+        """Return the latest cached schema entry by compatibility date.
+
+        Returns:
+            The latest SchemaCacheEntry or None if no entries exist.
+        """
+        entries = self.list_entries()
+        if not entries:
+            return None
+        return max(entries, key=lambda entry: entry.compatibility_date)
+
     def clear_date(self, *, compatibility_date: str) -> int:
         """Delete cached schema file(s) for one compatibility date.
 
