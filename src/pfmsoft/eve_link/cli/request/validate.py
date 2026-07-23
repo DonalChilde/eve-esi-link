@@ -11,11 +11,11 @@ from pfmsoft.eve_link.cli.helpers import (
     get_schema,
     get_stdin,
 )
+from pfmsoft.eve_link.esi_link import esi_link_factory
 from pfmsoft.eve_link.esi_request.models import EsiRequestGroupRoot
 from pfmsoft.eve_link.esi_request.validate import (
     EsiRequestValidationErrors,
 )
-from pfmsoft.eve_link.helpers.esi_link_factory import esi_link_factory
 from pfmsoft.eve_link.schema.cache import SchemaCacheManager
 from pfmsoft.eve_link.schema.helpers.schema_files import load_esi_schema_from_file
 

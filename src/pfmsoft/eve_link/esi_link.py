@@ -17,6 +17,7 @@ from pfmsoft.api_request.rate_limit import AiolimiterRateLimiterFactory
 from pfmsoft.api_request.request.models import Responses
 from pfmsoft.eve_auth_manager.sqlite.manager import SqliteAuthManager
 
+from pfmsoft.eve_link import EsiLink
 from pfmsoft.eve_link.esi_request.models import (
     EsiRequest,
     EsiRequestGroup,
@@ -31,6 +32,7 @@ from pfmsoft.eve_link.esi_request.validate import (
     validate_esi_request,
 )
 from pfmsoft.eve_link.schema.models import EsiSchema, SchemaOperation
+from pfmsoft.eve_link.settings import EsiLinkSettings
 
 logger = logging.getLogger(__name__)
 
@@ -273,4 +275,86 @@ def _make_request_from_runtime_request(
         parameters=runtime_request.query_parameters,
         cache_key=runtime_request.cache_key,
         rate_key=runtime_request.rate_limit_key,
+    )
+
+
+async def make_request(
+    request: EsiRequest, schema: EsiSchema, settings: EsiLinkSettings
+) -> EsiResponse | FailedEsiResponse:
+    """Validate, execute, and return a single ESI request response.
+
+    This function wraps the EsiLink class to provide a simple interface for executing
+    a single ESI request. It creates a temporary EsiLink instance, validates the request
+    against the provided schema, and executes it. The response is returned as either
+    an EsiResponse or a FailedEsiResponse, depending on the outcome of the request.
+
+    When used in situations where multiple requests need to be executed, consider using
+    the EsiLink class directly to avoid the overhead of creating and closing multiple
+    instances.
+
+    Args:
+        request: The ESI request to execute.
+        schema: The ESI schema for validation.
+        settings: The ESI link settings.
+
+    Returns:
+        EsiResponse if the request is successful, otherwise FailedEsiResponse.
+    """
+    request_group = EsiRequestGroup(
+        name="single_request_group",
+        description="A group containing a single ESI request.",
+        requests={request.request_id: request},
+    )
+    response_group = await make_requests(request_group, schema, settings)
+    if request.request_id in response_group.failed_responses:
+        return response_group.failed_responses[request.request_id]
+    elif request.request_id in response_group.successful_responses:
+        return response_group.successful_responses[request.request_id]
+    else:
+        raise RuntimeError(
+            f"Response for request ID {request.request_id} not found in response group."
+        )
+
+
+async def make_requests(
+    requests: EsiRequestGroup, schema: EsiSchema, settings: EsiLinkSettings
+) -> EsiResponseGroup:
+    """Validate, execute, and return a group of ESI request responses.
+
+    This function wraps the EsiLink class to provide a simple interface for executing
+    a group of ESI requests. It creates a temporary EsiLink instance, validates the
+    requests against the provided schema, and executes them. The responses are returned
+    as an EsiResponseGroup, containing both successful and failed responses.
+
+    When used in situations where multiple requests need to be executed, consider using
+    the EsiLink class directly to avoid the overhead of creating and closing multiple
+    instances.
+
+    Args:
+        requests: The group of ESI requests to execute.
+        schema: The ESI schema for validation.
+        settings: The ESI link settings.
+
+    Returns:
+        EsiResponseGroup: The group of ESI request responses.
+    """
+    async with esi_link_factory(settings) as esi_link:
+        response_group = await esi_link.make_requests(requests, schema)
+        return response_group
+
+
+def esi_link_factory(settings: EsiLinkSettings) -> EsiLink:
+    """Factory function to create an instance of EsiLink.
+
+    Args:
+        settings (EsiLinkSettings): The application settings.
+
+    Returns:
+        EsiLink: An instance of the EsiLink class.
+    """
+    return EsiLink(
+        auth_manager_db_path=settings.auth_manager_db_file,
+        web_cache_path=settings.api_request_cache_file,
+        max_rate=settings.max_rate,
+        time_period=settings.time_period,
     )
