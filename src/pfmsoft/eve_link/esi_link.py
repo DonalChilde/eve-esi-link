@@ -17,7 +17,6 @@ from pfmsoft.api_request.rate_limit import AiolimiterRateLimiterFactory
 from pfmsoft.api_request.request.models import Responses
 from pfmsoft.eve_auth_manager.sqlite.manager import SqliteAuthManager
 
-from pfmsoft.eve_link import EsiLink
 from pfmsoft.eve_link.esi_request.models import (
     EsiRequest,
     EsiRequestGroup,
