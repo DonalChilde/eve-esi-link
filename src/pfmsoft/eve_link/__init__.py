@@ -23,14 +23,16 @@ __license__ = "MIT"
 
 ###
 
-from pfmsoft.eve_link.esi_link import EsiLink
+from pfmsoft.eve_link.esi_link import EsiLink, make_request, make_requests
 from pfmsoft.eve_link.esi_request.models import (
     EsiRequest,
     EsiRequestGroup,
     EsiResponse,
     EsiResponseGroup,
+    FailedEsiResponse,
 )
 from pfmsoft.eve_link.schema.models import EsiSchema
+from pfmsoft.eve_link.settings import EsiLinkSettings, get_settings
 
 __all__ = [
     "EsiLink",
@@ -39,4 +41,9 @@ __all__ = [
     "EsiResponse",
     "EsiResponseGroup",
     "EsiSchema",
+    "make_request",
+    "make_requests",
+    "FailedEsiResponse",
+    "EsiLinkSettings",
+    "get_settings",
 ]

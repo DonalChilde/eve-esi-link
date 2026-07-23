@@ -12,6 +12,7 @@ offers the most explicit control over the fetching process.
 """
 
 import asyncio
+from os import devnull
 from pathlib import Path
 from typing import Annotated
 from uuid import uuid4
@@ -20,10 +21,10 @@ import typer
 from pfmsoft.eve_snippets import save_text_file
 from pfmsoft.eve_snippets.httpx2.http_session_factory import client_manager
 
-from pfmsoft.eve_link import EsiLink, EsiRequest
-from pfmsoft.eve_link.esi_request.models import EsiRequestGroup
+from pfmsoft.eve_link import EsiRequest, make_request
+from pfmsoft.eve_link.esi_request.models import FailedEsiResponse
 from pfmsoft.eve_link.schema.cache import SchemaCacheManager
-from pfmsoft.eve_link.settings import USER_AGENT
+from pfmsoft.eve_link.settings import USER_AGENT, EsiLinkSettings
 
 app = typer.Typer(no_args_is_help=True)
 
@@ -106,7 +107,17 @@ def main(
     ] = 1.0,
 ):
     """Fetch market orders for a given region ID from the EVE Online API and save them to a file or print to stdout."""
+    settings = EsiLinkSettings(
+        application_directory=Path(devnull),
+        logging_directory=Path(devnull),
+        auth_manager_db_file=auth_manager_db_path,
+        api_request_cache_file=web_cache_path,
+        schema_cache_directory=schema_cache_path,
+        max_rate=max_rate,
+        time_period=time_period,
+    )
     schema_manager = SchemaCacheManager(cache_directory=schema_cache_path)
+    # TODO this bit needs to be reworked after the schema cache update refactors.
     if not schema_manager.list_entries():
         typer.echo(
             f"No cached schemas found in {schema_cache_path}. Fetching the latest schema..."
@@ -139,23 +150,17 @@ def main(
         path_parameters={"region_id": region_id},
         query_parameters={"order_type": "all"},
     )
-    request_group = EsiRequestGroup(
-        requests={market_orders_request.request_id: market_orders_request}
+
+    response = asyncio.run(
+        make_request(
+            request=market_orders_request, settings=settings, schema=esi_schema
+        )
     )
-
-    async def fetch_market_orders():
-        async with EsiLink(
-            auth_manager_db_path=auth_manager_db_path,
-            web_cache_path=web_cache_path,
-            max_rate=max_rate,
-            time_period=time_period,
-        ) as esi_link:
-            market_orders = await esi_link.make_requests(
-                esi_requests=request_group, schema=esi_schema
-            )
-            return market_orders
-
-    response = asyncio.run(fetch_market_orders())
+    if isinstance(response, FailedEsiResponse):
+        typer.echo(
+            f"Failed to fetch market orders for region {region_id}: {response.failed_response.error_messages}"
+        )
+        raise typer.Exit(code=1)
     if filepath != Path("-"):
         output_path = save_text_file(
             text=response.serialize(indent=indent),
