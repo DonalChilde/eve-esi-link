@@ -23,7 +23,7 @@ from pfmsoft.eve_snippets.httpx2.http_session_factory import client_manager
 
 from pfmsoft.eve_link import EsiRequest, make_request
 from pfmsoft.eve_link.esi_request.models import FailedEsiResponse
-from pfmsoft.eve_link.schema.cache import SchemaCacheManager
+from pfmsoft.eve_link.schema.cache.schema_cache_disk import SchemaCacheManager
 from pfmsoft.eve_link.settings import USER_AGENT, EsiLinkSettings
 
 app = typer.Typer(no_args_is_help=True)

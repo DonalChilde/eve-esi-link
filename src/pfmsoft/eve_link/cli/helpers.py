@@ -8,7 +8,7 @@ from pfmsoft.api_request.settings import ApiRequestSettings
 from pfmsoft.eve_auth_manager.settings import EveAuthManagerSettings
 from rich.console import Console
 
-from pfmsoft.eve_link.schema.cache import SchemaCacheManager
+from pfmsoft.eve_link.schema.cache.schema_cache_disk import SchemaCacheManager
 from pfmsoft.eve_link.schema.models import EsiSchema
 from pfmsoft.eve_link.settings import SETTINGS_KEY, EsiLinkSettings
 

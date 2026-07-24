@@ -22,7 +22,7 @@ from pfmsoft.eve_link.esi_request.models import (
 from pfmsoft.eve_link.esi_request.validate import (
     EsiRequestValidationErrors,
 )
-from pfmsoft.eve_link.schema.cache import SchemaCacheManager
+from pfmsoft.eve_link.schema.cache.schema_cache_disk import SchemaCacheManager
 from pfmsoft.eve_link.schema.helpers.schema_files import load_esi_schema_from_file
 
 app = typer.Typer(no_args_is_help=True)
