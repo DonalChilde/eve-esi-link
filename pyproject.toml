@@ -1,6 +1,6 @@
 [project]
 name = "pfmsoft-eve-link"
-version = "0.4.2"
+version = "0.4.3"
 description = "A command line first interface to the Eve Online ESI API"
 readme = "README.md"
 authors = [{ name = "Chad Lowe", email = "pfmsoft.dev@gmail.com" }]
