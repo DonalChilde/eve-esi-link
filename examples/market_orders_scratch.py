@@ -107,6 +107,9 @@ def main(
     ] = 1.0,
 ):
     """Fetch market orders for a given region ID from the EVE Online API and save them to a file or print to stdout."""
+    # Fill in the EsiLinkSettings with the provided paths and rate limiting parameters.
+    # The application and logging directories are set to devnull since they are not used
+    # in this script.
     settings = EsiLinkSettings(
         application_directory=Path(devnull),
         logging_directory=Path(devnull),
@@ -116,34 +119,22 @@ def main(
         max_rate=max_rate,
         time_period=time_period,
     )
-    schema_manager = SchemaCacheManager(cache_directory=schema_cache_path)
-    # TODO this bit needs to be reworked after the schema cache update refactors.
-    if not schema_manager.list_entries():
-        typer.echo(
-            f"No cached schemas found in {schema_cache_path}. Fetching the latest schema..."
-        )
-        with client_manager(USER_AGENT) as session:
-            schema_manager.fetch_updates(session=session)
-        schema_entries = schema_manager.list_entries()
-        if not schema_entries:
-            typer.echo(
-                f"Failed to fetch and cache the latest schema. Please check your network connection and try again."
-            )
-            raise typer.Exit(code=1)
-        else:
-            typer.echo(
-                f"Successfully fetched and cached {len(schema_entries)} schemas in {schema_cache_path}."
-            )
 
-    latest_schema_entry = schema_manager.latest_entry()
-    if latest_schema_entry is None:
+    # Use the latest schema from the schema cache. If the cache is empty, or new schemas
+    # are available, fetch them from the ESI API and cache them.
+    schema_manager = SchemaCacheManager(cache_directory=schema_cache_path)
+    with client_manager(USER_AGENT) as session:
+        schema_manager.fetch_updates(session=session)
+    esi_schema = schema_manager.latest_schema()
+    if esi_schema is None:
         typer.echo(
-            f"Failed to find the latest cached schema in {schema_cache_path}. Please check your cache and try again."
+            f"Failed to fetch the latest schema. Please check your cache and try again."
         )
         raise typer.Exit(code=1)
-    esi_schema = schema_manager.load(
-        compatibility_date=latest_schema_entry.compatibility_date
-    )
+
+    # Define the ESI request for fetching market orders in the specified region. The
+    # request is constructed with a unique request ID, the operation ID for fetching
+    # market orders, and the necessary path and query parameters.
     market_orders_request = EsiRequest(
         request_id=uuid4(),
         operation_id="GetMarketsRegionIdOrders",
@@ -151,16 +142,28 @@ def main(
         query_parameters={"order_type": "all"},
     )
 
+    # Make the request to the ESI API using the defined request and the latest schema.
+    # This is fine for one-off requests, but for production use, you may want keep the
+    # EsiLink object around and reuse it for multiple requests, top avoid the overhead
+    # of reinitializing it for each request.
     response = asyncio.run(
         make_request(
             request=market_orders_request, settings=settings, schema=esi_schema
         )
     )
     if isinstance(response, FailedEsiResponse):
+        # Prints a failure message to the console if the request fails, including any
+        # error messages returned by the API. You could also log this error or handle
+        # it in other ways as needed. The FailedEsiResponse object contains more detailed
+        # information about the failure, which can be accessed through its attributes.
         typer.echo(
             f"Failed to fetch market orders for region {region_id}: {response.failed_response.error_messages}"
         )
         raise typer.Exit(code=1)
+
+    # If the request is successful, the response is serialized to JSON and either saved
+    # to the specified file or printed to stdout, depending on the value of the filepath
+    # argument. The --overwrite flag controls whether an existing file will be overwritten.
     if filepath != Path("-"):
         output_path = save_text_file(
             text=response.serialize(indent=indent),
@@ -171,20 +174,6 @@ def main(
         typer.echo(f"Market orders saved to {output_path}")
         raise typer.Exit()
     print(response)
-
-
-# def fetch_esi_schema() -> EsiSchema:
-#     """Fetch the latest ESI schema from the EVE Online API."""
-#     with client_manager(USER_AGENT) as session:
-#         compatibility_date = latest_schema_date()
-#         timestamped_schema = fetch_schema(
-#             session=session, schema_as_of=compatibility_date
-#         )
-#         esi_schema = EsiSchema.from_raw_schema(
-#             raw_schema=timestamped_schema.schema,
-#             timestamp=timestamped_schema.timestamp,
-#         )
-#     return esi_schema
 
 
 if __name__ == "__main__":

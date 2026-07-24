@@ -213,6 +213,17 @@ class SchemaCacheManager:
             return None
         return max(entries, key=lambda entry: entry.compatibility_date)
 
+    def latest_schema(self) -> EsiSchema | None:
+        """Return the latest cached schema by compatibility date.
+
+        Returns:
+            The latest EsiSchema or None if no entries exist.
+        """
+        latest_entry = self.latest_entry()
+        if latest_entry is None:
+            return None
+        return self.load(compatibility_date=latest_entry.compatibility_date)
+
     def clear_date(self, *, compatibility_date: str) -> int:
         """Delete cached schema file(s) for one compatibility date.
 
