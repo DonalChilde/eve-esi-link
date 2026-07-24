@@ -7,8 +7,8 @@
 # ///
 """This script fetches market orders for a given region ID from the EVE Online API and saves them to a file or prints them to stdout.
 
-This is not the most efficient way to fetch market orders via the API, but it
-offers the most explicit control over the fetching process.
+This is not the most efficient way to make repeated requests via the API, but it is fine
+for a single request, and offers an example of populating settings from environment variables.
 """
 
 import asyncio
@@ -30,7 +30,7 @@ app = typer.Typer(no_args_is_help=True)
 # This command can be run with the following command line:
 # The --active flag tells uv to use the active virtual environment, a convenience for development.
 # The flag can be removed if you are not doing active development on pfmsoft-eve-link.
-# uv run --active ./examples/market_orders_scratch.py 10000002 --filepath ./dev/tmp/scratch/market_orders.json --overwrite
+# uv run --active ./examples/market_orders_env.py 10000002 --filepath ./dev/tmp/scratch/market_orders.json --overwrite
 
 
 @app.command()
