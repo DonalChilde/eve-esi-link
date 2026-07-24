@@ -6,7 +6,7 @@ import typer
 from rich.console import Console
 
 from pfmsoft.eve_link.cli.helpers import get_eve_link_settings_from_context
-from pfmsoft.eve_link.schema.cache import SchemaCacheManager
+from pfmsoft.eve_link.schema.cache.schema_cache_disk import SchemaCacheManager
 
 app = typer.Typer(no_args_is_help=True)
 

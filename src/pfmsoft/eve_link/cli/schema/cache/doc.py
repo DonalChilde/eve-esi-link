@@ -9,7 +9,7 @@ from rich.console import Console
 from rich.markdown import Markdown
 
 from pfmsoft.eve_link.cli.helpers import get_eve_link_settings_from_context
-from pfmsoft.eve_link.schema.cache import SchemaCacheManager
+from pfmsoft.eve_link.schema.cache.schema_cache_disk import SchemaCacheManager
 from pfmsoft.eve_link.schema.schema_doc import (
     FencedDataFormat,
     generate_esi_schema_markdown_doc,

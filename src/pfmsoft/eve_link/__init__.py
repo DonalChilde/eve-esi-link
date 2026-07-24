@@ -14,21 +14,25 @@ __project_namespace__ = "pfmsoft"
 __author__ = "Chad Lowe"
 __email__ = "pfmsoft.dev@gmail.com"
 __app_name__ = "pfmsoft-eve-link"
-__description__ = "A command line first interface to the Eve Online API"
+__description__ = "A command line first interface to the Eve Online ESI API"
 __version__ = version(__app_name__)
 __release__ = __version__
 __url__ = "https://github.com/DonalChilde/pfmsoft-eve-link"
 __license__ = "MIT"
 
 
-from pfmsoft.eve_link.esi_link import EsiLink
+###
+
+from pfmsoft.eve_link.esi_link import EsiLink, make_request, make_requests
 from pfmsoft.eve_link.esi_request.models import (
     EsiRequest,
     EsiRequestGroup,
     EsiResponse,
     EsiResponseGroup,
+    FailedEsiResponse,
 )
 from pfmsoft.eve_link.schema.models import EsiSchema
+from pfmsoft.eve_link.settings import EsiLinkSettings, get_settings
 
 __all__ = [
     "EsiLink",
@@ -37,4 +41,9 @@ __all__ = [
     "EsiResponse",
     "EsiResponseGroup",
     "EsiSchema",
+    "make_request",
+    "make_requests",
+    "FailedEsiResponse",
+    "EsiLinkSettings",
+    "get_settings",
 ]

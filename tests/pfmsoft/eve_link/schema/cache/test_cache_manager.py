@@ -4,7 +4,10 @@ from pathlib import Path
 
 import pytest
 
-from pfmsoft.eve_link.schema.cache import SchemaCacheEntry, SchemaCacheManager
+from pfmsoft.eve_link.schema.cache.schema_cache_disk import (
+    SchemaCacheEntry,
+    SchemaCacheManager,
+)
 from pfmsoft.eve_link.schema.models import EsiSchema
 
 
