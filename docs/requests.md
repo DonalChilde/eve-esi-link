@@ -1,5 +1,6 @@
 ## Requests
-eve-link requests are defined internally by two python dataclasses - 
+
+eve-link requests are defined internally by two python dataclasses -
 
 ```python
 @dataclass(slots=True, kw_only=True)
@@ -14,57 +15,57 @@ class EsiRequest:
     """
 
     request_id: UUID = field(default_factory=uuid4)
-    """The unique identifier for the request. This is used to link the request to various 
+    """The unique identifier for the request. This is used to link the request to various
         objects during the request lifecycle."""
     name: str | None = None
-    """An optional name for the request. This is used for documentation purposes, 
-        and can be used to provide context for the request when viewing it in a UI or in 
+    """An optional name for the request. This is used for documentation purposes,
+        and can be used to provide context for the request when viewing it in a UI or in
         logs."""
     description: str | None = None
-    """An optional description of the request. This is used for documentation purposes, 
-        and can be used to provide context for the request when viewing it in a UI or in 
+    """An optional description of the request. This is used for documentation purposes,
+        and can be used to provide context for the request when viewing it in a UI or in
         logs."""
     operation_id: str
-    """The operation ID of the request, corresponding to the operationId in the ESI 
+    """The operation ID of the request, corresponding to the operationId in the ESI
         OpenAPI schema."""
     path_parameters: dict[str, str | int | float] = field(
         default_factory=dict[str, str | int | float]
     )
-    """The path parameters for the request, if applicable. This is used to fill in the 
+    """The path parameters for the request, if applicable. This is used to fill in the
         path parameters in the URL template."""
     query_parameters: dict[str, str | int | float] = field(
         default_factory=dict[str, str | int | float]
     )
     """The query parameters for the request, if applicable.
-    
+
     This is used to fill in the query parameters in the URL template.
-    
-    NOTE: The page parameter is handled automatically by eve-link, and should not 
-        be set manually. If it is set, it will raise a validation error. This is to help 
+
+    NOTE: The page parameter is handled automatically by eve-link, and should not
+        be set manually. If it is set, it will raise a validation error. This is to help
         normalize cache keys, which rely on predictable parameters.
     """
     header_parameters: dict[str, str] = field(default_factory=dict[str, str])
-    """The header parameters for the request, if applicable. 
-    
+    """The header parameters for the request, if applicable.
+
         Acceptable headers are:
         - Accept-Language
         - X-Tenant
         - X-Compatibility-Date
-        
+
         Do not use this to set:
-        
+
         - If-None-Match
-        - If-Modified-Since headers. 
+        - If-Modified-Since headers.
 
         Those are set at runtime during HTTP execution."""
     json_payload: Any | None = None
-    """The JSON payload of the request, if applicable. This is used for POST, PUT, and PATCH 
+    """The JSON payload of the request, if applicable. This is used for POST, PUT, and PATCH
         requests."""
     character_id: int | None = None
     """The character ID used for authorization."""
     credential_id: UUID | None = None
     """The credential ID for authorization. This is used to link the authorization
-        to the credential that was used to obtain it. This UUID is obtained from the 
+        to the credential that was used to obtain it. This UUID is obtained from the
         credential manager that provides the access token."""
 
 @dataclass(slots=True, kw_only=True)
@@ -97,7 +98,9 @@ A complete EsiRequest object might look something like this
   "json_payload": null
 }
 ```
+
 while a EsiRequestGroup looks like this
+
 ```json
 {
   "name": "THIS_IS_AN_OPTIONAL_NAME",
@@ -130,27 +133,32 @@ while a EsiRequestGroup looks like this
   }
 }
 ```
+
 Fields that are not required can be omited from the json.
 
 If you are making just one request, you can use an EsiRequest. The simplest one looks like
+
 ```json
 {
   "name": "Get Status",
   "description": "Get the server status and player count.",
-  "operation_id": "GetStatus",
+  "operation_id": "GetStatus"
 }
 ```
+
 This request has no required parameters, so only some values are needed. You could make this one even simpler, since name and description are optional:
+
 ```json
 {
-  "operation_id": "GetStatus",
+  "operation_id": "GetStatus"
 }
 ```
 
- Note, that for an EsiRequest, a request_id will be generated automatically during deserialization, and used internally. It is usually not important to the user, because there is only one request/response, and there is no need to be able to tell different requests apart.
+Note, that for an EsiRequest, a request_id will be generated automatically during deserialization, and used internally. It is usually not important to the user, because there is only one request/response, and there is no need to be able to tell different requests apart.
 
- A request that uses parameters might look like:
- ```json
+A request that uses parameters might look like:
+
+```json
 {
   "name": "Get Markets Region Id History",
   "description": "Retrieves the market history for a specific region and type.",
@@ -160,31 +168,34 @@ This request has no required parameters, so only some values are needed. You cou
   },
   "query_parameters": {
     "type_id": 34
-  },
+  }
 }
- ```
+```
 
- and one that requires authentication would look like:
- ```json
+and one that requires authentication would look like:
+
+```json
 {
-    "request_id": "6cc16cd0-11d3-4eec-890e-a0356c665806",
-    "name": "Character Attributes request",
-    "description": "Retrieve the attributes of a specific character.",
-    "operation_id": "GetCharactersCharacterIdAttributes",
-    "path_parameters": {"character_id": 93118551},
-    "query_parameters": {},
-    "header_parameters": {},
-    "character_id": 93118551,
-    "credential_id": "4dbfbc12-5238-5961-8c42-cb1ffd121851",
-    "json_payload": null
+  "request_id": "6cc16cd0-11d3-4eec-890e-a0356c665806",
+  "name": "Character Attributes request",
+  "description": "Retrieve the attributes of a specific character.",
+  "operation_id": "GetCharactersCharacterIdAttributes",
+  "path_parameters": { "character_id": 93118551 },
+  "query_parameters": {},
+  "header_parameters": {},
+  "character_id": 93118551,
+  "credential_id": "4dbfbc12-5238-5961-8c42-cb1ffd121851",
+  "json_payload": null
 }
- ```
- Note that character_id is used twice, once as a required path parameter, and once as part of the authentication request fields
+```
+
+Note that character_id is used twice, once as a required path parameter, and once as part of the authentication request fields
 
 ### EsiRequestGroup
 
- An EsiRequestGroup has one or more requests inside:
- ```json
+An EsiRequestGroup has one or more requests inside:
+
+```json
 {
   "name": "Get type information in two languages",
   "description": "Retrieve information about a specific universe type in multiple languages.",
@@ -196,7 +207,7 @@ This request has no required parameters, so only some values are needed. You cou
       "operation_id": "GetUniverseTypesTypeId",
       "path_parameters": {
         "type_id": 34
-      },
+      }
     },
     "d2eb2728-93d9-4ee0-9ba6-939acc04d9b4": {
       "request_id": "d2eb2728-93d9-4ee0-9ba6-939acc04d9b4",
@@ -208,29 +219,31 @@ This request has no required parameters, so only some values are needed. You cou
       },
       "header_parameters": {
         "accept-language": "es"
-      },
+      }
     }
   }
 }
+```
 
- ```
- Note the use of a header parameter to get a response in another language.
- The default request language is English, `en`.
+Note the use of a header parameter to get a response in another language.
+The default request language is English, `en`.
 
- Also note the presence of the UUIDs in the json. Because there is more than one request in a group, there has to be a way to tell them part - they have to have a unique name.
+Also note the presence of the UUIDs in the json. Because there is more than one request in a group, there has to be a way to tell them part - they have to have a unique name.
 
- Uuids can be generated on the command line, and then copy/pasted into the json.
+Uuids can be generated on the command line, and then copy/pasted into the json.
 
- ```bash
+```bash
 eve-link uuid --qty 5
- ```
- produces
- ```bash
+```
+
+produces
+
+```bash
 [
-    '2aa2edf9-6443-4bfd-824c-938d98496894',
-    '6c2e869e-04d7-43bc-8957-4e063ae4e169',
-    '01b459e1-42ad-4e5d-9bb8-453b64641f4d',
-    '5cf162f9-f465-4570-aee3-a88bc39eb5b9',
-    'ed94d33f-7051-49f3-b90d-f7bde1eb064a'
+   '2aa2edf9-6443-4bfd-824c-938d98496894',
+   '6c2e869e-04d7-43bc-8957-4e063ae4e169',
+   '01b459e1-42ad-4e5d-9bb8-453b64641f4d',
+   '5cf162f9-f465-4570-aee3-a88bc39eb5b9',
+   'ed94d33f-7051-49f3-b90d-f7bde1eb064a'
 ]
- ```
+```
