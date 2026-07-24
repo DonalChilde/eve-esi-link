@@ -30,7 +30,7 @@ Beta. Core functions available.
 
 ## Quick Start
 ```bash
-# Use the appropriate command format for your install
+# Use the appropriate command format for your  install
 eve-link schema cache update
 eve-link schema generate-doc --to ./schema-doc.md
 eve-link samples --to ./sample-requests/
