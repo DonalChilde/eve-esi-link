@@ -10,8 +10,10 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from httpx2 import Client
+from pfmsoft.eve_snippets.eve.eve_dates import previous_downtime
 
 from pfmsoft.eve_link.schema.helpers.fetch import (
+    TimestampedCompatibilityDates,
     fetch_compatibility_dates,
     fetch_schema,
 )
@@ -50,8 +52,9 @@ class SchemaCacheEntry:
 class SchemaCacheManager:
     """Manage persisted ESI schema cache files in a single directory.
 
-    The cache enforces one canonical entry per compatibility date by replacing
-    existing date-matching files on save.
+    The cache manager handles reading and writing schema files, as well as
+    maintaining a list of valid compatibility dates. It provides methods to fetch
+    and cache schemas for all known compatibility dates.
     """
 
     def __init__(self, *, cache_directory: Path) -> None:
@@ -61,6 +64,59 @@ class SchemaCacheManager:
             cache_directory: Directory containing cached schema JSON files.
         """
         self._cache_directory = cache_directory
+        self._compatibility_dates: TimestampedCompatibilityDates | None = None
+        self._load_compatibility_dates()
+
+    def _compatibility_dates_path(self) -> Path:
+        """Return the path to the cached compatibility dates file."""
+        return self._cache_directory / "compatibility_dates.json"
+
+    def _fetch_compatibility_dates(self, session: Client) -> None:
+        """Fetch the list of compatibility dates from ESI.
+
+        Args:
+            session: An instance of httpx2.Client for making HTTP requests.
+        """
+        compatibility_dates = fetch_compatibility_dates(session=session)
+        self._compatibility_dates_path().write_text(
+            compatibility_dates.serialize(indent=2), encoding="utf-8"
+        )
+        self._compatibility_dates = compatibility_dates
+
+    def _load_compatibility_dates(self) -> None:
+        """Load and cache the list of compatibility dates from disk."""
+        if self._compatibility_dates_path().exists():
+            self._compatibility_dates = TimestampedCompatibilityDates.deserialize(
+                self._compatibility_dates_path().read_text(encoding="utf-8")
+            )
+        else:
+            self._compatibility_dates = None
+
+    def _ensure_compatibility_dates(self, session: Client) -> None:
+        """Ensure that compatibility dates are loaded and current, fetching from ESI if necessary.
+
+        Args:
+            session: An instance of httpx2.Client for making HTTP requests.
+        """
+        if self._compatibility_dates is None:
+            self._fetch_compatibility_dates(session=session)
+            return
+        if self._compatibility_dates.timestamp_instant() < previous_downtime():
+            self._fetch_compatibility_dates(session=session)
+
+    @property
+    def valid_compatibility_dates(self) -> tuple[str, ...]:
+        """Return the list of valid compatibility dates.
+
+        Returns:
+            Tuple of compatibility dates in YYYY-MM-DD format.
+        """
+        if self._compatibility_dates is None:
+            raise RuntimeError(
+                "Compatibility dates have not been loaded. Call "
+                "fetch_updates(session) first."
+            )
+        return self._compatibility_dates.compatibility_dates
 
     @property
     def cache_directory(self) -> Path:
@@ -188,12 +244,15 @@ class SchemaCacheManager:
             deleted += 1
         return deleted
 
-    def fetch_updates(self, session: Client) -> None:
-        """Fetch and cache the latest schema for each compatibility date.
+    def fetch_updates(
+        self,
+        session: Client,
+    ) -> None:
+        """Fetch and cache schemas by compatibility date, replacing existing cached files.
 
-        This method fetches the latest schema for each known compatibility date
-        from the EVE Online API and saves them to the cache directory. Existing
-        cached files are replaced with the new versions.
+        This method ensures the latest available compatibility dates are fetched and
+        cached, and then fetches and caches any missing schemas from the EVE Online API
+        for those dates.
 
         Args:
             session: An instance of httpx2.Client for making HTTP requests.
@@ -201,8 +260,13 @@ class SchemaCacheManager:
         Raises:
             httpx2.HTTPError: If any HTTP request fails.
         """
-        compatibility_dates = fetch_compatibility_dates(session=session)
-        for compatibility_date in compatibility_dates.compatibility_dates:
+        self._ensure_compatibility_dates(session=session)
+        entries = self.list_entries()
+        cached_dates = {entry.compatibility_date for entry in entries}
+
+        for compatibility_date in self.valid_compatibility_dates:
+            if compatibility_date in cached_dates:
+                continue  # Skip already cached dates
             # Fetch the latest schema for the compatibility date
             timestamped_schema = fetch_schema(
                 session=session, schema_as_of=compatibility_date
