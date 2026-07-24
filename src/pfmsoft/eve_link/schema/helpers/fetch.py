@@ -29,6 +29,20 @@ class TimestampedSchema:
     """The timestamp associated with the schema, representing the timestamp when the 
         schema was fetched in nanoseconds."""
 
+    @classmethod
+    def deserialize(cls, json_string: str) -> TimestampedSchema:
+        """Deserialize a JSON string into a TimestampedSchema instance."""
+        value = TimestampedSchemaRoot.model_validate_json(json_string).root
+        return value
+
+    def serialize(self, indent: int | None = None) -> str:
+        """Serialize the TimestampedSchema instance into a JSON string."""
+        return TimestampedSchemaRoot(root=self).model_dump_json(indent=indent)
+
+    def timestamp_instant(self) -> Instant:
+        """Return the timestamp as an Instant object."""
+        return Instant.from_timestamp_nanos(self.timestamp)
+
 
 TimestampedSchemaRoot = RootModel[TimestampedSchema]
 
@@ -42,6 +56,25 @@ class TimestampedCompatibilityDates:
     timestamp: int
     """The timestamp associated with the compatibility dates, representing the 
         timestamp when the dates were fetched in nanoseconds."""
+
+    @classmethod
+    def deserialize(cls, json_string: str) -> TimestampedCompatibilityDates:
+        """Deserialize a JSON string into a TimestampedCompatibilityDates instance."""
+        value = TimestampedCompatibilityDatesRoot.model_validate_json(json_string).root
+        return value
+
+    def serialize(self, indent: int | None = None) -> str:
+        """Serialize the TimestampedCompatibilityDates instance into a JSON string."""
+        return TimestampedCompatibilityDatesRoot(root=self).model_dump_json(
+            indent=indent
+        )
+
+    def timestamp_instant(self) -> Instant:
+        """Return the timestamp as an Instant object."""
+        return Instant.from_timestamp_nanos(self.timestamp)
+
+
+TimestampedCompatibilityDatesRoot = RootModel[TimestampedCompatibilityDates]
 
 
 def fetch_schema(
